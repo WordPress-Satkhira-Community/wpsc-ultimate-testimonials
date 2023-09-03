@@ -3,7 +3,7 @@
  * Plugin Name: Ultimate Testimonials
  * Plugin URI: https://wpsatkhira.com/plugins/wps-ultimate-testimonials/
  * Description: Yet another testimonial plugins with lot's a of customization and freedom. A first project by WordPress Satkhira Community
- * Version: 0.2
+ * Version: 1.0
  * Requires PHP: 5.6.20
  * Author: WordPress Satkhira Community
  * Author URI: https://wpsatkhira.com
