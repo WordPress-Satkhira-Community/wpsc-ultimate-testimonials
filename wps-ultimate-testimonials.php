@@ -15,7 +15,9 @@
 
 //Avoiding Direct File Access
 
-defined( 'ABSPATH' ) || exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 /**
  * Load plugin textdomain.
@@ -25,6 +27,8 @@ function wps_ut_load_textdomain() {
   }
   add_action( 'plugins_loaded', 'wps_ut_load_textdomain' );
 
+
+ // WPS Ultimate Testimonital Plugin starts 
 
 class WPS_Ultimate_Testimonials
 {
