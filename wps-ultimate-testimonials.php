@@ -12,7 +12,19 @@
  * Text Domain: wps-ultimate-testimonials
  */
 
+
+//Avoiding Direct File Access
+
 defined( 'ABSPATH' ) || exit;
+
+/**
+ * Load plugin textdomain.
+ */
+function wps_ut_load_textdomain() {
+    load_plugin_textdomain( 'wps-ultimate-testimonials', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
+  }
+  add_action( 'plugins_loaded', 'wps_ut_load_textdomain' );
+
 
 class WPS_Ultimate_Testimonials
 {
