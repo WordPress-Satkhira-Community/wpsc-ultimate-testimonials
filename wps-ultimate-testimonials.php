@@ -19,6 +19,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+define('WPS__FILE__', __FILE__);
+define('WPS_DIR_PATH', plugin_dir_path(WPS__FILE__));
+define('WPS_DIR_URL', plugin_dir_url(WPS__FILE__));
+
 /**
  * Load plugin textdomain.
  */
@@ -49,8 +53,21 @@ class WPS_Ultimate_Testimonials
 		add_action( 'save_post', [$this, 'save_meta'] );
 		add_action( 'admin_menu', [$this, 'admin_menu'] );
 		add_action( 'admin_init', [$this, 'admin_settings'] );
+
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue' ] );
+		add_shortcode( 'wps_ultimate_testimonials', [ $this, 'testimonails_output' ] );
 	}
 
+	public function enqueue() {
+		wp_register_style( 'swiper', WPS_DIR_URL . 'assets/css/swiper.min.css', [], '10.2.0' );
+		wp_enqueue_style( 'swiper' );
+
+		wp_register_script( 'swiper', WPS_DIR_URL . 'assets/js/swiper.min.js', [ 'jquery' ], '10.2.0', true );
+		wp_enqueue_script( 'swiper' );
+
+		wp_register_script( 'wps_main', WPS_DIR_URL . 'assets/js/main.js', [ 'jquery', 'swiper' ], '1.0', true );
+		wp_enqueue_script( 'wps_main' );
+	}
 
 	public function post_types(){
 		$labels = [
@@ -242,6 +259,14 @@ class WPS_Ultimate_Testimonials
 
 		echo '<label><input type="radio" name="wps_testimonials_setting[carousel_performace]" value="local"'. checked( $checked, 'local', false ) .'> Enqueue own JS locally</label><br>';
 		echo '<label><input type="radio" name="wps_testimonials_setting[carousel_performace]" value="cdn"'. checked( $checked, 'cdn', false ) .'> Enqueue from CDN</label>';
+	}
+
+	public function testimonails_output() { 
+		ob_start();
+
+		include_once ( WPS_DIR_PATH .'/views/shortcode_output.php' );
+		
+		return ob_get_clean();	
 	}
 
 }
