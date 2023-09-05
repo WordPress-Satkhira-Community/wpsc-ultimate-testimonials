@@ -1,6 +1,6 @@
 (function($) {
 
-const testimonial = new Swiper('.swiper', {
+const testimonial = new Swiper('#wps_testimonials .swiper', {
 	slidesPerView: 1,
 	spaceBetween: 10,	
 	lazy: true,
@@ -11,7 +11,7 @@ const testimonial = new Swiper('.swiper', {
 	pagination: {
 		el: ".swiper-pagination",
 		clickable: true,
-	},	
+	},
 	breakpoints: {
 		640: {
 		  slidesPerView: 2,
