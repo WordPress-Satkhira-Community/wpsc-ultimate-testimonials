@@ -19,17 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-define('WPS__FILE__', __FILE__);
-define('WPS_DIR_PATH', plugin_dir_path(WPS__FILE__));
-define('WPS_DIR_URL', plugin_dir_url(WPS__FILE__));
-
-/**
- * Load plugin textdomain.
- */
-function wps_ut_load_textdomain() {
-    load_plugin_textdomain( 'wps-ultimate-testimonials', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
-  }
-  add_action( 'plugins_loaded', 'wps_ut_load_textdomain' );
+define('WPS_UT_PATH', plugin_dir_path(__FILE__));
+define('WPS_UT_URL', plugin_dir_url(__FILE__));
 
 
  // WPS Ultimate Testimonital Plugin starts 
@@ -48,7 +39,12 @@ class WPS_Ultimate_Testimonials
 	}
 
 	public function __construct(){
+		add_action( 'plugins_loaded', [$this, 'load_textdomain'] );
+
 		add_action( 'init', [$this, 'post_types'] );
+		register_activation_hook( __FILE__, [$this, 'rewrite_flush'] );
+		// register_deactivation_hook( __FILE__, [$this, 'rewrite_flush'] );
+
 		add_action( 'add_meta_boxes', [$this, 'meta_boxes'] );
 		add_action( 'save_post', [$this, 'save_meta'] );
 		add_action( 'admin_menu', [$this, 'admin_menu'] );
@@ -58,14 +54,19 @@ class WPS_Ultimate_Testimonials
 		add_shortcode( 'wps_ultimate_testimonials', [ $this, 'testimonails_output' ] );
 	}
 
+
+	function load_textdomain() {
+    	load_plugin_textdomain( 'wps-ultimate-testimonials', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	}
+
 	public function enqueue() {
-		wp_register_style( 'swiper', WPS_DIR_URL . 'assets/css/swiper.min.css', [], '10.2.0' );
+		wp_register_style( 'swiper', WPS_UT_URL . 'assets/css/swiper.min.css', [], '10.2.0' );
 		wp_enqueue_style( 'swiper' );
 
-		wp_register_script( 'swiper', WPS_DIR_URL . 'assets/js/swiper.min.js', [ 'jquery' ], '10.2.0', true );
+		wp_register_script( 'swiper', WPS_UT_URL . 'assets/js/swiper.min.js', [ 'jquery' ], '10.2.0', true );
 		wp_enqueue_script( 'swiper' );
 
-		wp_register_script( 'wps_main', WPS_DIR_URL . 'assets/js/main.js', [ 'jquery', 'swiper' ], '1.0', true );
+		wp_register_script( 'wps_main', WPS_UT_URL . 'assets/js/main.js', [ 'jquery', 'swiper' ], '1.0', true );
 		wp_enqueue_script( 'wps_main' );
 	}
 
@@ -93,9 +94,16 @@ class WPS_Ultimate_Testimonials
 			'show_in_menu'       => true,
 			'query_var'          => true,
 			'supports'			 => [ 'title', 'editor', 'thumbnail' ]
-			];
+		];
 
 		register_post_type( 'wps-testimonials', $args );
+	}
+
+
+	public function rewrite_flush(){
+		$this->post_types();
+
+		flush_rewrite_rules();
 	}
 
 
@@ -261,12 +269,12 @@ class WPS_Ultimate_Testimonials
 		echo '<label><input type="radio" name="wps_testimonials_setting[carousel_performace]" value="cdn"'. checked( $checked, 'cdn', false ) .'> Enqueue from CDN</label>';
 	}
 
-	public function testimonails_output( $atts, $content ) { 
+	public function testimonails_output( $atts, $content ) {
 		ob_start();
 
-		include_once ( WPS_DIR_PATH .'/views/shortcode_output.php' );
+		include_once ( WPS_UT_PATH .'/views/shortcode_output.php' );
 		
-		return ob_get_clean();	
+		return ob_get_clean();
 	}
 
 }
