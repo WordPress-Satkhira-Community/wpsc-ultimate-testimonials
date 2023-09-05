@@ -1,0 +1,109 @@
+.wps_wrapper {
+  background-color: #EFEFEF;
+  padding: 35px 30px;
+  border-radius: 10px;
+}
+.wps_reviews {
+  margin-bottom: 10px;
+}
+.wps_content {
+  margin-bottom: 20px;
+}
+#wps_testimonials .wps_author_pic img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  object-fit: cover;
+  object-position: center;
+}
+.wps_author {
+  display: flex;
+  align-items: center;
+}
+.wps_author_pic {
+  margin-right: 15px;
+}
+#wps_testimonials  .wps_author_bio h3 {
+  margin: 0 0 3px;
+  font-size: 18px;
+}
+#wps_testimonials .wps_author_bio p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+#wps_testimonials  .wps_author_bio h3 {
+    margin: 0 0 3px;
+    font-size: 18px;
+}
+#wps_testimonials .swiper-button-next:after, 
+#wps_testimonials .swiper-button-prev:after {
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
+}
+#wps_testimonials .swiper-button-next {
+  right: -60px;
+  background-color: #1450a3;
+  height: 45px;
+  width: 45px;
+  border-radius: 50px;
+  top: 42%;
+}
+#wps_testimonials .swiper-button-next.swiper-button-disabled, 
+#wps_testimonials .swiper-button-prev.swiper-button-disabled {
+  opacity: 1;
+  background-color: #d9d9d9;
+}
+#wps_testimonials .swiper-button-disabled.swiper-button-next:after,
+#wps_testimonials .swiper-button-disabled.swiper-button-prev:after {
+  color: #000;
+}
+#wps_testimonials .swiper-button-prev {
+  left: -60px;
+  background-color: #1450a3;
+  height: 45px;
+  width: 45px;
+  border-radius: 50px;
+  top: 42%;
+}
+#wps_testimonials .swiper-pagination-bullet {
+  height: 10px;
+  width: 10px;
+}
+#wps_testimonials .swiper-pagination-bullet-active {
+  background-color: #1450A3;
+}
+#wps_testimonials .swiper.swiper-initialized {
+  padding-bottom: 50px;
+}
+
+@media screen and (max-width: 1250px) and (min-width: 769px) {
+  #wps_testimonials .swiper.swiper-initialized {
+    max-width: 88%;
+  }
+  #wps_testimonials .swiper-button-next {
+    right: 5px;
+  }
+  #wps_testimonials .swiper-button-prev {
+    left: 5px;
+  }
+}
+@media screen and (max-width: 980px) and (min-width: 640px) {
+  #wps_testimonials .swiper.swiper-initialized {
+    max-width: 85%;
+  }
+  #wps_testimonials .swiper-button-next {
+    right: 0px;
+  }
+  #wps_testimonials .swiper-button-prev {
+    left: 0px;
+  }
+}
+@media screen and (max-width: 649px){
+  #wps_testimonials .swiper.swiper-initialized {
+    max-width: 92%;
+  }
+  .swiper-button-prev, .swiper-button-next{
+    display: none;
+  }
+}

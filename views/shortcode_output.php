@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-	include_once WPS_DIR_PATH .'/assets/icons/star.php';
+	include_once WPS_UT_PATH .'/assets/icons/star.php';
 ?>
 
 <div id="wps_testimonials">
@@ -112,8 +112,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	  </div>
 
 	  <div class="swiper-pagination"></div>
-
-	  <div class="swiper-button-prev"></div>
-	  <div class="swiper-button-next"></div>
 	</div>	
+	
+	<div class="swiper-button-prev"></div>
+	<div class="swiper-button-next"></div>
 </div>
