@@ -24,5 +24,4 @@ const testimonial = new Swiper('#wps_testimonials .swiper', {
 	}
 });
 
-
 })(jQuery);
