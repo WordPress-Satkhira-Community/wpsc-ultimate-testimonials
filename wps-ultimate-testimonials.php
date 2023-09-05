@@ -49,6 +49,7 @@ class WPS_Ultimate_Testimonials
 		add_action( 'save_post', [$this, 'save_meta'] );
 		add_action( 'admin_menu', [$this, 'admin_menu'] );
 		add_action( 'admin_init', [$this, 'admin_settings'] );
+		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), [$this, 'plugin_action_links'] );
 
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue' ] );
 		add_shortcode( 'wps_ultimate_testimonials', [ $this, 'testimonails_output' ] );
@@ -57,6 +58,11 @@ class WPS_Ultimate_Testimonials
 
 	function load_textdomain() {
     	load_plugin_textdomain( 'wps-ultimate-testimonials', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	}
+
+	public function plugin_action_links($actions){
+		$actions[] = '<a href="'. esc_url( get_admin_url(null, 'edit.php?post_type=wps-testimonials&page=wps-testimonials-settings') ) .'">Settings</a>';
+		return $actions;
 	}
 
 	public function enqueue() {
