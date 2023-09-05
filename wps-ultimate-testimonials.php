@@ -69,7 +69,7 @@ class WPS_Ultimate_Testimonials
 		wp_register_style( 'swiper', WPS_UT_URL . 'assets/css/swiper.min.css', [], '10.2.0' );
 		wp_enqueue_style( 'swiper' );
 
-		wp_register_style( 'style', WPS_DIR_URL . 'assets/css/style.css', [], '10.2.0' );
+		wp_register_style( 'style', WPS_UT_URL . 'assets/css/style.css', [], '10.2.0' );
 		wp_enqueue_style( 'style' );
 
 		wp_register_script( 'swiper', WPS_UT_URL . 'assets/js/swiper.min.js', [ 'jquery' ], '10.2.0', true );

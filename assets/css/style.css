@@ -1,9 +1,12 @@
+#wps_testimonials {
+  position: relative;
+}
 .wps_wrapper {
   background-color: #EFEFEF;
   padding: 35px 30px;
   border-radius: 10px;
 }
-.wps_reviews {
+#wps_testimonials .wps_reviews {
   margin-bottom: 10px;
 }
 .wps_content {
