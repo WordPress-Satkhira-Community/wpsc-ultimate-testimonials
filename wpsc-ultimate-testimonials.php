@@ -242,41 +242,68 @@ class WPSC_Ultimate_Testimonials
 		);
 
 		add_settings_field(
-			'wps_carousel_performace',
+			'wps_carousel_performance',
 			'Performance Oplimization',
-			[$this, 'carousel_performace'],
+			[$this, 'carousel_performance'],
 			'wps_testimonials',
 			'testimonials_shortcode'
 		);
 	}
 
 
+	//Shortcode Output
+
 	public function shortcode_output(){
-		echo '<input type="text" value="[wps_ultimate_testimonials]" readonly>';
+		echo '<input type="text" value="[wps_ultimate_testimonials]" readonly class="regular-text">';
 	}
+
 
 	public function carousel_status(){
 		$options = get_option( 'wps_testimonials_setting' );
-		$checked = $options['carousel_status'];
-
+		
+		// Check if $options is an array before accessing its elements
+		if (is_array($options)) {
+			$checked = isset($options['carousel_status']) ? $options['carousel_status'] : 'off';
+		} else {
+			// Set a default value if $options is not an array
+			$checked = 'on';
+		}
+	
 		echo '<label><input type="radio" name="wps_testimonials_setting[carousel_status]" value="on"'. checked( $checked, 'on', false ) .'> Enable</label><br>';
 		echo '<label><input type="radio" name="wps_testimonials_setting[carousel_status]" value="off"'. checked( $checked, 'off', false ) .'> Disable</label>';
 	}
+	
 
 	public function carousel_column(){
 		$options = get_option( 'wps_testimonials_setting' );
-		$value = $options['carousel_column'];
+
+		// Check if $options is an array before accessing its elements
+		if (is_array($options)){
+			$value = isset($options['carousel_column']) ? $options['carousel_column']: '3';
+		}else{
+			// Set a default value if $options is not an array
+			$value = '3';
+		}
 
 		echo '<input type="number" name="wps_testimonials_setting[carousel_column]" min="1" max="8" step="1" value="'. $value .'">';
 	}
 
-	public function carousel_performace(){
-		$options = get_option( 'wps_testimonials_setting' );
-		$checked = $options['carousel_performace'];
 
-		echo '<label><input type="radio" name="wps_testimonials_setting[carousel_performace]" value="local"'. checked( $checked, 'local', false ) .'> Enqueue own JS locally</label><br>';
-		echo '<label><input type="radio" name="wps_testimonials_setting[carousel_performace]" value="cdn"'. checked( $checked, 'cdn', false ) .'> Enqueue from CDN</label>';
+
+	public function carousel_performance() {
+		$options = get_option( 'wps_testimonials_setting' );
+		// Check if $options is an array before accessing its elements
+		if(is_array($options)){
+			$checked = isset($options['carousel_performance']) ? $options['carousel_performance'] : 'cdn';
+		}else{
+			// Set a default value if $options is not an array
+			$checked = 'cdn';
+		}
+	
+		echo '<label><input type="radio" name="wps_testimonials_setting[carousel_performance]" value="local"'. checked( $checked, 'local', false ) .'> Enqueue own JS locally</label><br>';
+		echo '<label><input type="radio" name="wps_testimonials_setting[carousel_performance]" value="cdn"'. checked( $checked, 'cdn', false ) .'> Enqueue from CDN</label>';
 	}
+	
 
 	public static function get_data (){
 		return get_posts([
