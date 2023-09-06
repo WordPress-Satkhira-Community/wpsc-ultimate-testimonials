@@ -16,11 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	    <div class="swiper-slide wps_testimonial">
 	    	<div class="wps_wrapper">
 	    		<div class="wps_reviews">
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
+	    			<?php echo wps_star(3.5)?>
 	    		</div>
 	    		<div class="wps_content">
 	    			<p>Cras et lectus posuere, semper libero et, mattis augue. Pellentesque abitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
@@ -40,11 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	    <div class="swiper-slide wps_testimonial">
 	    	<div class="wps_wrapper">
 	    		<div class="wps_reviews">
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
+                    <?php echo wps_star(1)?>
 	    		</div>
 	    		<div class="wps_content">
 	    			<p>Cras et lectus posuere, semper libero et, mattis augue. Pellentesque abitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
@@ -64,11 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	    <div class="swiper-slide wps_testimonial">
 	    	<div class="wps_wrapper">
 	    		<div class="wps_reviews">
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
+                    <?php echo wps_star(2.5)?>
 	    		</div>
 	    		<div class="wps_content">
 	    			<p>Cras et lectus posuere, semper libero et, mattis augue. Pellentesque abitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
@@ -87,11 +75,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	    <div class="swiper-slide wps_testimonial">
 	    	<div class="wps_wrapper">
 	    		<div class="wps_reviews">
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
-	    			<?php echo $star; ?>
+                    <?php echo wps_star(4.5)?>
 	    		</div>
 	    		<div class="wps_content">
 	    			<p>Cras et lectus posuere, semper libero et, mattis augue. Pellentesque abitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
