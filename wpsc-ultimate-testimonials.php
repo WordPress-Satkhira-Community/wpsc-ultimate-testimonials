@@ -299,7 +299,7 @@ class WPSC_Ultimate_Testimonials
 
 
 // Load the plugin
-WPS_Ultimate_Testimonials::get_instance();
+WPSC_Ultimate_Testimonials::get_instance();
 
 
 
