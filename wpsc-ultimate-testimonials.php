@@ -25,7 +25,7 @@ define('WPS_UT_URL', plugin_dir_url(__FILE__));
 
  // WPS Ultimate Testimonital Plugin starts 
 
-class WPS_Ultimate_Testimonials
+class WPSC_Ultimate_Testimonials
 {
 	
 	private static $instance;
