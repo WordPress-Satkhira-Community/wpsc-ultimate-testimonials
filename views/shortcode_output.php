@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		  		$content = $testimonial->post_content ?? '';
 		  		$position = get_post_meta( $testimonial->ID, 'designation', true ) ?? '';
 		  		$rating = !empty(get_post_meta( $testimonial->ID, 'ratings', true )) ? get_post_meta( $testimonial->ID, 'ratings', true ): 5;
+				$thumbnail_url = get_the_post_thumbnail_url( $testimonial->ID,'thumbnail' );
 		  	?>
 			    <div class="swiper-slide wps_testimonial">
 			    	<div class="wps_wrapper">
@@ -33,7 +34,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			    		</div>
 			    		<div class="wps_author">
 			    			<div class="wps_author_pic">
-			    				<img src="https://www.cloudways.com/wp-content/uploads/2020/01/testimonial-edward.png">
+			    				 <!-- Display the post thumbnail here -->
+								 <img src="<?php echo $thumbnail_url; ?>" alt="<?php echo $author; ?>'s Thumbnail">
 			    			</div>
 			    			<div class="wps_author_bio">
 			    				<h3><?= $author; ?></h3>
