@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Ultimate Testimonials
- * Plugin URI: https://wpsatkhira.com/plugins/wps-ultimate-testimonials/
+ * Plugin URI: https://wpsatkhira.com/plugins/wpsc-ultimate-testimonials/
  * Description: Yet another testimonial plugins with lot's a of customization and freedom. A first project by WordPress Satkhira Community
  * Version: 1.0
  * Requires PHP: 5.6.20
@@ -9,7 +9,7 @@
  * Author URI: https://wpsatkhira.com
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: wps-ultimate-testimonials
+ * Text Domain: wpsc-ultimate-testimonials
  */
 
 
@@ -57,7 +57,7 @@ class WPS_Ultimate_Testimonials
 
 
 	function load_textdomain() {
-    	load_plugin_textdomain( 'wps-ultimate-testimonials', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+    	load_plugin_textdomain( 'wpsc-ultimate-testimonials', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	public function plugin_action_links($actions){
@@ -81,18 +81,18 @@ class WPS_Ultimate_Testimonials
 
 	public function post_types(){
 		$labels = [
-			'name'                  => __( 'Testimonials', 'wps-ultimate-testimonials' ),
-			'singular_name'         => __( 'Testimonial', 'wps-ultimate-testimonials' ),
-			'menu_name'             => __( 'Testimonials', 'wps-ultimate-testimonials' ),
-			'add_new'               => __( 'Add Testimonial', 'wps-ultimate-testimonials' ),
-			'add_new_item'          => __( 'Add New Testimonial', 'wps-ultimate-testimonials' ),
-			'new_item'              => __( 'New Testimonial', 'wps-ultimate-testimonials' ),
-			'edit_item'             => __( 'Edit Testimonial', 'wps-ultimate-testimonials' ),
-			'view_item'             => __( 'View Testimonial', 'wps-ultimate-testimonials' ),
-			'all_items'             => __( 'All Testimonials', 'wps-ultimate-testimonials' ),
-			'search_items'          => __( 'Search Testimonials', 'wps-ultimate-testimonials' ),
-			'not_found'             => __( 'No testimonial found.', 'wps-ultimate-testimonials' ),
-			'not_found_in_trash'    => __( 'No testimonial found in Trash.', 'wps-ultimate-testimonials' ),
+			'name'                  => __( 'Testimonials', 'wpsc-ultimate-testimonials' ),
+			'singular_name'         => __( 'Testimonial', 'wpsc-ultimate-testimonials' ),
+			'menu_name'             => __( 'Testimonials', 'wpsc-ultimate-testimonials' ),
+			'add_new'               => __( 'Add Testimonial', 'wpsc-ultimate-testimonials' ),
+			'add_new_item'          => __( 'Add New Testimonial', 'wpsc-ultimate-testimonials' ),
+			'new_item'              => __( 'New Testimonial', 'wpsc-ultimate-testimonials' ),
+			'edit_item'             => __( 'Edit Testimonial', 'wpsc-ultimate-testimonials' ),
+			'view_item'             => __( 'View Testimonial', 'wpsc-ultimate-testimonials' ),
+			'all_items'             => __( 'All Testimonials', 'wpsc-ultimate-testimonials' ),
+			'search_items'          => __( 'Search Testimonials', 'wpsc-ultimate-testimonials' ),
+			'not_found'             => __( 'No testimonial found.', 'wpsc-ultimate-testimonials' ),
+			'not_found_in_trash'    => __( 'No testimonial found in Trash.', 'wpsc-ultimate-testimonials' ),
 		];
 		
 		$args = [
