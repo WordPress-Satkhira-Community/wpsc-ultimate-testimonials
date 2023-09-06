@@ -278,7 +278,16 @@ class WPS_Ultimate_Testimonials
 		echo '<label><input type="radio" name="wps_testimonials_setting[carousel_performace]" value="cdn"'. checked( $checked, 'cdn', false ) .'> Enqueue from CDN</label>';
 	}
 
+	public static function get_data (){
+		return get_posts([
+		  'numberposts' => -1,
+		  'post_type'   => 'wps-testimonials'
+		]);
+	}
+
 	public function testimonails_output( $atts, $content ) {
+		$testimonials = self::get_data() ?? [];
+
 		ob_start();
 
 		include_once ( WPS_UT_PATH .'/views/shortcode_output.php' );
