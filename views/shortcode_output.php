@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	    <div class="swiper-slide wps_testimonial">
 	    	<div class="wps_wrapper">
 	    		<div class="wps_reviews">
-	    			<?php echo wps_star(3.5)?>
+	    			<?php echo reviews(5); ?>
 	    		</div>
 	    		<div class="wps_content">
 	    			<p>Cras et lectus posuere, semper libero et, mattis augue. Pellentesque abitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	    <div class="swiper-slide wps_testimonial">
 	    	<div class="wps_wrapper">
 	    		<div class="wps_reviews">
-                    <?php echo wps_star(1)?>
+                    <?php echo reviews(3.5); ?>
 	    		</div>
 	    		<div class="wps_content">
 	    			<p>Cras et lectus posuere, semper libero et, mattis augue. Pellentesque abitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
@@ -56,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	    <div class="swiper-slide wps_testimonial">
 	    	<div class="wps_wrapper">
 	    		<div class="wps_reviews">
-                    <?php echo wps_star(2.5)?>
+                    <?php echo reviews(2.5); ?>
 	    		</div>
 	    		<div class="wps_content">
 	    			<p>Cras et lectus posuere, semper libero et, mattis augue. Pellentesque abitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
@@ -75,7 +75,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	    <div class="swiper-slide wps_testimonial">
 	    	<div class="wps_wrapper">
 	    		<div class="wps_reviews">
-                    <?php echo wps_star(4.5)?>
+                    <?php echo $star; ?>
 	    		</div>
 	    		<div class="wps_content">
 	    			<p>Cras et lectus posuere, semper libero et, mattis augue. Pellentesque abitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>

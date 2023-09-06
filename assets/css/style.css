@@ -8,6 +8,21 @@
 }
 #wps_testimonials .wps_reviews {
   margin-bottom: 10px;
+  height: 20px;
+  overflow: hidden;
+  width: 120px;
+  position: relative;
+  line-height: 1em;
+}
+#wps_testimonials .wps_reviews .yellow-star {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  overflow: hidden;
+}
+#wps_testimonials .wps_reviews .black-star {
+  height: 20px;
 }
 .wps_content {
   margin-bottom: 20px;
