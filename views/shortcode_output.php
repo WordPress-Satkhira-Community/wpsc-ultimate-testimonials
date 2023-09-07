@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-	include_once WPS_UT_PATH .'/assets/icons/star.php';
+	include_once WPS_UT_PATH .'/inc/icons/star.php';
 ?>
 
 
