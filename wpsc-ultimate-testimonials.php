@@ -77,6 +77,15 @@ class WPSC_Ultimate_Testimonials
 
 		wp_register_script( 'wps_main', WPS_UT_URL . 'assets/js/main.js', [ 'jquery', 'swiper' ], '1.0', true );
 		wp_enqueue_script( 'wps_main' );
+		$setOptions = get_option( 'wps_testimonials_setting' );
+		wp_localize_script( 'wps_main', 'wps_settings_data',
+			array( 
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'desktop_col' => $setOptions['desktop_column'] ?? 'default',
+				'tablet_col' => $setOptions['tablet_column'] ?? 'default',
+				'mobile_col' => $setOptions['mobile_column'] ?? 'default',
+			)
+		);
 	}
 
 	public function post_types(){
@@ -216,6 +225,36 @@ class WPSC_Ultimate_Testimonials
 			'__return_null',
 			'wps_testimonials'
 		);
+		add_settings_section(
+			'testimonials_responsive',
+			'Carousel Column',
+			'__return_null',
+			'wps_testimonials'
+		);
+
+
+		add_settings_field(
+			'wps_carousel_column',
+			__('Desktop Column', 'wpsc-ultimate-testimonials'),
+			[$this, 'desktop_carousel_column'],
+			'wps_testimonials',
+			'testimonials_responsive'
+		);
+		add_settings_field(
+			'wps_carousel_tablet_column',
+			__('Tablet Column', 'wpsc-ultimate-testimonials'),
+			[$this, 'tablet_carousel_column'],
+			'wps_testimonials',
+			'testimonials_responsive'
+		);
+		add_settings_field(
+			'wps_carousel_mobile_column',
+			__('Mobile Column', 'wpsc-ultimate-testimonials'),
+			[$this, 'mobile_carousel_column'],
+			'wps_testimonials',
+			'testimonials_responsive'
+		);
+		
 
 		add_settings_field(
 			'wps_testimonials_shortcode',
@@ -224,7 +263,6 @@ class WPSC_Ultimate_Testimonials
 			'wps_testimonials',
 			'testimonials_shortcode'
 		);
-
 		add_settings_field(
 			'wps_carousel_status',
 			'Carousel Status',
@@ -232,15 +270,6 @@ class WPSC_Ultimate_Testimonials
 			'wps_testimonials',
 			'testimonials_shortcode'
 		);
-
-		add_settings_field(
-			'wps_carousel_column',
-			'Carousel Column',
-			[$this, 'carousel_column'],
-			'wps_testimonials',
-			'testimonials_shortcode'
-		);
-
 		add_settings_field(
 			'wps_carousel_performance',
 			'Performance Oplimization',
@@ -274,18 +303,46 @@ class WPSC_Ultimate_Testimonials
 	}
 	
 
-	public function carousel_column(){
+	public function desktop_carousel_column(){
 		$options = get_option( 'wps_testimonials_setting' );
-
-		// Check if $options is an array before accessing its elements
 		if (is_array($options)){
-			$value = isset($options['carousel_column']) ? $options['carousel_column']: '3';
-		}else{
-			// Set a default value if $options is not an array
-			$value = '3';
+			$value = isset($options['desktop_column']) ? $options['desktop_column'] : 'default';
 		}
 
-		echo '<input type="number" name="wps_testimonials_setting[carousel_column]" min="1" max="8" step="1" value="'. $value .'">';
+		echo '<select name="wps_testimonials_setting[desktop_column]">
+			<option value="default" ' . selected( $value, 'default', false ).'>Default</option>';
+			for($option = 1; $option < 7; $option++) {
+			  echo '<option value="'. $option .'"' . selected( $value, $option, false ).'>'.$option.'</option>';
+			}
+		echo '</select>';
+	}
+
+	public function tablet_carousel_column(){
+		$options = get_option( 'wps_testimonials_setting' );
+		if (is_array($options)){
+			$value = isset($options['tablet_column']) ? $options['tablet_column'] : 'default';
+		}
+
+		echo '<select name="wps_testimonials_setting[tablet_column]">
+			<option value="default" ' . selected( $value, 'default', false ).'>Default</option>';
+			for($option = 1; $option < 8; $option++) {
+			  echo '<option value="'. $option .'"' . selected( $value, $option, false ).'>'.$option.'</option>';
+			}
+		echo '</select>';
+	}
+
+	public function mobile_carousel_column(){
+		$options = get_option( 'wps_testimonials_setting' );
+		if (is_array($options)){
+			$value = isset($options['mobile_column']) ? $options['mobile_column'] : 'default';
+		}
+
+		echo '<select name="wps_testimonials_setting[mobile_column]">
+			<option value="default" ' . selected( $value, 'default', false ).'>Default</option>';
+			for($option = 1; $option < 4; $option++) {
+			  echo '<option value="'. $option .'"' . selected( $value, $option, false ).'>'.$option.'</option>';
+			}
+		echo '</select>';
 	}
 
 
