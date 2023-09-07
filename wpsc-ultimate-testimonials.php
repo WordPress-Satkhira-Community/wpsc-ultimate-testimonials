@@ -53,6 +53,9 @@ class WPSC_Ultimate_Testimonials
 
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue' ] );
 		add_shortcode( 'wps_ultimate_testimonials', [ $this, 'testimonails_output' ] );
+
+		// Elementor Addons
+		add_action( 'elementor/widgets/register', [$this, 'elementor_widget'] );
 	}
 
 
@@ -355,7 +358,6 @@ class WPSC_Ultimate_Testimonials
 	}
 
 
-
 	public function carousel_performance() {
 		$options = get_option( 'wps_testimonials_setting' );
 		// Check if $options is an array before accessing its elements
@@ -378,6 +380,7 @@ class WPSC_Ultimate_Testimonials
 		]);
 	}
 
+
 	public function testimonails_output( $atts, $content ) {
 		$testimonials = self::get_data() ?? [];
 
@@ -386,6 +389,13 @@ class WPSC_Ultimate_Testimonials
 		include_once ( WPS_UT_PATH .'/views/shortcode_output.php' );
 		
 		return ob_get_clean();
+	}
+
+
+	public function elementor_widget( $widgets_manager ){
+		require_once( WPS_UT_PATH . '/inc/elementor/widget.php' );
+
+		$widgets_manager->register( new \WPSC_Ultimate_Testimonials_Widget() );
 	}
 
 }
