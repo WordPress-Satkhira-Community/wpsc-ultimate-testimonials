@@ -23,7 +23,7 @@ define('WPS_UT_PATH', plugin_dir_path(__FILE__));
 define('WPS_UT_URL', plugin_dir_url(__FILE__));
 
 
- // WPS Ultimate Testimonital Plugin starts 
+ // WPSC Ultimate Testimonital Plugin starts 
 
 class WPSC_Ultimate_Testimonials
 {
