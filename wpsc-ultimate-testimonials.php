@@ -307,6 +307,9 @@ class WPSC_Ultimate_Testimonials
 		$options = get_option( 'wps_testimonials_setting' );
 		if (is_array($options)){
 			$value = isset($options['desktop_column']) ? $options['desktop_column'] : 'default';
+		}else{
+			// Set a default value if $options is not an array
+			$value = 'default';
 		}
 
 		echo '<select name="wps_testimonials_setting[desktop_column]">
@@ -321,6 +324,9 @@ class WPSC_Ultimate_Testimonials
 		$options = get_option( 'wps_testimonials_setting' );
 		if (is_array($options)){
 			$value = isset($options['tablet_column']) ? $options['tablet_column'] : 'default';
+		}else{
+			// Set a default value if $options is not an array
+			$value = 'default';
 		}
 
 		echo '<select name="wps_testimonials_setting[tablet_column]">
@@ -335,6 +341,9 @@ class WPSC_Ultimate_Testimonials
 		$options = get_option( 'wps_testimonials_setting' );
 		if (is_array($options)){
 			$value = isset($options['mobile_column']) ? $options['mobile_column'] : 'default';
+		}else{
+			// Set a default value if $options is not an array
+			$value = 'default';
 		}
 
 		echo '<select name="wps_testimonials_setting[mobile_column]">
