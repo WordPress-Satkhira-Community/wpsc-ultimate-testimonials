@@ -51,7 +51,7 @@ class WPSC_Ultimate_Testimonials
 		add_action( 'admin_init', [$this, 'admin_settings'] );
 		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), [$this, 'plugin_action_links'] );
 
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ] );
 		add_shortcode( 'wps_ultimate_testimonials', [ $this, 'testimonails_output' ] );
 
 		// Elementor Addons
@@ -69,7 +69,7 @@ class WPSC_Ultimate_Testimonials
 		return $actions;
 	}
 
-	public function enqueue() {
+	public function scripts() {
 		wp_register_style( 'swiper', WPS_UT_URL . 'assets/css/swiper.min.css', [], '10.2.0' );
 		wp_enqueue_style( 'swiper' );
 
@@ -81,6 +81,7 @@ class WPSC_Ultimate_Testimonials
 
 		wp_register_script( 'wps_main', WPS_UT_URL . 'assets/js/main.js', [ 'jquery', 'swiper' ], '1.0', true );
 		wp_enqueue_script( 'wps_main' );
+		
 		$setOptions = get_option( 'wps_testimonials_setting' );
 		wp_localize_script( 'wps_main', 'wps_settings_data',
 			array( 
