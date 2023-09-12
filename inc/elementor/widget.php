@@ -113,6 +113,56 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
+		$slides_per_view = range( 1, 10 );
+		$slides_per_view = array_combine( $slides_per_view, $slides_per_view );
+
+		$this->add_responsive_control(
+			'slides_per_view',
+			[
+				'type' => Controls_Manager::SELECT,
+				'label' => esc_html__( 'Slides Per View', 'elementor-pro' ),
+				'options' => [ '' => esc_html__( 'Default', 'elementor-pro' ) ] + $slides_per_view,
+				'inherit_placeholders' => false,
+				'frontend_available' => true,
+			]
+		);
+
+		$this->add_responsive_control(
+			'slides_to_scroll',
+			[
+				'type' => Controls_Manager::SELECT,
+				'label' => esc_html__( 'Slides to Scroll', 'elementor-pro' ),
+				'description' => esc_html__( 'Set how many slides are scrolled per swipe.', 'elementor-pro' ),
+				'options' => [ '' => esc_html__( 'Default', 'elementor-pro' ) ] + $slides_per_view,
+				'inherit_placeholders' => false,
+				'frontend_available' => true,
+			]
+		);
+
+		$this->add_responsive_control(
+			'width',
+			[
+				'type' => Controls_Manager::SLIDER,
+				'label' => esc_html__( 'Width', 'elementor-pro' ),
+				'size_units' => [ 'px', '%', 'em', 'rem', 'vw', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 100,
+						'max' => 1140,
+					],
+					'%' => [
+						'min' => 50,
+					],
+				],
+				'default' => [
+					'unit' => '%',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elementor-main-swiper' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
 		$this->end_controls_section();
 
 		// Query Section
@@ -130,12 +180,14 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 				'type' => Controls_Manager::SELECT,
 				'label' => esc_html__( 'Source', 'wpsc-ultimate-testimonials' ),
 				'options' => [
-					'elementor' => esc_html__( 'Elementor', 'wpsc-ultimate-testimonials' ),
-					'post_type' => esc_html__( 'Post Type', 'wpsc-ultimate-testimonials' ),
+					'post_type' => esc_html__( 'Testimonials', 'wpsc-ultimate-testimonials' ),
+					'manual' => esc_html__( 'Manual Create', 'wpsc-ultimate-testimonials' ),
 				],
 				'default' => 'elementor',
 			]
 		);
+
+
 
 		$this->end_controls_section();
 
@@ -145,6 +197,113 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Pagination', 'wpsc-ultimate-testimonials' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_control(
+			'show_arrows',
+			[
+				'type' => Controls_Manager::SWITCHER,
+				'label' => esc_html__( 'Arrows', 'elementor-pro' ),
+				'default' => 'yes',
+				'label_off' => esc_html__( 'Hide', 'elementor-pro' ),
+				'label_on' => esc_html__( 'Show', 'elementor-pro' ),
+				'prefix_class' => 'elementor-arrows-',
+				'render_type' => 'template',
+				'frontend_available' => true,
+			]
+		);
+
+		$this->add_control(
+			'pagination',
+			[
+				'label' => esc_html__( 'Pagination', 'elementor-pro' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'bullets',
+				'options' => [
+					'' => esc_html__( 'None', 'elementor-pro' ),
+					'bullets' => esc_html__( 'Dots', 'elementor-pro' ),
+					'fraction' => esc_html__( 'Fraction', 'elementor-pro' ),
+					'progressbar' => esc_html__( 'Progress', 'elementor-pro' ),
+				],
+				'prefix_class' => 'elementor-pagination-type-',
+				'render_type' => 'template',
+				'frontend_available' => true,
+			]
+		);
+
+		$this->add_control(
+			'speed',
+			[
+				'label' => esc_html__( 'Transition Duration', 'elementor-pro' ),
+				'type' => Controls_Manager::NUMBER,
+				'default' => 500,
+				'render_type' => 'none',
+				'frontend_available' => true,
+			]
+		);
+
+		$this->add_control(
+			'autoplay',
+			[
+				'label' => esc_html__( 'Autoplay', 'elementor-pro' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+				'separator' => 'before',
+				'render_type' => 'none',
+				'frontend_available' => true,
+			]
+		);
+
+		$this->add_control(
+			'autoplay_speed',
+			[
+				'label' => esc_html__( 'Autoplay Speed', 'elementor-pro' ),
+				'type' => Controls_Manager::NUMBER,
+				'default' => 5000,
+				'condition' => [
+					'autoplay' => 'yes',
+				],
+				'render_type' => 'none',
+				'frontend_available' => true,
+			]
+		);
+
+		$this->add_control(
+			'loop',
+			[
+				'label' => esc_html__( 'Infinite Loop', 'elementor-pro' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+				'frontend_available' => true,
+			]
+		);
+
+		$this->add_control(
+			'pause_on_hover',
+			[
+				'label' => esc_html__( 'Pause on Hover', 'elementor-pro' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+				'condition' => [
+					'autoplay' => 'yes',
+				],
+				'render_type' => 'none',
+				'frontend_available' => true,
+			]
+		);
+
+		$this->add_control(
+			'pause_on_interaction',
+			[
+				'label' => esc_html__( 'Pause on Interaction', 'elementor-pro' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+				'condition' => [
+					'autoplay' => 'yes',
+				],
+				'render_type' => 'none',
+				'frontend_available' => true,
 			]
 		);
 
