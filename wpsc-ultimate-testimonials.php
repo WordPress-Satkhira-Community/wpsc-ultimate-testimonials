@@ -55,6 +55,7 @@ class WPSC_Ultimate_Testimonials
 		add_shortcode( 'wps_ultimate_testimonials', [ $this, 'testimonails_output' ] );
 
 		// Elementor Addons
+		add_action( 'elementor/elements/categories_registered', [$this, 'elementor_widget_category'], 0 );
 		add_action( 'elementor/widgets/register', [$this, 'elementor_widget'] );
 	}
 
@@ -389,6 +390,17 @@ class WPSC_Ultimate_Testimonials
 		include_once ( WPS_UT_PATH .'/views/shortcode_output.php' );
 		
 		return ob_get_clean();
+	}
+
+
+	public function elementor_widget_category( $elements_manager ) {
+		$elements_manager->add_category(
+			'wpsc-plugins',
+			[
+				'title' => esc_html__( 'WPSC Addons', 'wpsc-ultimate-testimonials' ),
+				'icon' => 'fa fa-plug',
+			]
+		);
 	}
 
 
