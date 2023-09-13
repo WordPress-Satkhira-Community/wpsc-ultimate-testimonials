@@ -52,6 +52,7 @@ class WPSC_Ultimate_Testimonials
 		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), [$this, 'plugin_action_links'] );
 
 		add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
 		add_shortcode( 'wps_ultimate_testimonials', [ $this, 'testimonails_output' ] );
 
 		// Elementor Addons
@@ -67,6 +68,13 @@ class WPSC_Ultimate_Testimonials
 	public function plugin_action_links($actions){
 		$actions[] = '<a href="'. esc_url( get_admin_url(null, 'edit.php?post_type=wps-testimonials&page=wps-testimonials-settings') ) .'">Settings</a>';
 		return $actions;
+	}
+
+	public function admin_scripts($hook) {
+		if( "wps-testimonials_page_wps-testimonials-settings" != $hook ) {
+			return;
+		}
+		wp_enqueue_style( 'style', WPS_UT_URL . 'assets/css/admin-style.css', [], '10.2.0' );
 	}
 
 	public function scripts() {
@@ -86,9 +94,10 @@ class WPSC_Ultimate_Testimonials
 		wp_localize_script( 'wps_main', 'wps_settings_data',
 			array( 
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'desktop_col' => $setOptions['desktop_column'] ?? 'default',
-				'tablet_col' => $setOptions['tablet_column'] ?? 'default',
-				'mobile_col' => $setOptions['mobile_column'] ?? 'default',
+				'desktop_col' 	=>	$setOptions['desktop_column'] ?? 'default',
+				'tablet_col' 	=>	$setOptions['tablet_column'] ?? 'default',
+				'mobile_col' 	=>	$setOptions['mobile_column'] ?? 'default',
+				'auto_play' 	=>	$setOptions['carousel_autoplay'] ?? false,
 			)
 		);
 	}
@@ -269,9 +278,9 @@ class WPSC_Ultimate_Testimonials
 			'testimonials_shortcode'
 		);
 		add_settings_field(
-			'wps_carousel_status',
-			'Carousel Status',
-			[$this, 'carousel_status'],
+			'wps_carousel_autoplay',
+			'Carousel Autoplay',
+			[$this, 'carousel_autoplay'],
 			'wps_testimonials',
 			'testimonials_shortcode'
 		);
@@ -292,19 +301,21 @@ class WPSC_Ultimate_Testimonials
 	}
 
 
-	public function carousel_status(){
+	public function carousel_autoplay(){
 		$options = get_option( 'wps_testimonials_setting' );
 		
 		// Check if $options is an array before accessing its elements
 		if (is_array($options)) {
-			$checked = isset($options['carousel_status']) ? $options['carousel_status'] : 'off';
+			$checked = isset($options['carousel_autoplay']) ? true : false;
 		} else {
 			// Set a default value if $options is not an array
-			$checked = 'on';
+			$checked = true;
 		}
-	
-		echo '<label><input type="radio" name="wps_testimonials_setting[carousel_status]" value="on"'. checked( $checked, 'on', false ) .'> Enable</label><br>';
-		echo '<label><input type="radio" name="wps_testimonials_setting[carousel_status]" value="off"'. checked( $checked, 'off', false ) .'> Disable</label>';
+
+		echo'<label class="wps_switch">
+		  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[carousel_autoplay]" '. checked( $checked, true, false ) .'>
+		  <span class="wps_toggle"></span>
+		</label>';
 	}
 	
 
