@@ -191,12 +191,12 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'testimonials_list',
 			[
-				'label' => esc_html__( 'Testimonial', 'textdomain' ),
+				'label' => esc_html__( 'Testimonial', 'wpsc-ultimate-testimonials' ),
 				'type' => \Elementor\Controls_Manager::REPEATER,
 				'fields' => [
 					[	
 						'name' => 'review-image',
-						'label' => esc_html__( 'Choose Image', 'textdomain' ),
+						'label' => esc_html__( 'Choose Image', 'wpsc-ultimate-testimonials' ),
 						'type' => \Elementor\Controls_Manager::MEDIA,
 						'default' => [
 							'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -204,25 +204,25 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 					],
 					[
 						'name' => 'name',
-						'label' => esc_html__( 'Name', 'textdomain' ),
+						'label' => esc_html__( 'Name', 'wpsc-ultimate-testimonials' ),
 						'type' => \Elementor\Controls_Manager::TEXT,
-						'placeholder' => esc_html__( 'John Doe', 'textdomain' ),
+						'placeholder' => esc_html__( 'John Doe', 'wpsc-ultimate-testimonials' ),
 					],
 					[
 						'name' => 'review',
-						'label' => esc_html__( 'Review', 'textdomain' ),
+						'label' => esc_html__( 'Review', 'wpsc-ultimate-testimonials' ),
 						'type' => \Elementor\Controls_Manager::WYSIWYG,
-						'placeholder' => esc_html__( 'Write Review', 'textdomain' ),
+						'placeholder' => esc_html__( 'Write Review', 'wpsc-ultimate-testimonials' ),
 					],
 					[
 						'name' => 'designation',
-						'label' => esc_html__( 'Designation', 'textdomain' ),
+						'label' => esc_html__( 'Designation', 'wpsc-ultimate-testimonials' ),
 						'type' => \Elementor\Controls_Manager::TEXT,
-						'placeholder' => esc_html__( 'CEO', 'textdomain' ),
+						'placeholder' => esc_html__( 'CEO', 'wpsc-ultimate-testimonials' ),
 					],					
 					[
 						'name' => 'rating',
-						'label' => esc_html__( 'Rating', 'textdomain' ),
+						'label' => esc_html__( 'Rating', 'wpsc-ultimate-testimonials' ),
 						'type' => \Elementor\Controls_Manager::NUMBER,
 						'min' => 1,
 						'max' => 5,
@@ -233,10 +233,10 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 				],
 				'default' => [
 					[
-						'text' => esc_html__( 'List Item #1', 'textdomain' ),
+						'text' => esc_html__( 'List Item #1', 'wpsc-ultimate-testimonials' ),
 					],
 					[
-						'text' => esc_html__( 'List Item #2', 'textdomain' ),
+						'text' => esc_html__( 'List Item #2', 'wpsc-ultimate-testimonials' ),
 					],
 				],
 				'title_field' => '{{{ name }}}',
