@@ -14,7 +14,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div id="wps_testimonials">
 	<?php if ( empty($testimonials) ): ?>
 		<h3>No Reviews Available!</h3>
-	<?php else: ?>
+	<?php else:
+
+		$attributes = shortcode_atts( array(
+			'desktop'	=> 'default',
+			'tablet'	=> 'default',
+			'mobile'	=> 'default',
+			'auto_play'	=> '',
+		), $atts );
+
+		wp_localize_script( 'wps_main', 'wps_settings_shortcode',
+			array( 
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'desktop_col' 	=>	$attributes['desktop'],
+				'tablet_col' 	=>	$attributes['tablet'],
+				'mobile_col' 	=>	$attributes['mobile'],
+				'auto_play' 	=>	$attributes['auto_play'],
+			)
+		);
+
+	 ?>
 		<div class="swiper">
 		  <div class="swiper-wrapper">
 		  	<?php foreach ($testimonials as $testimonial): 

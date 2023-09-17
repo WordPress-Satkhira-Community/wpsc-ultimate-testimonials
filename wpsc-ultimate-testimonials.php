@@ -330,7 +330,7 @@ class WPSC_Ultimate_Testimonials
 
 		echo '<select name="wps_testimonials_setting[desktop_column]">
 			<option value="default" ' . selected( $value, 'default', false ).'>Default</option>';
-			for($option = 1; $option < 7; $option++) {
+			for($option = 1; $option < 8; $option++) {
 			  echo '<option value="'. $option .'"' . selected( $value, $option, false ).'>'.$option.'</option>';
 			}
 		echo '</select>';
