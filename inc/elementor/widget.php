@@ -43,6 +43,18 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		return [ 'swiper' ];
 	}
 
+	public function get_testimonials() {
+		$eTestimonials = [];
+		$testimonials = get_posts([
+			'post_type' => 'wps-testimonials'			
+		]);
+
+		foreach ($testimonials as $item) {
+			$eTestimonials[$item->ID] = $item->post_title;
+		}
+
+		return $eTestimonials;
+	}
 
 	protected function register_controls() {
 		parent::register_controls();
@@ -246,7 +258,19 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
-
+		$this->add_control(
+			'testimonials_posttype_list',
+			[
+				'label' => esc_html__( 'Testimonials', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SELECT2,
+				'label_block' => true,
+				'multiple' => true,
+				'options' => $this->get_testimonials(),
+				'condition' => [
+					'source' => 'post_type',
+				]
+			],
+		);
 
 		$this->end_controls_section();
 
