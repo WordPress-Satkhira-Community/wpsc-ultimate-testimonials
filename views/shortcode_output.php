@@ -17,19 +17,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php else:
 
 		$attributes = shortcode_atts( array(
-			'desktop'	=> 'default',
-			'tablet'	=> 'default',
-			'mobile'	=> 'default',
-			'auto_play'	=> '',
+			'desktop'		=> 'default',
+			'tablet'		=> 'default',
+			'mobile'		=> 'default',
+			'autoplay'		=> '',
+			'autoplay_speed'=> '',
 		), $atts );
 
 		wp_localize_script( 'wps_main', 'wps_settings_shortcode',
 			array( 
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'desktop_col' 	=>	$attributes['desktop'],
-				'tablet_col' 	=>	$attributes['tablet'],
-				'mobile_col' 	=>	$attributes['mobile'],
-				'auto_play' 	=>	$attributes['auto_play'],
+				'desktop_col' 		=>	$attributes['desktop'],
+				'tablet_col' 		=>	$attributes['tablet'],
+				'mobile_col' 		=>	$attributes['mobile'],
+				'auto_play' 		=>	$attributes['autoplay'],
+				'autoplay_speed'	=>	$attributes['autoplay_speed'],
 			)
 		);
 

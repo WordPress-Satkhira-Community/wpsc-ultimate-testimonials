@@ -94,10 +94,11 @@ class WPSC_Ultimate_Testimonials
 		wp_localize_script( 'wps_main', 'wps_settings_data',
 			array( 
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'desktop_col' 	=>	$setOptions['desktop_column'] ?? 'default',
-				'tablet_col' 	=>	$setOptions['tablet_column'] ?? 'default',
-				'mobile_col' 	=>	$setOptions['mobile_column'] ?? 'default',
-				'auto_play' 	=>	$setOptions['carousel_autoplay'] ?? false,
+				'desktop_col' 		=>	$setOptions['desktop_column'] ?? 'default',
+				'tablet_col' 		=>	$setOptions['tablet_column'] ?? 'default',
+				'mobile_col' 		=>	$setOptions['mobile_column'] ?? 'default',
+				'auto_play' 		=>	$setOptions['carousel_autoplay'] ?? false,
+				'autoplay_speed'	=>	$setOptions['autoplay_speed'] ?? 5000,
 			)
 		);
 	}
@@ -285,6 +286,13 @@ class WPSC_Ultimate_Testimonials
 			'testimonials_shortcode'
 		);
 		add_settings_field(
+			'wps_autoplay_speed',
+			'Autoplay Speed',
+			[$this, 'autoplay_speed'],
+			'wps_testimonials',
+			'testimonials_shortcode'
+		);
+		add_settings_field(
 			'wps_carousel_performance',
 			'Performance Oplimization',
 			[$this, 'carousel_performance'],
@@ -316,6 +324,16 @@ class WPSC_Ultimate_Testimonials
 		  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[carousel_autoplay]" '. checked( $checked, true, false ) .'>
 		  <span class="wps_toggle"></span>
 		</label>';
+	}
+
+	public function autoplay_speed() {
+		$options = get_option( 'wps_testimonials_setting' );
+		if (is_array($options)) {
+			$speed = isset($options['autoplay_speed']) ? $options['autoplay_speed'] : 5000;
+		}else{
+			$speed = 5000;
+		}
+		echo'<input class="auto-play" type="number" name="wps_testimonials_setting[autoplay_speed]" value="'. $speed .'">';
 	}
 	
 
