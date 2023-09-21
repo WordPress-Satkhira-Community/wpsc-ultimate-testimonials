@@ -99,6 +99,7 @@ class WPSC_Ultimate_Testimonials
 				'mobile_col' 		=>	$setOptions['mobile_column'] ?? 'default',
 				'auto_play' 		=>	$setOptions['carousel_autoplay'] ?? false,
 				'autoplay_speed'	=>	$setOptions['autoplay_speed'] ?? 5000,
+				'slide_duration'	=>	$setOptions['transition_duration'] ?? 500,
 			)
 		);
 	}
@@ -273,28 +274,35 @@ class WPSC_Ultimate_Testimonials
 
 		add_settings_field(
 			'wps_testimonials_shortcode',
-			'Shortcode',
+			__('Shortcode', 'wpsc-ultimate-testimonials'),
 			[$this, 'shortcode_output'],
 			'wps_testimonials',
 			'testimonials_shortcode'
 		);
 		add_settings_field(
 			'wps_carousel_autoplay',
-			'Carousel Autoplay',
+			__('Carousel Autoplay', 'wpsc-ultimate-testimonials'),
 			[$this, 'carousel_autoplay'],
 			'wps_testimonials',
 			'testimonials_shortcode'
 		);
 		add_settings_field(
 			'wps_autoplay_speed',
-			'Autoplay Speed',
+			__('Autoplay Speed', 'wpsc-ultimate-testimonials'),
 			[$this, 'autoplay_speed'],
 			'wps_testimonials',
 			'testimonials_shortcode'
 		);
 		add_settings_field(
+			'wps_transition_duration',
+			__('Transition Duration', 'wpsc-ultimate-testimonials'),
+			[$this, 'transition_duration'],
+			'wps_testimonials',
+			'testimonials_shortcode'
+		);
+		add_settings_field(
 			'wps_carousel_performance',
-			'Performance Oplimization',
+			__('Performance Oplimization', 'wpsc-ultimate-testimonials'),
 			[$this, 'carousel_performance'],
 			'wps_testimonials',
 			'testimonials_shortcode'
@@ -334,6 +342,16 @@ class WPSC_Ultimate_Testimonials
 			$speed = 5000;
 		}
 		echo'<input class="auto-play" type="number" name="wps_testimonials_setting[autoplay_speed]" value="'. $speed .'">';
+	}
+
+	public function transition_duration() {
+		$options = get_option( 'wps_testimonials_setting' );
+		if (is_array($options)) {
+			$duration = isset($options['transition_duration']) ? $options['transition_duration'] : 500;
+		}else{
+			$duration = 500;
+		}
+		echo'<input class="auto-play" type="number" name="wps_testimonials_setting[transition_duration]" value="'. $duration .'">';
 	}
 	
 

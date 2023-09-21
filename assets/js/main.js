@@ -15,6 +15,7 @@ let tabletCol = (wps_data.tablet_col != "default") && (wps_data.tablet_col != un
 let mobileCol = (wps_data.mobile_col != "default") && (wps_data.mobile_col != undefined) && (wps_data.mobile_col != null) ? wps_data.mobile_col : 1;
 let autoPlay = (wps_data.auto_play != false) && (wps_data.auto_play != undefined) && (wps_data.auto_play != null) ? true : false;
 let autopDelay = (wps_data.autoplay_speed != undefined) && (wps_data.autoplay_speed != null) ? wps_data.autoplay_speed : 5000;
+let slideDuration = (wps_data.slide_duration != undefined) && (wps_data.slide_duration != null) ? wps_data.slide_duration : 500;
 
 
 desktopCol = (short_data.desktop_col != "default") && (IsNumeric(short_data.desktop_col)) && (short_data.desktop_col <= 7) ? short_data.desktop_col : desktopCol;
@@ -22,6 +23,7 @@ tabletCol = (short_data.tablet_col != "default") && (IsNumeric(short_data.tablet
 mobileCol = (short_data.mobile_col != "default") && (IsNumeric(short_data.mobile_col)) && (short_data.mobile_col <= 3) ? short_data.mobile_col : mobileCol;
 autoPlay = (short_data.auto_play != '') && (short_data.auto_play != undefined) && (short_data.auto_play != null) ? JSON.parse(short_data.auto_play) : autoPlay;
 autopDelay = (short_data.autoplay_speed != '') && (IsNumeric(short_data.autoplay_speed)) ? short_data.autoplay_speed : autopDelay;
+slideDuration = (short_data.slide_duration != '') && (IsNumeric(short_data.slide_duration)) ? short_data.slide_duration : slideDuration;
 
 
 
@@ -33,6 +35,7 @@ const testimonial = new Swiper('#wps_testimonials .swiper', {
 		enabled: autoPlay,
 		delay: autopDelay
 	},
+	speed: slideDuration,
 	navigation: {
 		nextEl: ".swiper-button-next",
 		prevEl: ".swiper-button-prev",

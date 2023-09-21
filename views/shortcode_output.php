@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			'mobile'		=> 'default',
 			'autoplay'		=> '',
 			'autoplay_speed'=> '',
+			'duration'		=> '',
 		), $atts );
 
 		wp_localize_script( 'wps_main', 'wps_settings_shortcode',
@@ -32,6 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				'mobile_col' 		=>	$attributes['mobile'],
 				'auto_play' 		=>	$attributes['autoplay'],
 				'autoplay_speed'	=>	$attributes['autoplay_speed'],
+				'slide_duration'	=>	$attributes['duration'],
 			)
 		);
 
