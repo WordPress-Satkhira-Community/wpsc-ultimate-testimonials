@@ -86,15 +86,15 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'layout',
 			[
-				'label' => esc_html__( 'Layout', 'elementor-pro' ),
+				'label' => esc_html__( 'Layout', 'wpsc-ultimate-testimonials' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'image_inline',
 				'options' => [
-					'image_inline' => esc_html__( 'Image Inline', 'elementor-pro' ),
-					'image_stacked' => esc_html__( 'Image Stacked', 'elementor-pro' ),
-					'image_above' => esc_html__( 'Image Above', 'elementor-pro' ),
-					'image_left' => esc_html__( 'Image Left', 'elementor-pro' ),
-					'image_right' => esc_html__( 'Image Right', 'elementor-pro' ),
+					'image_inline' => esc_html__( 'Image Inline', 'wpsc-ultimate-testimonials' ),
+					'image_stacked' => esc_html__( 'Image Stacked', 'wpsc-ultimate-testimonials' ),
+					'image_above' => esc_html__( 'Image Above', 'wpsc-ultimate-testimonials' ),
+					'image_left' => esc_html__( 'Image Left', 'wpsc-ultimate-testimonials' ),
+					'image_right' => esc_html__( 'Image Right', 'wpsc-ultimate-testimonials' ),
 				],
 				'prefix_class' => 'elementor-testimonial--layout-',
 				'render_type' => 'template',
@@ -104,20 +104,20 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'alignment',
 			[
-				'label' => esc_html__( 'Alignment', 'elementor-pro' ),
+				'label' => esc_html__( 'Alignment', 'wpsc-ultimate-testimonials' ),
 				'type' => Controls_Manager::CHOOSE,
 				'default' => 'center',
 				'options' => [
 					'left' => [
-						'title' => esc_html__( 'Left', 'elementor-pro' ),
+						'title' => esc_html__( 'Left', 'wpsc-ultimate-testimonials' ),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => esc_html__( 'Center', 'elementor-pro' ),
+						'title' => esc_html__( 'Center', 'wpsc-ultimate-testimonials' ),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => esc_html__( 'Right', 'elementor-pro' ),
+						'title' => esc_html__( 'Right', 'wpsc-ultimate-testimonials' ),
 						'icon' => 'eicon-text-align-right',
 					],
 				],
@@ -132,8 +132,8 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 			'slides_per_view',
 			[
 				'type' => Controls_Manager::SELECT,
-				'label' => esc_html__( 'Slides Per View', 'elementor-pro' ),
-				'options' => [ '' => esc_html__( 'Default', 'elementor-pro' ) ] + $slides_per_view,
+				'label' => esc_html__( 'Slides Per View', 'wpsc-ultimate-testimonials' ),
+				'options' => [ '' => esc_html__( 'Default', 'wpsc-ultimate-testimonials' ) ] + $slides_per_view,
 				'inherit_placeholders' => false,
 				'frontend_available' => true,
 			]
@@ -143,9 +143,9 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 			'slides_to_scroll',
 			[
 				'type' => Controls_Manager::SELECT,
-				'label' => esc_html__( 'Slides to Scroll', 'elementor-pro' ),
-				'description' => esc_html__( 'Set how many slides are scrolled per swipe.', 'elementor-pro' ),
-				'options' => [ '' => esc_html__( 'Default', 'elementor-pro' ) ] + $slides_per_view,
+				'label' => esc_html__( 'Slides to Scroll', 'wpsc-ultimate-testimonials' ),
+				'description' => esc_html__( 'Set how many slides are scrolled per swipe.', 'wpsc-ultimate-testimonials' ),
+				'options' => [ '' => esc_html__( 'Default', 'wpsc-ultimate-testimonials' ) ] + $slides_per_view,
 				'inherit_placeholders' => false,
 				'frontend_available' => true,
 			]
@@ -155,7 +155,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 			'width',
 			[
 				'type' => Controls_Manager::SLIDER,
-				'label' => esc_html__( 'Width', 'elementor-pro' ),
+				'label' => esc_html__( 'Width', 'wpsc-ultimate-testimonials' ),
 				'size_units' => [ 'px', '%', 'em', 'rem', 'vw', 'custom' ],
 				'range' => [
 					'px' => [
@@ -287,10 +287,10 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 			'show_arrows',
 			[
 				'type' => Controls_Manager::SWITCHER,
-				'label' => esc_html__( 'Arrows', 'elementor-pro' ),
+				'label' => esc_html__( 'Arrows', 'wpsc-ultimate-testimonials' ),
 				'default' => 'yes',
-				'label_off' => esc_html__( 'Hide', 'elementor-pro' ),
-				'label_on' => esc_html__( 'Show', 'elementor-pro' ),
+				'label_off' => esc_html__( 'Hide', 'wpsc-ultimate-testimonials' ),
+				'label_on' => esc_html__( 'Show', 'wpsc-ultimate-testimonials' ),
 				'prefix_class' => 'elementor-arrows-',
 				'render_type' => 'template',
 				'frontend_available' => true,
@@ -300,14 +300,14 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'pagination',
 			[
-				'label' => esc_html__( 'Pagination', 'elementor-pro' ),
+				'label' => esc_html__( 'Pagination', 'wpsc-ultimate-testimonials' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'bullets',
 				'options' => [
-					'' => esc_html__( 'None', 'elementor-pro' ),
-					'bullets' => esc_html__( 'Dots', 'elementor-pro' ),
-					'fraction' => esc_html__( 'Fraction', 'elementor-pro' ),
-					'progressbar' => esc_html__( 'Progress', 'elementor-pro' ),
+					'' => esc_html__( 'None', 'wpsc-ultimate-testimonials' ),
+					'bullets' => esc_html__( 'Dots', 'wpsc-ultimate-testimonials' ),
+					'fraction' => esc_html__( 'Fraction', 'wpsc-ultimate-testimonials' ),
+					'progressbar' => esc_html__( 'Progress', 'wpsc-ultimate-testimonials' ),
 				],
 				'prefix_class' => 'elementor-pagination-type-',
 				'render_type' => 'template',
@@ -318,7 +318,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'speed',
 			[
-				'label' => esc_html__( 'Transition Duration', 'elementor-pro' ),
+				'label' => esc_html__( 'Transition Duration', 'wpsc-ultimate-testimonials' ),
 				'type' => Controls_Manager::NUMBER,
 				'default' => 500,
 				'render_type' => 'none',
@@ -329,7 +329,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'autoplay',
 			[
-				'label' => esc_html__( 'Autoplay', 'elementor-pro' ),
+				'label' => esc_html__( 'Autoplay', 'wpsc-ultimate-testimonials' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'separator' => 'before',
@@ -341,7 +341,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'autoplay_speed',
 			[
-				'label' => esc_html__( 'Autoplay Speed', 'elementor-pro' ),
+				'label' => esc_html__( 'Autoplay Speed', 'wpsc-ultimate-testimonials' ),
 				'type' => Controls_Manager::NUMBER,
 				'default' => 5000,
 				'condition' => [
@@ -355,7 +355,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'loop',
 			[
-				'label' => esc_html__( 'Infinite Loop', 'elementor-pro' ),
+				'label' => esc_html__( 'Infinite Loop', 'wpsc-ultimate-testimonials' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'frontend_available' => true,
@@ -365,7 +365,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'pause_on_hover',
 			[
-				'label' => esc_html__( 'Pause on Hover', 'elementor-pro' ),
+				'label' => esc_html__( 'Pause on Hover', 'wpsc-ultimate-testimonials' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'condition' => [
@@ -379,7 +379,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'pause_on_interaction',
 			[
-				'label' => esc_html__( 'Pause on Interaction', 'elementor-pro' ),
+				'label' => esc_html__( 'Pause on Interaction', 'wpsc-ultimate-testimonials' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 				'condition' => [
