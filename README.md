@@ -74,5 +74,6 @@ Yes, you will receive regular updates to keep your testimonial system running sm
 WPSC Ultimate Testimonials offers different licensing options. Depending on the license you choose, you can use it on a single site or multiple sites. Please check the licensing terms for more details.
 
 == Changelog ==
-Version 1.0
+
+= Version 1.0 =
 * Initial Release
