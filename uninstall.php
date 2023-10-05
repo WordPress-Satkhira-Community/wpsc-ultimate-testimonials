@@ -3,7 +3,6 @@
 /**
  * @link       https://wpsatkhira.com
  * @since      1.0
- *
  * @package    wpsc_ultimate_testimonials
  */
 
