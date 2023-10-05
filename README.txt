@@ -7,7 +7,7 @@ Requires at least: 5.7
 Tested up to: 6.3 
 Requires PHP: 7.2 
 Stable tag: 1.0
-License: GPL v2 
+License: GPLv2 or later 
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 WPSC Ultimate Testimonials is the definitive testimonial management solution for WordPress users seeking to enhance their website's credibility and trustworthiness. This versatile plugin empowers you to effortlessly generate, manage, and showcase compelling testimonials from satisfied customers, clients, or users.
