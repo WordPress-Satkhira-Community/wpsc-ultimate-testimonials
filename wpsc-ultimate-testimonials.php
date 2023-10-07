@@ -288,6 +288,41 @@ class WPSC_Ultimate_Testimonials
 			'wps_testimonials',
 			'testimonials_shortcode'
 		);
+		add_settings_field( 
+			'wps_carousel_arrows',
+			__('Arrows', 'wpsc-ultimate-testimonials'),
+			[$this, 'carousel_arrows'],
+			'wps_testimonials',
+			'testimonials_shortcode'
+		);
+		add_settings_field(
+			'wps_carousel_loop',
+			__('Infinite Loop', 'wpsc-ultimate-testimonials'),
+			[$this, 'carousel_infinity_loop'],
+			'wps_testimonials',
+			'testimonials_shortcode'
+		);
+		add_settings_field(
+			'wps_carousel_hover_pouse',
+			__('Pause on Hover', 'wpsc-ultimate-testimonials'),
+			[$this, 'carousel_hover_pouse'],
+			'wps_testimonials',
+			'testimonials_shortcode'
+		);
+		add_settings_field(
+			'wps_carousel_interaction_pouse',
+			__('Pause on Interaction', 'wpsc-ultimate-testimonials'),
+			[$this, 'carousel_interaction_pouse'],
+			'wps_testimonials',
+			'testimonials_shortcode'
+		);
+		add_settings_field(
+			'wps_carousel_pagination',
+			__('Pagination', 'wpsc-ultimate-testimonials'),
+			[$this, 'carousel_pagination'],
+			'wps_testimonials',
+			'testimonials_shortcode'
+		);
 		add_settings_field(
 			'wps_autoplay_speed',
 			__('Autoplay Speed', 'wpsc-ultimate-testimonials'),
@@ -334,6 +369,92 @@ class WPSC_Ultimate_Testimonials
 		  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[carousel_autoplay]" '. checked( $checked, true, false ) .'>
 		  <span class="wps_toggle"></span>
 		</label>';
+	}
+
+	public function carousel_arrows(){
+		$options = get_option( 'wps_testimonials_setting' );
+		
+		// Check if $options is an array before accessing its elements
+		if (is_array($options)) {
+			$checked = isset($options['carousel_arrows']) ? 'yes' : 'no';
+		} else {
+			// Set a default value if $options is not an array
+			$checked = 'yes';
+		}
+
+		echo'<label class="wps_switch">
+		  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[carousel_arrows]" '. checked( $checked, 'yes', false ) .'>
+		  <span class="wps_toggle"></span>
+		</label>';
+	}
+
+	public function carousel_infinity_loop(){
+		$options = get_option( 'wps_testimonials_setting' );
+		
+		// Check if $options is an array before accessing its elements
+		if (is_array($options)) {
+			$checked = isset($options['carousel_loop']) ? 'yes' : 'no';
+		} else {
+			// Set a default value if $options is not an array
+			$checked = 'yes';
+		}
+
+		echo'<label class="wps_switch">
+		  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[carousel_loop]" '. checked( $checked, 'yes', false ) .'>
+		  <span class="wps_toggle"></span>
+		</label>';
+	}
+
+	public function carousel_hover_pouse(){
+		$options = get_option( 'wps_testimonials_setting' );
+		
+		// Check if $options is an array before accessing its elements
+		if (is_array($options)) {
+			$checked = isset($options['carousel_hover_pouse']) ? 'yes' : 'no';
+		} else {
+			// Set a default value if $options is not an array
+			$checked = 'yes';
+		}
+
+		echo'<label class="wps_switch">
+		  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[carousel_hover_pouse]" '. checked( $checked, 'yes', false ) .'>
+		  <span class="wps_toggle"></span>
+		</label>';
+	}
+
+	public function carousel_interaction_pouse(){
+		$options = get_option( 'wps_testimonials_setting' );
+		
+		// Check if $options is an array before accessing its elements
+		if (is_array($options)) {
+			$checked = isset($options['carousel_interaction_pouse']) ? 'yes' : 'no';
+		} else {
+			// Set a default value if $options is not an array
+			$checked = 'yes';
+		}
+
+		echo'<label class="wps_switch">
+		  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[carousel_interaction_pouse]" '. checked( $checked, 'yes', false ) .'>
+		  <span class="wps_toggle"></span>
+		</label>';
+	}
+
+	public function carousel_pagination(){
+		$options = get_option( 'wps_testimonials_setting' );
+		if (is_array($options)){
+			$value = isset($options['carousel_pagination']) ? $options['carousel_pagination'] : 'dots';
+		}else{
+			// Set a default value if $options is not an array
+			$value = 'dots';
+		}
+
+		$pageOptions = [ "None"=>"none" , "Dots"=>"dots", "Fraction"=>"fraction", "Progress"=>"progress" ];
+
+		echo '<select name="wps_testimonials_setting[carousel_pagination]">';
+			foreach ($pageOptions as $pageOption => $pageValue) {
+			  echo '<option value="'. $pageValue .'"' . selected( $value, $pageValue, false ).'>'.$pageOption.'</option>';
+			}
+		echo '</select>';
 	}
 
 	public function autoplay_speed() {
