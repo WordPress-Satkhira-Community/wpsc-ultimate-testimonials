@@ -33,6 +33,7 @@
   border-radius: 50px;
   object-fit: cover;
   object-position: center;
+  border: 1px solid #e1e1e1;
 }
 .wps_author {
   display: flex;
