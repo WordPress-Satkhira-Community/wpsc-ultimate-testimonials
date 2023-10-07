@@ -135,7 +135,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Slides Per View', 'wpsc-ultimate-testimonials' ),
 				'options' => [ '' => esc_html__( 'Default', 'wpsc-ultimate-testimonials' ) ] + $slides_per_view,
 				'inherit_placeholders' => false,
-				'frontend_available' => true,
+				'frontend_available' => true,			
 			]
 		);
 
@@ -423,24 +423,25 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 
 	protected function render(){
 		$settings = $this->get_settings_for_display();
-		// echo "<pre>";
-		// var_dump($settings);
-		// echo "</pre>";
 
-
-		$arrow = $settings['show_arrows'] ?? '';
-		$pagination = $settings['pagination'] ?? '';
-		$speed = $settings['speed'] ?? '';
-		$autoplay = $settings['autoplay'] ?? '';
-		$autoplay_speed = $settings['autoplay_speed'] ?? '';
-		$loop = $settings['loop'] ?? '';
-		$pause_on_hover = $settings['pause_on_hover'] ?? '';
-		$pause_on_interaction = $settings['pause_on_interaction'] ?? '';
-
+		$slider_settings = [
+			'arrow' => $settings['show_arrows'] ?? '',
+			'pagination' => $settings['pagination'] ?? '',
+			'speed' => $settings['speed'] ?? '',
+			'autoplay' => $settings['autoplay'] ?? '',
+			'autoplay_speed' => $settings['autoplay_speed'] ?? '',
+			'loop' => $settings['loop'] ?? '',
+			'pause_on_hover' => $settings['pause_on_hover'] ?? '',
+			'pause_on_interaction' => $settings['pause_on_interaction'] ?? '',
+			'slides_per_view' => $settings['slides_per_view'] ?? 3,
+			'slides_to_scroll' => $settings['slides_to_scroll'] ?? 3,
+		];
 
 		if ( $settings['source'] == 'post_type' ) {
-			echo do_shortcode( '[wps_ultimate_testimonials arrow="'. $arrow .'" pagination="'. $pagination .'" speed="'. $speed .'" autoplay="'. $autoplay .'" autoplay_speed="'. $autoplay_speed .'" loop="'. $loop .'" pause_on_hover="'. $pause_on_hover .'" pause_on_interaction="'. $pause_on_interaction .'" items="'. $settings['testimonials_list'] .'"]' );
+			$testimonials = WPSC_Ultimate_Testimonials::get_data();
 		} elseif ( $settings['source'] == 'manual' ) {
+			$testimonials = $settings['testimonials_list'];
+		}
 ?>
 
 
@@ -449,17 +450,17 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		<h3>No Reviews Available!</h3>
 	<?php else:
 	 ?>
-		 <div class="wps_testimonial-wrap">
+		 <div class="wps_testimonial-wrap" data-setting='<?= json_encode($slider_settings); ?>'>
 			<div class="swiper">
-			  <div class="swiper-wrapper">
-			  	<?php foreach ($settings['testimonials_list'] as $testimonial): 
-			  		$author = $testimonial['name'] ?? '';
-			  		$content = $testimonial['review'] ?? '';
-			  		$position = $testimonial['designation'] ?? '';
-			  		$rating = !empty($testimonial['rating']) ? $testimonial['rating']: 5;
-					$thumbnail_url = !empty($testimonial['review-image']) ? $testimonial['review-image']['url'] : '';
+				<div class="swiper-wrapper">
+					<?php foreach ($testimonials as $testimonial): 
+						$author = $testimonial['name'] ?? '';
+						$content = $testimonial['review'] ?? '';
+						$position = $testimonial['designation'] ?? '';
+						$rating = !empty($testimonial['rating']) ? $testimonial['rating']: 5;
+						$thumbnail_url = !empty($testimonial['review-image']) ? $testimonial['review-image']['url'] : '';
 
-			  	?>
+					?>
 				    <div class="swiper-slide wps_testimonial">
 				    	<div class="wps_wrapper">
 				    		<div class="wps_reviews">
@@ -480,21 +481,23 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 				    		</div>
 				    	</div>
 				    </div>		  		
-			  	<?php endforeach; ?>	    
-			  </div>
-
-			  <div class="swiper-pagination"></div>
+					<?php endforeach; ?>	    
+				</div>
+				<?php if ( $slider_settings['pagination'] != '' ): ?>
+					<div class="swiper-pagination"></div>
+				<?php endif ?>				
 			</div>	
 			
-			<div class="swiper-button-prev"></div>
-			<div class="swiper-button-next"></div>
+			<?php if ( $slider_settings['arrow'] == 'yes' ): ?>
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>				
+			<?php endif ?>			
 		</div>
 	<?php endif ?>
 
 </div>
 
 <?php 
-		}
 	}
 
 	public function reviews( $reviews ) {
