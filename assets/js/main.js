@@ -10,7 +10,7 @@ let autopDelay = (wps_data.autoplay_speed != undefined) && (wps_data.autoplay_sp
 let slideDuration = (wps_data.slide_duration != undefined) && (wps_data.slide_duration != null) ? wps_data.slide_duration : 500;
 
 
-const testimonial = new Swiper('#wps_testimonials .swiper', {
+const testimonial = new Swiper('.wps_testimonials .swiper', {
 	slidesPerView: mobileCol,
 	spaceBetween: 10,	
 	lazy: true,

@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 
-<div id="wps_testimonials">
+<div class="wps_testimonials">
 	<?php if ( empty($testimonials) ): ?>
 		<h3>No Reviews Available!</h3>
 	<?php else: ?>

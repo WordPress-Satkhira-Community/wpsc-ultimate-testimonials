@@ -433,7 +433,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 ?>
 
 
-<div id="wps_testimonials">
+<div class="wps_testimonials">
 	<?php if ( empty($settings['testimonials_list']) ): ?>
 		<h3>No Reviews Available!</h3>
 	<?php else:
