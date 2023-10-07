@@ -2,7 +2,7 @@
   position: relative;
 }
 .wps_wrapper {
-  background-color: #EFEFEF;
+  background-color: #efefef;
   padding: 35px 30px;
   border-radius: 10px;
 }
@@ -41,7 +41,7 @@
 .wps_author_pic {
   margin-right: 15px;
 }
-.wps_testimonials  .wps_author_bio h3 {
+.wps_testimonials .wps_author_bio h3 {
   margin: 0 0 3px;
   font-size: 18px;
 }
@@ -49,11 +49,12 @@
   margin: 0;
   font-size: 14px;
 }
-.wps_testimonials  .wps_author_bio h3 {
-    margin: 0 0 3px;
-    font-size: 18px;
+.wps_testimonials .wps_author_bio h3 {
+  margin: 0 0 3px;
+  font-size: 18px;
+  line-height: 18px;
 }
-.wps_testimonials .swiper-button-next:after, 
+.wps_testimonials .swiper-button-next:after,
 .wps_testimonials .swiper-button-prev:after {
   font-size: 18px;
   color: #fff;
@@ -67,7 +68,7 @@
   border-radius: 50px;
   top: 42%;
 }
-.wps_testimonials .swiper-button-next.swiper-button-disabled, 
+.wps_testimonials .swiper-button-next.swiper-button-disabled,
 .wps_testimonials .swiper-button-prev.swiper-button-disabled {
   opacity: 1;
   background-color: #d9d9d9;
@@ -89,7 +90,7 @@
   width: 10px;
 }
 .wps_testimonials .swiper-pagination-bullet-active {
-  background-color: #1450A3;
+  background-color: #1450a3;
 }
 .wps_testimonials .swiper.swiper-initialized {
   padding-bottom: 50px;
@@ -117,11 +118,12 @@
     left: 0px;
   }
 }
-@media screen and (max-width: 649px){
+@media screen and (max-width: 649px) {
   .wps_testimonials .swiper.swiper-initialized {
     max-width: 92%;
   }
-  .swiper-button-prev, .swiper-button-next{
+  .swiper-button-prev,
+  .swiper-button-next {
     display: none;
   }
 }
