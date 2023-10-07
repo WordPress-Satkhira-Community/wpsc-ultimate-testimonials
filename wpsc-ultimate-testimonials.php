@@ -91,19 +91,6 @@ class WPSC_Ultimate_Testimonials
 
 		wp_register_script( 'wps_main', WPS_UT_URL . 'assets/js/main.js', [ 'jquery', 'swiper' ], '1.0', true );
 		wp_enqueue_script( 'wps_main' );
-		
-		$setOptions = get_option( 'wps_testimonials_setting' );
-		wp_localize_script( 'wps_main', 'wps_settings_data',
-			array( 
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'desktop_col' 		=>	$setOptions['desktop_column'] ?? 'default',
-				'tablet_col' 		=>	$setOptions['tablet_column'] ?? 'default',
-				'mobile_col' 		=>	$setOptions['mobile_column'] ?? 'default',
-				'auto_play' 		=>	$setOptions['carousel_autoplay'] ?? false,
-				'autoplay_speed'	=>	$setOptions['autoplay_speed'] ?? 5000,
-				'slide_duration'	=>	$setOptions['transition_duration'] ?? 500,
-			)
-		);
 	}
 
 	public function post_types(){
@@ -555,47 +542,33 @@ class WPSC_Ultimate_Testimonials
 
 	public function testimonails_output( $atts, $content ) {
 		$testimonials = self::get_data() ?? [];
-		$setOptions = get_option( 'wps_testimonials_setting' );
-
-
-		$arrow = !empty($atts['arrow']) ? $atts['arrow'] : $setOptions['arrow'];
-		$pagination = !empty($atts['pagination']) ? $atts['pagination'] : $setOptions['pagination'];
-		$speed = !empty($atts['speed']) ? $atts['speed'] : $setOptions['speed'];
-		$autoplay = !empty($atts['autoplay']) ? $atts['autoplay'] : $setOptions['autoplay'];
-		$autoplay_speed = !empty($atts['autoplay_speed']) ? $atts['autoplay_speed'] : $setOptions['autoplay_speed'];
-		$loop = !empty($atts['loop']) ? $atts['loop'] : $setOptions['loop'];
-		$pause_on_hover = !empty($atts['pause_on_hover']) ? $atts['pause_on_hover'] : $setOptions['pause_on_hover'];
-		$pause_on_interaction = !empty($atts['pause_on_interaction']) ? $atts['pause_on_interaction'] : $setOptions['pause_on_interaction'];
-
-
-
-	// $atts = shortcode_atts([
-	// 	'arrow' => 'yes',
-	// 	'pagination' => 'bullets',
-	// 	'speed' => 500,
-	// 	'autoplay' => 'yes',
-	// 	'autoplay_speed' => 5000,
-	// 	'loop' => 'yes',
-	// 	'pause_on_hover' => 'yes',
-	// 	'pause_on_interaction' => 'yes',
-	// 	'items' => []
-	// ], $atts, 'wps_ultimate_testimonials' );
+		$settings = get_option( 'wps_testimonials_setting' );
+		$slider_settings = '';
+		
+		if ( !empty($settings) ) {
+			$slider_settings = [
+				'arrow' => $settings['show_arrows'] ?? '',
+				'pagination' => $settings['pagination'] ?? '',
+				'speed' => $settings['speed'] ?? '',
+				'autoplay' => $settings['autoplay'] ?? '',
+				'autoplay_speed' => $settings['autoplay_speed'] ?? '',
+				'loop' => $settings['loop'] ?? '',
+				'pause_on_hover' => $settings['pause_on_hover'] ?? '',
+				'pause_on_interaction' => $settings['pause_on_interaction'] ?? '',
+				'slides_per_view' => $settings['slides_per_view'] ?? 3,
+				'slides_per_view_tablet' => $settings['slides_per_view_tablet'] ?? 2,
+				'slides_per_view_mobile' => $settings['slides_per_view_mobile'] ?? 1,
+				'slides_to_scroll' => $settings['slides_to_scroll'] ?? 3,
+				'slides_to_scroll_tablet' => $settings['slides_to_scroll_tablet'] ?? 2,
+				'slides_to_scroll_mobile' => $settings['slides_to_scroll_mobile'] ?? 1,
+			];
+		}
 
 
 
-
-	// $desktop_column = $setOptions['desktop_column'] ?? 'default';
-	// $tablet_column = $setOptions['tablet_column'] ?? 'default';
-	// $mobile_column = $setOptions['mobile_column'] ?? 'default';
-	// $autoplay = $setOptions['carousel_autoplay'] ? 'on' : 'off';
-	// $autoplay_speed = '';
-	// $slide_duration = '';
-	
-	// if ( $setOptions['carousel_autoplay'] ) {
-	// 	$autoplay_speed = $setOptions['autoplay_speed'] ?? 5000;
-	// 	$slide_duration = $setOptions['transition_duration'] ?? 500;
-	// }
-
+		echo "<pre>";
+		var_dump($setOptions);
+		echo "</pre>";
 
 		ob_start();
 

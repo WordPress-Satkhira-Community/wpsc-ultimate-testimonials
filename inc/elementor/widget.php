@@ -424,10 +424,6 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 	protected function render(){
 		$settings = $this->get_settings_for_display();
 
-		echo "<pre>";
-		var_dump($settings);
-		echo "</pre>";
-
 		$slider_settings = [
 			'arrow' => $settings['show_arrows'] ?? '',
 			'pagination' => $settings['pagination'] ?? '',
