@@ -278,7 +278,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'pagination_section',
 			[
-				'label' => esc_html__( 'Pagination', 'wpsc-ultimate-testimonials' ),
+				'label' => esc_html__( 'Settings', 'wpsc-ultimate-testimonials' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -427,8 +427,19 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		// var_dump($settings);
 		// echo "</pre>";
 
+
+		$arrow = $settings['show_arrows'] ?? '';
+		$pagination = $settings['pagination'] ?? '';
+		$speed = $settings['speed'] ?? '';
+		$autoplay = $settings['autoplay'] ?? '';
+		$autoplay_speed = $settings['autoplay_speed'] ?? '';
+		$loop = $settings['loop'] ?? '';
+		$pause_on_hover = $settings['pause_on_hover'] ?? '';
+		$pause_on_interaction = $settings['pause_on_interaction'] ?? '';
+
+
 		if ( $settings['source'] == 'post_type' ) {
-			echo do_shortcode( '[wps_ultimate_testimonials]' );
+			echo do_shortcode( '[wps_ultimate_testimonials arrow="'. $arrow .'" pagination="'. $pagination .'" speed="'. $speed .'" autoplay="'. $autoplay .'" autoplay_speed="'. $autoplay_speed .'" loop="'. $loop .'" pause_on_hover="'. $pause_on_hover .'" pause_on_interaction="'. $pause_on_interaction .'" items="'. $settings['testimonials_list'] .'"]' );
 		} elseif ( $settings['source'] == 'manual' ) {
 ?>
 

@@ -434,6 +434,47 @@ class WPSC_Ultimate_Testimonials
 
 	public function testimonails_output( $atts, $content ) {
 		$testimonials = self::get_data() ?? [];
+		$setOptions = get_option( 'wps_testimonials_setting' );
+
+
+		$arrow = !empty($atts['arrow']) ? $atts['arrow'] : $setOptions['arrow'];
+		$pagination = !empty($atts['pagination']) ? $atts['pagination'] : $setOptions['pagination'];
+		$speed = !empty($atts['speed']) ? $atts['speed'] : $setOptions['speed'];
+		$autoplay = !empty($atts['autoplay']) ? $atts['autoplay'] : $setOptions['autoplay'];
+		$autoplay_speed = !empty($atts['autoplay_speed']) ? $atts['autoplay_speed'] : $setOptions['autoplay_speed'];
+		$loop = !empty($atts['loop']) ? $atts['loop'] : $setOptions['loop'];
+		$pause_on_hover = !empty($atts['pause_on_hover']) ? $atts['pause_on_hover'] : $setOptions['pause_on_hover'];
+		$pause_on_interaction = !empty($atts['pause_on_interaction']) ? $atts['pause_on_interaction'] : $setOptions['pause_on_interaction'];
+
+
+
+	// $atts = shortcode_atts([
+	// 	'arrow' => 'yes',
+	// 	'pagination' => 'bullets',
+	// 	'speed' => 500,
+	// 	'autoplay' => 'yes',
+	// 	'autoplay_speed' => 5000,
+	// 	'loop' => 'yes',
+	// 	'pause_on_hover' => 'yes',
+	// 	'pause_on_interaction' => 'yes',
+	// 	'items' => []
+	// ], $atts, 'wps_ultimate_testimonials' );
+
+
+
+
+	// $desktop_column = $setOptions['desktop_column'] ?? 'default';
+	// $tablet_column = $setOptions['tablet_column'] ?? 'default';
+	// $mobile_column = $setOptions['mobile_column'] ?? 'default';
+	// $autoplay = $setOptions['carousel_autoplay'] ? 'on' : 'off';
+	// $autoplay_speed = '';
+	// $slide_duration = '';
+	
+	// if ( $setOptions['carousel_autoplay'] ) {
+	// 	$autoplay_speed = $setOptions['autoplay_speed'] ?? 5000;
+	// 	$slide_duration = $setOptions['transition_duration'] ?? 500;
+	// }
+
 
 		ob_start();
 
