@@ -438,44 +438,46 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		<h3>No Reviews Available!</h3>
 	<?php else:
 	 ?>
-		<div class="swiper">
-		  <div class="swiper-wrapper">
-		  	<?php foreach ($settings['testimonials_list'] as $testimonial): 
-		  		$author = $testimonial['name'] ?? '';
-		  		$content = $testimonial['review'] ?? '';
-		  		$position = $testimonial['designation'] ?? '';
-		  		$rating = !empty($testimonial['rating']) ? $testimonial['rating']: 5;
-				$thumbnail_url = !empty($testimonial['review-image']) ? $testimonial['review-image']['url'] : '';
+		 <div class="wps_testimonial-wrap">
+			<div class="swiper">
+			  <div class="swiper-wrapper">
+			  	<?php foreach ($settings['testimonials_list'] as $testimonial): 
+			  		$author = $testimonial['name'] ?? '';
+			  		$content = $testimonial['review'] ?? '';
+			  		$position = $testimonial['designation'] ?? '';
+			  		$rating = !empty($testimonial['rating']) ? $testimonial['rating']: 5;
+					$thumbnail_url = !empty($testimonial['review-image']) ? $testimonial['review-image']['url'] : '';
 
-		  	?>
-			    <div class="swiper-slide wps_testimonial">
-			    	<div class="wps_wrapper">
-			    		<div class="wps_reviews">
-			    			<?php echo $this->reviews($rating); ?>
-			    		</div>
-			    		<div class="wps_content">
-			    			<?= $content; ?>
-			    		</div>
-			    		<div class="wps_author">
-			    			<div class="wps_author_pic">
-			    				 <!-- Display the post thumbnail here -->
-								 <img src="<?php echo $thumbnail_url; ?>" alt="<?php echo $author; ?>'s Thumbnail">
-			    			</div>
-			    			<div class="wps_author_bio">
-			    				<h3><?= $author; ?></h3>
-			    				<p><?= $position; ?></p>
-			    			</div>
-			    		</div>
-			    	</div>
-			    </div>		  		
-		  	<?php endforeach; ?>	    
-		  </div>
+			  	?>
+				    <div class="swiper-slide wps_testimonial">
+				    	<div class="wps_wrapper">
+				    		<div class="wps_reviews">
+				    			<?php echo $this->reviews($rating); ?>
+				    		</div>
+				    		<div class="wps_content">
+				    			<?= $content; ?>
+				    		</div>
+				    		<div class="wps_author">
+				    			<div class="wps_author_pic">
+				    				 <!-- Display the post thumbnail here -->
+									 <img src="<?php echo $thumbnail_url; ?>" alt="<?php echo $author; ?>'s Thumbnail">
+				    			</div>
+				    			<div class="wps_author_bio">
+				    				<h3><?= $author; ?></h3>
+				    				<p><?= $position; ?></p>
+				    			</div>
+				    		</div>
+				    	</div>
+				    </div>		  		
+			  	<?php endforeach; ?>	    
+			  </div>
 
-		  <div class="swiper-pagination"></div>
-		</div>	
-		
-		<div class="swiper-button-prev"></div>
-		<div class="swiper-button-next"></div>	
+			  <div class="swiper-pagination"></div>
+			</div>	
+			
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+		</div>
 	<?php endif ?>
 
 </div>

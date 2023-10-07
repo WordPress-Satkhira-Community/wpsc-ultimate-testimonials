@@ -437,7 +437,7 @@ class WPSC_Ultimate_Testimonials
 
 		ob_start();
 
-		include_once ( WPS_UT_PATH .'/views/shortcode_output.php' );
+		include ( WPS_UT_PATH .'/views/shortcode_output.php' );
 		
 		return ob_get_clean();
 	}
