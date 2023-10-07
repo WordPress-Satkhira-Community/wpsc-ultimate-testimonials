@@ -31,11 +31,11 @@ if ( $('.wps_testimonials').length > 0 ) {
 			},
 			breakpoints: {
 				640: {
-				  slidesPerView: settings['slides_per_view'],
+				  slidesPerView: settings['slides_per_view_mobile'],
 				  spaceBetween: 30,
 				},
 				1024: {
-				  slidesPerView: settings['slides_per_view'],
+				  slidesPerView: settings['slides_per_view_tablet'],
 				  spaceBetween: 30,
 				},	
 			}

@@ -135,7 +135,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Slides Per View', 'wpsc-ultimate-testimonials' ),
 				'options' => [ '' => esc_html__( 'Default', 'wpsc-ultimate-testimonials' ) ] + $slides_per_view,
 				'inherit_placeholders' => false,
-				'frontend_available' => true,			
+				'frontend_available' => true,				
 			]
 		);
 
@@ -424,6 +424,10 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 	protected function render(){
 		$settings = $this->get_settings_for_display();
 
+		echo "<pre>";
+		var_dump($settings);
+		echo "</pre>";
+
 		$slider_settings = [
 			'arrow' => $settings['show_arrows'] ?? '',
 			'pagination' => $settings['pagination'] ?? '',
@@ -434,7 +438,11 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 			'pause_on_hover' => $settings['pause_on_hover'] ?? '',
 			'pause_on_interaction' => $settings['pause_on_interaction'] ?? '',
 			'slides_per_view' => $settings['slides_per_view'] ?? 3,
+			'slides_per_view_tablet' => $settings['slides_per_view_tablet'] ?? 2,
+			'slides_per_view_mobile' => $settings['slides_per_view_mobile'] ?? 1,
 			'slides_to_scroll' => $settings['slides_to_scroll'] ?? 3,
+			'slides_to_scroll_tablet' => $settings['slides_to_scroll_tablet'] ?? 2,
+			'slides_to_scroll_mobile' => $settings['slides_to_scroll_mobile'] ?? 1,
 		];
 
 		if ( $settings['source'] == 'post_type' ) {
