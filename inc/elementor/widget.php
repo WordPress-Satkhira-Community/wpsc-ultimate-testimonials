@@ -133,7 +133,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 			[
 				'type' => Controls_Manager::SELECT,
 				'label' => esc_html__( 'Slides Per View', 'wpsc-ultimate-testimonials' ),
-				'options' => [ '' => esc_html__( 'Default', 'wpsc-ultimate-testimonials' ) ] + $slides_per_view,
+				'options' => [ 3 => esc_html__( 'Default', 'wpsc-ultimate-testimonials' ) ] + $slides_per_view,
 				'inherit_placeholders' => false,
 				'frontend_available' => true,				
 			]

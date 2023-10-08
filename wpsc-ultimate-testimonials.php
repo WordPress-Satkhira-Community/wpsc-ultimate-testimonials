@@ -102,12 +102,7 @@ class WPSC_Ultimate_Testimonials
 
 	public function testimonails_output( $atts, $content ) {
 		$testimonials = self::get_data() ?? [];
-		$settings = get_option( 'wps_testimonials_setting' );
-
-
-		echo "<pre>";
-		var_dump($settings);
-		echo "</pre>";
+		$slider_settings = get_option( 'wps_testimonials_setting' );
 
 		ob_start();
 

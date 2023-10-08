@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php if ( empty($testimonials) ): ?>
 		<h3>No Reviews Available!</h3>
 	<?php else: ?>
-		<!-- <div class="wps_testimonial-wrap" data-desktop="<?= $desktop_column; ?>" data-tablet="<?= $tablet_column; ?>" data-mobile="<?=  $mobile_column; ?>" data-autoplay="<?= $autoplay; ?>" data-speed="<?= $autoplay_speed; ?>" data-duration="<?= $slide_duration; ?>"> -->
+		<div class="wps_testimonial-wrap" data-setting='<?= json_encode($slider_settings); ?>'>
 			<div class="swiper">
 			  <div class="swiper-wrapper">
 			  	<?php foreach ($testimonials as $testimonial): 
@@ -57,7 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			
 			<div class="swiper-button-prev"></div>
 			<div class="swiper-button-next"></div>				
-		<!-- </div> -->
+		</div>
 
 	<?php endif ?>
 

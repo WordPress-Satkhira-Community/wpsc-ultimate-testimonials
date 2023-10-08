@@ -3,13 +3,16 @@
 if ( $('.wps_testimonials').length > 0 ) {
 	jQuery.map($('.wps_testimonials'), function(item, index){
 		var settings = $(item).find('.wps_testimonial-wrap').data('setting');
+		console.log(settings);
 		var element = $(item).find('.wps_testimonial-wrap .swiper')[0];
 		var nextEl = $(item).find('.wps_testimonial-wrap .swiper-button-next')[0];
 		var prevEl = $(item).find('.wps_testimonial-wrap .swiper-button-prev')[0];
 		var elPagination = $(item).find('.wps_testimonial-wrap .swiper-pagination')[0];
 
+		
+
 		var slider = new Swiper(element, {
-			slidesPerView: settings['slides_per_view'],
+			slidesPerView: settings['slides_per_view_mobile'],
 			spaceBetween: 10,	
 			lazy: true,
 			loop: settings['loop'] == 'yes' ? true : false,
@@ -31,11 +34,11 @@ if ( $('.wps_testimonials').length > 0 ) {
 			},
 			breakpoints: {
 				640: {
-				  slidesPerView: settings['slides_per_view_mobile'],
+				  slidesPerView: settings['slides_per_view_tablet'],
 				  spaceBetween: 30,
 				},
 				1024: {
-				  slidesPerView: settings['slides_per_view_tablet'],
+				  slidesPerView: settings['slides_per_view'],
 				  spaceBetween: 30,
 				},	
 			}

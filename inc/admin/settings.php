@@ -38,18 +38,18 @@ class WPSC_Admin_Settings
 			return;
 		}
 		$default_settings = [
-			'carousel_autoplay' => 'yes',
-			'carousel_arrows' => 'yes',
-			'carousel_loop' => 'yes',
-			'carousel_hover_pouse' => 'yes',
-			'carousel_interaction_pouse' => 'yes',
-			'carousel_pagination' => 'Dots',
+			'show_arrows' => 'yes',
+			'pagination' => 'Dots',
+			'speed' => "500",
+			'autoplay' => 'yes',
 			'autoplay_speed' => "5000",
-			'transition_duration' => "500",
+			'loop' => 'yes',
+			'pause_on_hover' => 'yes',
+			'pause_on_interaction' => 'yes',
 			'carousel_performance' => "cdn",
-			'desktop_column' => "3",
-			'tablet_column' => "2",
-			'mobile_column' => "1"
+			'slides_per_view' => "3",
+			'slides_per_view_tablet' => "2",
+			'slides_per_view_mobile' => "1"
 		];
 
 		update_option( 'wps_testimonials_setting', $default_settings);
@@ -139,7 +139,7 @@ class WPSC_Admin_Settings
 			'testimonials_shortcode',
 			[
 				'type' => 'checkbox',
-				'name' => 'carousel_autoplay'
+				'name' => 'autoplay'
 			]
 		);
 
@@ -151,7 +151,7 @@ class WPSC_Admin_Settings
 			'testimonials_shortcode',
 			[
 				'type' => 'checkbox',
-				'name' => 'carousel_arrows'				
+				'name' => 'show_arrows'				
 			]
 		);
 
@@ -164,7 +164,7 @@ class WPSC_Admin_Settings
 			'testimonials_shortcode',
 			[
 				'type' => 'checkbox',
-				'name' => 'carousel_loop'
+				'name' => 'loop'
 			]
 		);
 
@@ -176,7 +176,7 @@ class WPSC_Admin_Settings
 			'testimonials_shortcode',
 			[
 				'type' => 'checkbox',
-				'name' => 'carousel_hover_pouse'
+				'name' => 'pause_on_hover'
 			]
 		);
 
@@ -189,7 +189,7 @@ class WPSC_Admin_Settings
 			'testimonials_shortcode',
 			[
 				'type' => 'checkbox',
-				'name' => 'carousel_interaction_pouse'
+				'name' => 'pause_on_interaction'
 			]
 		);
 
@@ -202,7 +202,7 @@ class WPSC_Admin_Settings
 			'testimonials_shortcode',
 			[
 				'type' => 'select',
-				'name' => 'carousel_pagination',
+				'name' => 'pagination',
 				'option' => [ 'None', 'Dots', 'Fraction', 'Progress' ]
 			]
 		);
@@ -227,7 +227,7 @@ class WPSC_Admin_Settings
 			'testimonials_shortcode',
 			[
 				'type' => 'number',
-				'name' => 'transition_duration'
+				'name' => 'speed'
 			]
 		);
 
@@ -264,7 +264,7 @@ class WPSC_Admin_Settings
 			'testimonials_responsive',
 			[
 				'type' => 'select',
-				'name' => 'desktop_column',
+				'name' => 'slides_per_view',
 				'option' => range(1, 8)
 			]
 		);
@@ -278,7 +278,7 @@ class WPSC_Admin_Settings
 			'testimonials_responsive',
 			[
 				'type' => 'select',
-				'name' => 'tablet_column',
+				'name' => 'slides_per_view_tablet',
 				'option' => range(1, 8)
 			]			
 		);
@@ -292,7 +292,7 @@ class WPSC_Admin_Settings
 			'testimonials_responsive',
 			[
 				'type' => 'select',
-				'name' => 'mobile_column',
+				'name' => 'slides_per_view_mobile',
 				'option' => range(1, 8)
 			]				
 		);
