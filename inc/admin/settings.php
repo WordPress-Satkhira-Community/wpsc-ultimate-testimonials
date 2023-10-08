@@ -7,7 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-
 class WPSC_Admin_Settings 
 {
 	
@@ -31,7 +30,31 @@ class WPSC_Admin_Settings
 
 		add_action( 'admin_menu', [$this, 'admin_menu'] );
 		add_action( 'admin_init', [$this, 'admin_settings'] );
+		register_activation_hook( WPS_FILE, [$this, 'default_settings'] );
 	}	
+
+	public function default_settings() {
+		if ( !empty(get_option( 'wps_testimonials_setting' )) ) {
+			return;
+		}
+		$default_settings = [
+			'carousel_autoplay' => 'yes',
+			'carousel_arrows' => 'yes',
+			'carousel_loop' => 'yes',
+			'carousel_hover_pouse' => 'yes',
+			'carousel_interaction_pouse' => 'yes',
+			'carousel_pagination' => 'Dots',
+			'autoplay_speed' => "5000",
+			'transition_duration' => "500",
+			'carousel_performance' => "cdn",
+			'desktop_column' => "3",
+			'tablet_column' => "2",
+			'mobile_column' => "1"
+		];
+
+		update_option( 'wps_testimonials_setting', $default_settings);
+
+	}
 
 	public function admin_menu(){
 		add_submenu_page(
@@ -284,7 +307,7 @@ class WPSC_Admin_Settings
 
 	public function wpsc_settings_field( $args ) {
 		$options = $this->settings;
-		
+
 		if ( $args['type'] == 'checkbox' ): ?>
 
 			<label class="wps_switch">
