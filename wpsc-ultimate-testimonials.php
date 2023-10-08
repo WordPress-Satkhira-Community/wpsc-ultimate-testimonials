@@ -101,31 +101,31 @@ class WPSC_Ultimate_Testimonials
 	public function testimonails_output( $atts, $content ) {
 		$testimonials = self::get_data() ?? [];
 		$settings = get_option( 'wps_testimonials_setting' );
-		$slider_settings = '';
+		// $slider_settings = '';
 		
-		if ( !empty($settings) ) {
-			$slider_settings = [
-				'arrow' => $settings['show_arrows'] ?? '',
-				'pagination' => $settings['pagination'] ?? '',
-				'speed' => $settings['speed'] ?? '',
-				'autoplay' => $settings['autoplay'] ?? '',
-				'autoplay_speed' => $settings['autoplay_speed'] ?? '',
-				'loop' => $settings['loop'] ?? '',
-				'pause_on_hover' => $settings['pause_on_hover'] ?? '',
-				'pause_on_interaction' => $settings['pause_on_interaction'] ?? '',
-				'slides_per_view' => $settings['slides_per_view'] ?? 3,
-				'slides_per_view_tablet' => $settings['slides_per_view_tablet'] ?? 2,
-				'slides_per_view_mobile' => $settings['slides_per_view_mobile'] ?? 1,
-				'slides_to_scroll' => $settings['slides_to_scroll'] ?? 3,
-				'slides_to_scroll_tablet' => $settings['slides_to_scroll_tablet'] ?? 2,
-				'slides_to_scroll_mobile' => $settings['slides_to_scroll_mobile'] ?? 1,
-			];
-		}
+		// if ( !empty($settings) ) {
+		// 	$slider_settings = [
+		// 		'arrow' => $settings['show_arrows'] ?? '',
+		// 		'pagination' => $settings['pagination'] ?? '',
+		// 		'speed' => $settings['speed'] ?? '',
+		// 		'autoplay' => $settings['autoplay'] ?? '',
+		// 		'autoplay_speed' => $settings['autoplay_speed'] ?? '',
+		// 		'loop' => $settings['loop'] ?? '',
+		// 		'pause_on_hover' => $settings['pause_on_hover'] ?? '',
+		// 		'pause_on_interaction' => $settings['pause_on_interaction'] ?? '',
+		// 		'slides_per_view' => $settings['slides_per_view'] ?? 3,
+		// 		'slides_per_view_tablet' => $settings['slides_per_view_tablet'] ?? 2,
+		// 		'slides_per_view_mobile' => $settings['slides_per_view_mobile'] ?? 1,
+		// 		'slides_to_scroll' => $settings['slides_to_scroll'] ?? 3,
+		// 		'slides_to_scroll_tablet' => $settings['slides_to_scroll_tablet'] ?? 2,
+		// 		'slides_to_scroll_mobile' => $settings['slides_to_scroll_mobile'] ?? 1,
+		// 	];
+		// }
 
 
 
 		echo "<pre>";
-		var_dump($setOptions);
+		var_dump($settings);
 		echo "</pre>";
 
 		ob_start();
