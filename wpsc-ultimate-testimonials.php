@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Ultimate Testimonials
+ * Plugin Name: WPSC Ultimate Testimonials
  * Plugin URI: https://wpsatkhira.com/plugins/wpsc-ultimate-testimonials/
  * Description: WPSC Ultimate Testimonials is the definitive testimonial management solution for WordPress users seeking to enhance their website's credibility and trustworthiness. This versatile plugin empowers you to effortlessly generate, manage, and showcase compelling testimonials from satisfied customers, clients, or users.
  * Version: 1.0
