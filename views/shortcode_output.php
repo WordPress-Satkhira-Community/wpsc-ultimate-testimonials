@@ -7,10 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-	include_once WPS_UT_PATH .'/inc/icons/star.php';
-
-
-
 
 ?>
 
@@ -32,7 +28,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 				    <div class="swiper-slide wps_testimonial">
 				    	<div class="wps_wrapper">
 				    		<div class="wps_reviews">
-				    			<?php echo reviews($rating); ?>
+				    			<?php 
+				    			$floor = round($rating);
+
+				    			for ($i = 1; $i <= 5; $i++) { 
+
+				    				if ( $i == $floor && fmod($rating, 1) ) {
+				    					echo '<span class="dashicons dashicons-star-half"></span>';
+				    				} else {				    					
+					    				if ( $i <= $floor ) {
+					    					echo '<span class="dashicons dashicons-star-filled"></span>';
+					    				} else {
+					    					echo '<span class="dashicons dashicons-star-empty"></span>';
+					    				}
+				    				}
+
+				    			}
+
+				    			 ?>
 				    		</div>
 				    		<div class="wps_content">
 				    			<?= $content; ?>
