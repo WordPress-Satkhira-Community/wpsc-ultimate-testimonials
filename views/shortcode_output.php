@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php if ( empty($testimonials) ): ?>
 		<h3>No Reviews Available!</h3>
 	<?php else: ?>
-		<div class="wps_testimonial-wrap" data-setting='<?php echo json_encode($slider_settings); ?>'>
+		<div class="wps_testimonial-wrap" data-setting='<?php echo wp_json_encode($slider_settings); ?>'>
 			<div class="swiper">
 			  <div class="swiper-wrapper">
 			  	<?php foreach ($testimonials as $testimonial): 
