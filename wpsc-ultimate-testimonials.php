@@ -81,7 +81,7 @@ class WPSC_Ultimate_Testimonials
 		wp_register_style( 'swiper', WPS_UT_URL . 'assets/css/swiper.min.css', [], '10.2.0' );
 		wp_enqueue_style( 'swiper' );
 
-		wp_register_style( 'style', WPS_UT_URL . 'assets/css/style.css', [], '10.2.0' );
+		wp_register_style( 'style', WPS_UT_URL . 'assets/css/style.css', ['dashicons'], '1.0' );
 		wp_enqueue_style( 'style' );
 
 		wp_register_script( 'swiper', WPS_UT_URL . 'assets/js/swiper.min.js', [ 'jquery' ], '10.2.0', true );
@@ -90,6 +90,7 @@ class WPSC_Ultimate_Testimonials
 		wp_register_script( 'wps_main', WPS_UT_URL . 'assets/js/main.js', [ 'jquery', 'swiper' ], '1.0', true );
 		wp_enqueue_script( 'wps_main' );
 	}
+
 
 	//Shortcode Output
 	public static function get_data (){
