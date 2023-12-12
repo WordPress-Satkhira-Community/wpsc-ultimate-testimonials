@@ -44,6 +44,8 @@ class WPSC_Testimonials_PostType
 	}
 
 	public function designation_box( $post ){
+		wp_nonce_field( 'designation_metabox_nonce', 'designation_nonce' );
+
 		printf(
 			'<input class="widefat" type="text" name="designation" value="%s">',
 			get_post_meta( $post->ID, 'designation', true )
@@ -52,6 +54,8 @@ class WPSC_Testimonials_PostType
 
 
 	public function ratings_box( $post ){
+		wp_nonce_field( 'ratings_metabox_nonce', 'ratings_nonce' );
+
 		printf(
 			'<input type="number" name="ratings" value="%s" min="1" max="5" step="0.5">',
 			get_post_meta( $post->ID, 'ratings', true )
@@ -60,11 +64,11 @@ class WPSC_Testimonials_PostType
 
 
 	public function save_meta( $post_id ){
-		if( ! empty( $_POST['designation'] ) ){
+		if( ! empty( $_POST['designation'] ) && wp_verify_nonce( $_POST['designation_nonce'], 'designation_metabox_nonce' ) ){
 			update_post_meta( $post_id, 'designation', sanitize_text_field( $_POST['designation'] ) );
 		}
 
-		if( ! empty( $_POST['ratings'] ) ){
+		if( ! empty( $_POST['ratings'] ) && wp_verify_nonce( $_POST['ratings_nonce'], 'ratings_metabox_nonce' ) ){
 			update_post_meta( $post_id, 'ratings', sanitize_text_field( $_POST['ratings'] ) );
 		}
 	}
