@@ -7,9 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-
 ?>
-
 
 <div class="wps_testimonials">
 	<?php if ( empty($testimonials) ): ?>
@@ -19,11 +17,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="swiper">
 			  <div class="swiper-wrapper">
 			  	<?php foreach ($testimonials as $testimonial): 
-			  		$author = $testimonial->post_title ?? '';
-			  		$content = $testimonial->post_content ?? '';
-			  		$position = get_post_meta( $testimonial->ID, 'designation', true ) ?? '';
-			  		$rating = !empty(get_post_meta( $testimonial->ID, 'ratings', true )) ? get_post_meta( $testimonial->ID, 'ratings', true ) : 5;
-					$thumbnail_url = get_the_post_thumbnail_url( $testimonial->ID,'thumbnail' );
+			  		$author 		= $testimonial->post_title ?? '';
+			  		$content 		= $testimonial->post_content ?? '';
+			  		$position 		= get_post_meta( $testimonial->ID, 'designation', true ) ?? '';
+			  		$rating 		= get_post_meta( $testimonial->ID, 'ratings', true ) ?? 5;
+					$thumbnail_url 	= get_the_post_thumbnail_url( $testimonial->ID, 'thumbnail' ) ?? '';
 			  	?>
 				    <div class="swiper-slide wps_testimonial">
 				    	<div class="wps_wrapper">
@@ -31,33 +29,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 				    			<?php 
 				    			$floor = round($rating);
 
-				    			for ($i = 1; $i <= 5; $i++) { 
-
+				    			for ($i = 1; $i <= 5; $i++) {
 				    				if ( $i == $floor && fmod($rating, 1) ) {
 				    					echo '<span class="dashicons dashicons-star-half"></span>';
-				    				} else {				    					
+				    				} else {
 					    				if ( $i <= $floor ) {
 					    					echo '<span class="dashicons dashicons-star-filled"></span>';
 					    				} else {
 					    					echo '<span class="dashicons dashicons-star-empty"></span>';
 					    				}
 				    				}
-
 				    			}
 
-				    			 ?>
+				    			?>
 				    		</div>
 				    		<div class="wps_content">
-				    			<?php echo $content; ?>
+				    			<?php echo wp_kses_post( $content ); ?>
 				    		</div>
 				    		<div class="wps_author">
 				    			<div class="wps_author_pic">
-				    				 <!-- Display the post thumbnail here -->
-									 <img src="<?php echo $thumbnail_url; ?>" alt="<?php echo $author; ?>'s Thumbnail">
+				    				<img src="<?php echo esc_url( $thumbnail_url ); ?>" alt="<?php esc_attr_e( $author ); ?>'s Thumbnail">
 				    			</div>
 				    			<div class="wps_author_bio">
-				    				<h3><?php echo $author; ?></h3>
-				    				<p><?php echo $position; ?></p>
+				    				<h3><?php esc_attr_e( $author ); ?></h3>
+				    				<p><?php esc_attr_e( $position ); ?></p>
 				    			</div>
 				    		</div>
 				    	</div>

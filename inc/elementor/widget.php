@@ -454,33 +454,47 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 		<h3>No Reviews Available!</h3>
 	<?php else:
 	 ?>
-		 <div class="wps_testimonial-wrap" data-setting='<?php echo json_encode($slider_settings); ?>'>
+		 <div class="wps_testimonial-wrap" data-setting='<?php echo wp_json_encode($slider_settings); ?>'>
 			<div class="swiper">
 				<div class="swiper-wrapper">
 					<?php foreach ($testimonials as $testimonial): 
 						$author = $testimonial['name'] ?? '';
 						$content = $testimonial['review'] ?? '';
 						$position = $testimonial['designation'] ?? '';
-						$rating = !empty($testimonial['rating']) ? $testimonial['rating']: 5;
-						$thumbnail_url = !empty($testimonial['review-image']) ? $testimonial['review-image']['url'] : '';
+						$rating = empty($testimonial['rating']) ? 120 : 24 * $testimonial['rating'];
+						$thumbnail_url = $testimonial['review-image']['url'] ?? '';
 
 					?>
 				    <div class="swiper-slide wps_testimonial">
 				    	<div class="wps_wrapper">
 				    		<div class="wps_reviews">
-				    			<?php echo $this->reviews($rating); ?>
+				    			<?php 
+				    			$floor = round($rating);
+
+				    			for ($i = 1; $i <= 5; $i++) {
+				    				if ( $i == $floor && fmod($rating, 1) ) {
+				    					echo '<span class="dashicons dashicons-star-half"></span>';
+				    				} else {
+					    				if ( $i <= $floor ) {
+					    					echo '<span class="dashicons dashicons-star-filled"></span>';
+					    				} else {
+					    					echo '<span class="dashicons dashicons-star-empty"></span>';
+					    				}
+				    				}
+				    			}
+
+				    			?>
 				    		</div>
 				    		<div class="wps_content">
-				    			<?php echo $content; ?>
+				    			<?php echo wp_kses_post( $content ); ?>
 				    		</div>
 				    		<div class="wps_author">
 				    			<div class="wps_author_pic">
-				    				 <!-- Display the post thumbnail here -->
-									 <img src="<?php echo $thumbnail_url; ?>" alt="<?php echo $author; ?>'s Thumbnail">
+				    				<img src="<?php echo esc_url( $thumbnail_url ); ?>" alt="<?php esc_attr_e( $author ); ?>'s Thumbnail">
 				    			</div>
 				    			<div class="wps_author_bio">
-				    				<h3><?php echo $author; ?></h3>
-				    				<p><?php echo $position; ?></p>
+				    				<h3><?php esc_attr_e( $author ); ?></h3>
+				    				<p><?php esc_attr_e( $position ); ?></p>
 				    			</div>
 				    		</div>
 				    	</div>
@@ -504,41 +518,4 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 <?php 
 	}
 
-	public function reviews( $reviews ) {
-	    return '<div class="black-star"><svg width="120px" height="100%" viewBox="0 0 881 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-	            <g transform="matrix(1,0,0,1,-634.728,-382.568)">
-	                <path d="M702.68,382.568L718.721,431.938L770.632,431.938L728.635,462.45L744.677,511.82L702.68,481.308L660.683,511.82L676.724,462.45L634.728,431.938L686.639,431.938L702.68,382.568Z" style="fill:rgb(255, 255, 255);"/>
-	            </g>
-	            <g transform="matrix(1,0,0,1,-447.914,-382.568)">
-	                <path d="M702.68,382.568L718.721,431.938L770.632,431.938L728.635,462.45L744.677,511.82L702.68,481.308L660.683,511.82L676.724,462.45L634.728,431.938L686.639,431.938L702.68,382.568Z" style="fill:rgb(255, 255, 255);"/>
-	            </g>
-	            <g transform="matrix(1,0,0,1,-261.961,-382.568)">
-	                <path d="M702.68,382.568L718.721,431.938L770.632,431.938L728.635,462.45L744.677,511.82L702.68,481.308L660.683,511.82L676.724,462.45L634.728,431.938L686.639,431.938L702.68,382.568Z" style="fill:rgb(255, 255, 255);"/>
-	            </g>
-	            <g transform="matrix(1,0,0,1,-76.0238,-382.568)">
-	                <path d="M702.68,382.568L718.721,431.938L770.632,431.938L728.635,462.45L744.677,511.82L702.68,481.308L660.683,511.82L676.724,462.45L634.728,431.938L686.639,431.938L702.68,382.568Z" style="fill:rgb(255, 255, 255);"/>
-	            </g>
-	            <g transform="matrix(1,0,0,1,109.853,-382.568)">
-	                <path d="M702.68,382.568L718.721,431.938L770.632,431.938L728.635,462.45L744.677,511.82L702.68,481.308L660.683,511.82L676.724,462.45L634.728,431.938L686.639,431.938L702.68,382.568Z" style="fill:rgb(255, 255, 255);"/>
-	            </g>
-	        </svg></div>
-	        <div class="yellow-star" style="width: '. 24 * $reviews .'px;"><svg width="120px" height="100%" viewBox="0 0 881 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-	            <g transform="matrix(1,0,0,1,-634.728,-382.568)">
-	                <path d="M702.68,382.568L718.721,431.938L770.632,431.938L728.635,462.45L744.677,511.82L702.68,481.308L660.683,511.82L676.724,462.45L634.728,431.938L686.639,431.938L702.68,382.568Z" style="fill:#FFC436;"/>
-	            </g>
-	            <g transform="matrix(1,0,0,1,-447.914,-382.568)">
-	                <path d="M702.68,382.568L718.721,431.938L770.632,431.938L728.635,462.45L744.677,511.82L702.68,481.308L660.683,511.82L676.724,462.45L634.728,431.938L686.639,431.938L702.68,382.568Z" style="fill:#FFC436;"/>
-	            </g>
-	            <g transform="matrix(1,0,0,1,-261.961,-382.568)">
-	                <path d="M702.68,382.568L718.721,431.938L770.632,431.938L728.635,462.45L744.677,511.82L702.68,481.308L660.683,511.82L676.724,462.45L634.728,431.938L686.639,431.938L702.68,382.568Z" style="fill:#FFC436;"/>
-	            </g>
-	            <g transform="matrix(1,0,0,1,-76.0238,-382.568)">
-	                <path d="M702.68,382.568L718.721,431.938L770.632,431.938L728.635,462.45L744.677,511.82L702.68,481.308L660.683,511.82L676.724,462.45L634.728,431.938L686.639,431.938L702.68,382.568Z" style="fill:#FFC436;"/>
-	            </g>
-	            <g transform="matrix(1,0,0,1,109.853,-382.568)">
-	                <path d="M702.68,382.568L718.721,431.938L770.632,431.938L728.635,462.45L744.677,511.82L702.68,481.308L660.683,511.82L676.724,462.45L634.728,431.938L686.639,431.938L702.68,382.568Z" style="fill:#FFC436;"/>
-	            </g>
-	        </svg></div>
-	        ';
-	} 
 }
