@@ -40,13 +40,14 @@ Support and Updates: Rest easy knowing that you'll receive regular updates and d
 
 Go to Plugins > Add new > Search WPSC Ultimate Testimonial
 
-Shortcode Based:
+**Shortcode Based:**
 
 Go to Ultimate Testimonials
 Add new Testimonials
 Copy the shortcode from the settings
 Paste it to your posts/page
-Elementor Block:
+
+**Elementor Block:**
 
 Edit post/page with Elementor
 Search WPSC Ultimate Testimonials
