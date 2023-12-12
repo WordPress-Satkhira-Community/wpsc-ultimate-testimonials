@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php if ( empty($testimonials) ): ?>
 		<h3>No Reviews Available!</h3>
 	<?php else: ?>
-		<div class="wps_testimonial-wrap" data-setting='<?= json_encode($slider_settings); ?>'>
+		<div class="wps_testimonial-wrap" data-setting='<?php echo json_encode($slider_settings); ?>'>
 			<div class="swiper">
 			  <div class="swiper-wrapper">
 			  	<?php foreach ($testimonials as $testimonial): 
@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				    			 ?>
 				    		</div>
 				    		<div class="wps_content">
-				    			<?= $content; ?>
+				    			<?php echo $content; ?>
 				    		</div>
 				    		<div class="wps_author">
 				    			<div class="wps_author_pic">
@@ -56,8 +56,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 									 <img src="<?php echo $thumbnail_url; ?>" alt="<?php echo $author; ?>'s Thumbnail">
 				    			</div>
 				    			<div class="wps_author_bio">
-				    				<h3><?= $author; ?></h3>
-				    				<p><?= $position; ?></p>
+				    				<h3><?php echo $author; ?></h3>
+				    				<p><?php echo $position; ?></p>
 				    			</div>
 				    		</div>
 				    	</div>

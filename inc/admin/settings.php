@@ -311,25 +311,25 @@ class WPSC_Admin_Settings
 		if ( $args['type'] == 'checkbox' ): ?>
 
 			<label class="wps_switch">
-			  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[<?= $args["name"]; ?>]" value="yes" <?= checked( 'yes', $options[$args["name"]], false ); ?>>
+			  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[<?php echo $args["name"]; ?>]" value="yes" <?php echo checked( 'yes', $options[$args["name"]], false ); ?>>
 			  <span class="wps_toggle"></span>
 			</label>
 
 		<?php elseif( $args['type'] == 'select' ): ?>
 
-			<select name="wps_testimonials_setting[<?= $args['name']; ?>]">
+			<select name="wps_testimonials_setting[<?php echo $args['name']; ?>]">
 				<?php foreach ($args['option'] as $item): ?>
-					<option value="<?= $item; ?>" <?= selected( $item, $options[$args["name"]], false ); ?>><?= $item; ?></option>
+					<option value="<?php echo $item; ?>" <?php echo selected( $item, $options[$args["name"]], false ); ?>><?php echo $item; ?></option>
 				<?php endforeach ?>
 			</select>
 
 		<?php elseif( $args['type'] == 'number' ): ?>
-			<input class="auto-play" type="number" name="wps_testimonials_setting[<?= $args['name']; ?>]" value="<?= $options[$args["name"]]; ?>">
+			<input class="auto-play" type="number" name="wps_testimonials_setting[<?php echo $args['name']; ?>]" value="<?php echo $options[$args["name"]]; ?>">
 
 		<?php elseif( $args['type'] == 'radio' ): ?>
 			<?php foreach ($args['option'] as $key => $val): ?>
 				<label>
-					<input type="radio" name="wps_testimonials_setting[<?= $args['name']; ?>]" value="<?= $key; ?>" <?= checked( $options[$args["name"]], $key, false ); ?>><?= $val; ?>
+					<input type="radio" name="wps_testimonials_setting[<?php echo $args['name']; ?>]" value="<?php echo $key; ?>" <?php echo checked( $options[$args["name"]], $key, false ); ?>><?php echo $val; ?>
 				</label>
 			<?php endforeach ?>
 
