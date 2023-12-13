@@ -74,11 +74,10 @@ class WPSC_Admin_Settings
 		}
 
 		if ( isset( $_GET['settings-updated'] ) ) {
-			add_settings_error( 'wps_testimonials_messages', 'wps_testimonials_message', __( 'Settings Saved', 'wporg' ), 'updated' );
+			add_settings_error( 'wps_testimonials_messages', 'wps_testimonials_message', __( 'Settings Saved', 'wpsc-ultimate-testimonials' ), 'updated' );
 		}
 
 		settings_errors( 'wps_testimonials_messages' );
-
 
 		?>
 		<style type="text/css">
@@ -97,13 +96,12 @@ class WPSC_Admin_Settings
 
 				<form action="options.php" method="post">
 					<?php
-					
+
 					settings_fields('wps_testimonials');
 
 					do_settings_sections('wps_testimonials');
 
 					submit_button( 'Save Changes' );
-
 
 					?>
 				</form>
@@ -308,32 +306,34 @@ class WPSC_Admin_Settings
 	public function wpsc_settings_field( $args ) {
 		$options = $this->settings;
 
-		if ( $args['type'] == 'checkbox' ): ?>
+		if ( $args['type'] == 'checkbox' ){ ?>
 
 			<label class="wps_switch">
-			  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[<?php echo $args["name"]; ?>]" value="yes" <?php echo checked( 'yes', $options[$args["name"]], false ); ?>>
+			  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[<?php esc_attr_e($args['name']); ?>]" value="yes" <?php checked( 'yes', $options[$args['name']] ); ?>>
 			  <span class="wps_toggle"></span>
 			</label>
 
-		<?php elseif( $args['type'] == 'select' ): ?>
+		<?php } elseif( $args['type'] == 'select' ){ ?>
 
-			<select name="wps_testimonials_setting[<?php echo $args['name']; ?>]">
-				<?php foreach ($args['option'] as $item): ?>
-					<option value="<?php echo $item; ?>" <?php echo selected( $item, $options[$args["name"]], false ); ?>><?php echo $item; ?></option>
-				<?php endforeach ?>
+			<select name="wps_testimonials_setting[<?php esc_attr_e( $args['name'] ); ?>]">
+				<?php foreach ($args['option'] as $item){ ?>
+					<option value="<?php esc_attr_e($item); ?>" <?php selected( $item, $options[$args['name']] ); ?>><?php esc_attr_e($item); ?></option>
+				<?php } ?>
 			</select>
 
-		<?php elseif( $args['type'] == 'number' ): ?>
-			<input class="auto-play" type="number" name="wps_testimonials_setting[<?php echo $args['name']; ?>]" value="<?php echo $options[$args["name"]]; ?>">
+		<?php } elseif( $args['type'] == 'number' ){ ?>
+			
+			<input class="auto-play" type="number" name="wps_testimonials_setting[<?php esc_attr_e($args['name']); ?>]" value="<?php esc_attr_e($options[$args['name']]); ?>">
 
-		<?php elseif( $args['type'] == 'radio' ): ?>
-			<?php foreach ($args['option'] as $key => $val): ?>
+		<?php } elseif( $args['type'] == 'radio' ){ ?>
+			
+			<?php foreach ($args['option'] as $key => $val){ ?>
 				<label>
-					<input type="radio" name="wps_testimonials_setting[<?php echo $args['name']; ?>]" value="<?php echo $key; ?>" <?php echo checked( $options[$args["name"]], $key, false ); ?>><?php echo $val; ?>
+					<input type="radio" name="wps_testimonials_setting[<?php esc_attr_e($args['name']); ?>]" value="<?php esc_attr_e( $key ); ?>" <?php checked( $options[$args['name']], $key ); ?>><?php esc_attr_e( $val ); ?>
 				</label>
-			<?php endforeach ?>
+			<?php } ?>
 
-		<?php endif; 
+		<?php }
 
 	}
 
