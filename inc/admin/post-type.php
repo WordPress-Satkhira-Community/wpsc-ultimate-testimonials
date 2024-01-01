@@ -64,11 +64,11 @@ class WPSC_Testimonials_PostType
 
 
 	public function save_meta( $post_id ){
-		if( ! empty( $_POST['designation'] ) && wp_verify_nonce( $_POST['designation_nonce'], basename(__FILE__) ) ){
+		if ( ! isset( $_POST['designation_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['designation_nonce'] ) ), basename(__FILE__) ) ){
 			update_post_meta( $post_id, 'designation', sanitize_text_field( $_POST['designation'] ) );
 		}
 
-		if( ! empty( $_POST['ratings'] ) && wp_verify_nonce( $_POST['ratings_nonce'], basename(__FILE__) ) ){
+		if ( ! isset( $_POST['ratings_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ratings_nonce'] ) ), basename(__FILE__) ) ){
 			update_post_meta( $post_id, 'ratings', sanitize_text_field( $_POST['ratings'] ) );
 		}
 	}
