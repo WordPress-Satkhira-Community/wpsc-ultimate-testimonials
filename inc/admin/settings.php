@@ -201,7 +201,12 @@ class WPSC_Admin_Settings
 			[
 				'type' => 'select',
 				'name' => 'pagination',
-				'option' => [ 'None', 'Dots', 'Fraction', 'Progress' ]
+				'option' => [
+					__( 'None', 'wpsc-ultimate-testimonials' ),
+					__( 'Dots', 'wpsc-ultimate-testimonials' ),
+					__( 'Fraction', 'wpsc-ultimate-testimonials' ),
+					__( 'Progress', 'wpsc-ultimate-testimonials' )
+				]
 			]
 		);
 
@@ -240,8 +245,8 @@ class WPSC_Admin_Settings
 				'type' => 'radio',
 				'name' => 'carousel_performance',
 				'option' => [
-					'local' => 'Enqueue own JS locally',
-					'cdn' => 'Enqueue from CDN'
+					'local' => __( 'Enqueue own JS locally', 'wpsc-ultimate-testimonials' ),
+					'cdn' => __( 'Enqueue from CDN', 'wpsc-ultimate-testimonials' )
 				]
 			]
 		);
@@ -309,27 +314,27 @@ class WPSC_Admin_Settings
 		if ( $args['type'] == 'checkbox' ){ ?>
 
 			<label class="wps_switch">
-			  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[<?php esc_attr_e($args['name']); ?>]" value="yes" <?php checked( 'yes', $options[$args['name']] ); ?>>
+			  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[<?php echo esc_attr($args['name']); ?>]" value="yes" <?php checked( 'yes', $options[$args['name']] ); ?>>
 			  <span class="wps_toggle"></span>
 			</label>
 
 		<?php } elseif( $args['type'] == 'select' ){ ?>
 
-			<select name="wps_testimonials_setting[<?php esc_attr_e( $args['name'] ); ?>]">
+			<select name="wps_testimonials_setting[<?php echo esc_attr( $args['name'] ); ?>]">
 				<?php foreach ($args['option'] as $item){ ?>
-					<option value="<?php esc_attr_e($item); ?>" <?php selected( $item, $options[$args['name']] ); ?>><?php esc_attr_e($item); ?></option>
+					<option value="<?php echo esc_attr($item); ?>" <?php selected( $item, $options[$args['name']] ); ?>><?php printf( esc_html__( '%s', 'wpsc-ultimate-testimonials' ), esc_html($item) ); ?></option>
 				<?php } ?>
 			</select>
 
 		<?php } elseif( $args['type'] == 'number' ){ ?>
 			
-			<input class="auto-play" type="number" name="wps_testimonials_setting[<?php esc_attr_e($args['name']); ?>]" value="<?php esc_attr_e($options[$args['name']]); ?>">
+			<input class="auto-play" type="number" name="wps_testimonials_setting[<?php echo esc_attr($args['name']); ?>]" value="<?php echo esc_attr($options[$args['name']]); ?>">
 
 		<?php } elseif( $args['type'] == 'radio' ){ ?>
 			
 			<?php foreach ($args['option'] as $key => $val){ ?>
 				<label>
-					<input type="radio" name="wps_testimonials_setting[<?php esc_attr_e($args['name']); ?>]" value="<?php esc_attr_e( $key ); ?>" <?php checked( $options[$args['name']], $key ); ?>><?php esc_attr_e( $val ); ?>
+					<input type="radio" name="wps_testimonials_setting[<?php echo esc_attr($args['name']); ?>]" value="<?php echo esc_attr( $key ); ?>" <?php checked( $options[$args['name']], $key ); ?>><?php printf( esc_html__( '%s', 'wpsc-ultimate-testimonials' ), esc_html($val) ); ?>
 				</label>
 			<?php } ?>
 

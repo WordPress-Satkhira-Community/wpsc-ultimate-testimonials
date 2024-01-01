@@ -48,11 +48,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 				    		</div>
 				    		<div class="wps_author">
 				    			<div class="wps_author_pic">
-				    				<img src="<?php echo esc_url( $thumbnail_url ); ?>" alt="<?php esc_attr_e( $author ); ?>'s Thumbnail">
+				    				<img src="<?php echo esc_url( $thumbnail_url ); ?>" alt="<?php printf( '%s\'s Thumbnail', esc_html($author) ); ?>">
 				    			</div>
 				    			<div class="wps_author_bio">
-				    				<h3><?php esc_attr_e( $author ); ?></h3>
-				    				<p><?php esc_attr_e( $position ); ?></p>
+				    				<h3><?php echo esc_html( $author ); ?></h3>
+				    				<p><?php echo esc_html( $position ); ?></p>
 				    			</div>
 				    		</div>
 				    	</div>
