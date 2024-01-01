@@ -1,15 +1,13 @@
 (function($) {
 
-if ( $('.wps_testimonials').length > 0 ) {
-	jQuery.map($('.wps_testimonials'), function(item, index){
-		var settings = $(item).find('.wps_testimonial-wrap').data('setting');
-		console.log(settings);
-		var element = $(item).find('.wps_testimonial-wrap .swiper')[0];
-		var nextEl = $(item).find('.wps_testimonial-wrap .swiper-button-next')[0];
-		var prevEl = $(item).find('.wps_testimonial-wrap .swiper-button-prev')[0];
-		var elPagination = $(item).find('.wps_testimonial-wrap .swiper-pagination')[0];
-
-		
+if ( $('.wpscut_testimonials').length > 0 ) {
+	jQuery.map( $('.wpscut_testimonials'), function(item, index){
+		var settings = $(item).find('.wpscut_testimonial-wrap').data('setting');
+		// console.log(settings);
+		var element = $(item).find('.wpscut_testimonial-wrap .swiper')[0];
+		var nextEl = $(item).find('.wpscut_testimonial-wrap .swiper-button-next')[0];
+		var prevEl = $(item).find('.wpscut_testimonial-wrap .swiper-button-prev')[0];
+		var elPagination = $(item).find('.wpscut_testimonial-wrap .swiper-pagination')[0];
 
 		var slider = new Swiper(element, {
 			slidesPerView: settings['slides_per_view_mobile'],

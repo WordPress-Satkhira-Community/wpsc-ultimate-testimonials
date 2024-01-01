@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-class WPSC_Elementor_Settings 
+class WPSCUT_Elementor_Settings 
 {
 	
 	private static $instance;
@@ -38,8 +38,8 @@ class WPSC_Elementor_Settings
 
 
 	public function elementor_widget( $widgets_manager ){
-		require_once( WPS_UT_PATH . '/inc/elementor/widget.php' );
+		require_once( WPSCUT_PATH . '/inc/elementor/widget.php' );
 
-		$widgets_manager->register( new \WPSC_Ultimate_Testimonials_Widget() );
+		$widgets_manager->register( new \WPSCUT_Testimonials_Widget() );
 	}	
 }

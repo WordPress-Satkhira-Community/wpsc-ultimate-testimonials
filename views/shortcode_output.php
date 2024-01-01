@@ -9,11 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<div class="wps_testimonials">
+<div class="wpscut_testimonials">
 	<?php if ( empty($testimonials) ): ?>
 		<h3>No Reviews Available!</h3>
 	<?php else: ?>
-		<div class="wps_testimonial-wrap" data-setting='<?php echo wp_json_encode($slider_settings); ?>'>
+		<div class="wpscut_testimonial-wrap" data-setting='<?php echo wp_json_encode($slider_settings); ?>'>
 			<div class="swiper">
 			  <div class="swiper-wrapper">
 			  	<?php foreach ($testimonials as $testimonial): 
@@ -23,10 +23,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			  		$rating 		= get_post_meta( $testimonial->ID, 'ratings', true ) ?? 5;
 					$thumbnail_url 	= get_the_post_thumbnail_url( $testimonial->ID, 'thumbnail' ) ?? '';
 			  	?>
-				    <div class="swiper-slide wps_testimonial">
-				    	<div class="wps_wrapper">
-				    		<div class="wps_reviews">
-				    			<?php 
+				    <div class="swiper-slide wpscut_testimonial">
+				    	<div class="wpscut_wrapper">
+				    		<div class="wpscut_reviews">
+				    			<?php
 				    			$floor = round($rating);
 
 				    			for ($i = 1; $i <= 5; $i++) {
@@ -43,14 +43,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				    			?>
 				    		</div>
-				    		<div class="wps_content">
+				    		<div class="wpscut_content">
 				    			<?php echo wp_kses_post( $content ); ?>
 				    		</div>
-				    		<div class="wps_author">
-				    			<div class="wps_author_pic">
+				    		<div class="wpscut_author">
+				    			<div class="wpscut_author_pic">
 				    				<img src="<?php echo esc_url( $thumbnail_url ); ?>" alt="<?php printf( '%s\'s Thumbnail', esc_html($author) ); ?>">
 				    			</div>
-				    			<div class="wps_author_bio">
+				    			<div class="wpscut_author_bio">
 				    				<h3><?php echo esc_html( $author ); ?></h3>
 				    				<p><?php echo esc_html( $position ); ?></p>
 				    			</div>

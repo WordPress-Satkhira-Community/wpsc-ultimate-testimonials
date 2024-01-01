@@ -22,18 +22,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-define('WPS_FILE', __FILE__);
-define('WPS_UT_PATH', plugin_dir_path(__FILE__));
-define('WPS_UT_URL', plugin_dir_url(__FILE__));
+define( 'WPSCUT_FILE', __FILE__ );
+define( 'WPSCUT_PATH', plugin_dir_path(__FILE__) );
+define( 'WPSCUT_URL', plugin_dir_url(__FILE__) );
 
 
-include_once WPS_UT_PATH .'/inc/admin/post-type.php';
-include_once WPS_UT_PATH .'/inc/admin/settings.php';
-include_once WPS_UT_PATH .'/inc/elementor/settings.php';
+include_once WPSCUT_PATH .'/inc/admin/post-type.php';
+include_once WPSCUT_PATH .'/inc/admin/settings.php';
+include_once WPSCUT_PATH .'/inc/elementor/settings.php';
 
- // WPSC Ultimate Testimonital Plugin starts 
 
-class WPSC_Ultimate_Testimonials
+// WPSC Ultimate Testimonital Plugin starts 
+
+class WPSCUT_Core
 {
 	
 	private static $instance;
@@ -48,16 +49,11 @@ class WPSC_Ultimate_Testimonials
 
 	public function __construct(){
 		add_action( 'plugins_loaded', [$this, 'load_textdomain'] );
-
-		// register_deactivation_hook( __FILE__, [$this, 'rewrite_flush'] );
-
-		
-
 		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), [$this, 'plugin_action_links'] );
 
 		add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
-		add_shortcode( 'wps_ultimate_testimonials', [ $this, 'testimonails_output' ] );
+		add_shortcode( 'wpscut_ultimate_testimonials', [ $this, 'testimonails_output' ] );
 	}
 
 
@@ -66,29 +62,29 @@ class WPSC_Ultimate_Testimonials
 	}
 
 	public function plugin_action_links($actions){
-		$actions[] = '<a href="'. esc_url( get_admin_url(null, 'edit.php?post_type=wps-testimonials&page=wps-testimonials-settings') ) .'">Settings</a>';
+		$actions[] = '<a href="'. esc_url( get_admin_url(null, 'edit.php?post_type=wpsc-testimonials&page=wpsc-testimonials-settings') ) .'">Settings</a>';
 		return $actions;
 	}
 
 	public function admin_scripts($hook) {
-		if( "wps-testimonials_page_wps-testimonials-settings" != $hook ) {
+		if( "wpsc-testimonials_page_wpsc-testimonials-settings" != $hook ) {
 			return;
 		}
-		wp_enqueue_style( 'style', WPS_UT_URL . 'assets/css/admin-style.css', [], '10.2.0' );
+		wp_enqueue_style( 'style', WPSCUT_URL . 'assets/css/admin-style.css', [], '10.2.0' );
 	}
 
 	public function scripts() {
-		wp_register_style( 'swiper', WPS_UT_URL . 'assets/css/swiper.min.css', [], '10.2.0' );
+		wp_register_style( 'swiper', WPSCUT_URL . 'assets/css/swiper.min.css', [], '10.2.0' );
 		wp_enqueue_style( 'swiper' );
 
-		wp_register_style( 'style', WPS_UT_URL . 'assets/css/style.css', ['dashicons'], '1.0' );
-		wp_enqueue_style( 'style' );
+		wp_register_style( 'wpsc-ut', WPSCUT_URL . 'assets/css/style.css', ['dashicons'], '1.0' );
+		wp_enqueue_style( 'wpsc-ut' );
 
-		wp_register_script( 'swiper', WPS_UT_URL . 'assets/js/swiper.min.js', [ 'jquery' ], '10.2.0', true );
+		wp_register_script( 'swiper', WPSCUT_URL . 'assets/js/swiper.min.js', ['jquery'], '10.2.0', true );
 		wp_enqueue_script( 'swiper' );
 
-		wp_register_script( 'wps_main', WPS_UT_URL . 'assets/js/main.js', [ 'jquery', 'swiper' ], '1.0', true );
-		wp_enqueue_script( 'wps_main' );
+		wp_register_script( 'wpsc-ut', WPSCUT_URL . 'assets/js/main.js', ['jquery', 'swiper'], '1.0', true );
+		wp_enqueue_script( 'wpsc-ut' );
 	}
 
 
@@ -96,18 +92,18 @@ class WPSC_Ultimate_Testimonials
 	public static function get_data (){
 		return get_posts([
 		  'numberposts' => -1,
-		  'post_type'   => 'wps-testimonials'
+		  'post_type'   => 'wpsc-testimonials'
 		]);
 	}
 
 
 	public function testimonails_output( $atts, $content ) {
 		$testimonials = self::get_data() ?? [];
-		$slider_settings = get_option( 'wps_testimonials_setting' );
+		$slider_settings = get_option( 'wpscut_setting' );
 
 		ob_start();
 
-		include ( WPS_UT_PATH .'/views/shortcode_output.php' );
+		include ( WPSCUT_PATH .'/views/shortcode_output.php' );
 		
 		return ob_get_clean();
 	}
@@ -115,10 +111,10 @@ class WPSC_Ultimate_Testimonials
 
 
 // Load the plugin
-WPSC_Testimonials_PostType::get_instance();
-WPSC_Admin_Settings::get_instance();
-WPSC_Elementor_Settings::get_instance();
-WPSC_Ultimate_Testimonials::get_instance();
+WPSCUT_PostType::get_instance();
+WPSCUT_Admin_Settings::get_instance();
+WPSCUT_Elementor_Settings::get_instance();
+WPSCUT_Core::get_instance();
 
 
 

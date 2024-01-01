@@ -2,18 +2,18 @@
   max-width: 80px;
 }
 /*Toggle Switch*/
-.wps_switch {
+.wpscut_switch {
   position: relative;
   display: inline-block;
   width: 40px;
   height: 21px;
 }
-.wps_switch .wps_input { 
+.wpscut_switch .wpscut_input { 
   opacity: 0;
   width: 0;
   height: 0;
 }
-.wps_toggle {
+.wpscut_toggle {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -25,7 +25,7 @@
   transition: .4s;
   border-radius: 3px;
 }
-.wps_toggle:before {
+.wpscut_toggle:before {
   position: absolute;
   content: "";
   height: 15px;
@@ -37,13 +37,13 @@
   transition: .4s;
   border-radius: 2px;
 }
-.wps_input:checked + .wps_toggle {
+.wpscut_input:checked + .wpscut_toggle {
   background-color: #2196F3;
 }
-.wps_input:focus + .wps_toggle {
+.wpscut_input:focus + .wpscut_toggle {
   box-shadow: 0 0 1px #2196F3;
 }
-.wps_input:checked + .wps_toggle:before {
+.wpscut_input:checked + .wpscut_toggle:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(23px);

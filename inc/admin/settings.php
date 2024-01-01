@@ -7,10 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-class WPSC_Admin_Settings 
+class WPSCUT_Admin_Settings 
 {
-	
-
 
 	private static $instance;
 
@@ -26,24 +24,26 @@ class WPSC_Admin_Settings
 	private $settings;
 
 	public function __construct(){
-		$this->settings = get_option( 'wps_testimonials_setting' );
+		$this->settings = get_option( 'wpscut_setting' );
 
 		add_action( 'admin_menu', [$this, 'admin_menu'] );
 		add_action( 'admin_init', [$this, 'admin_settings'] );
-		register_activation_hook( WPS_FILE, [$this, 'default_settings'] );
+
+		register_activation_hook( WPSCUT_FILE, [$this, 'default_settings'] );
 	}	
 
 	public function default_settings() {
-		if ( !empty(get_option( 'wps_testimonials_setting' )) ) {
+		if ( !empty( get_option( 'wpscut_setting' ) ) ) {
 			return;
 		}
+
 		$default_settings = [
 			'show_arrows' => 'yes',
 			'pagination' => 'Dots',
 			'speed' => "500",
-			'autoplay' => 'yes',
+			'autoplay' => 'no',
 			'autoplay_speed' => "5000",
-			'loop' => 'yes',
+			'loop' => 'no',
 			'pause_on_hover' => 'yes',
 			'pause_on_interaction' => 'yes',
 			'carousel_performance' => "cdn",
@@ -52,17 +52,16 @@ class WPSC_Admin_Settings
 			'slides_per_view_mobile' => "1"
 		];
 
-		update_option( 'wps_testimonials_setting', $default_settings);
-
+		update_option( 'wpscut_setting', $default_settings );
 	}
 
 	public function admin_menu(){
 		add_submenu_page(
-			'edit.php?post_type=wps-testimonials',
+			'edit.php?post_type=wpsc-testimonials',
 			'Settings',
 			'Settings',
 			'manage_options',
-			'wps-testimonials-settings',
+			'wpsc-testimonials-settings',
 			[$this, 'settings']
 		);
 	}
@@ -74,32 +73,32 @@ class WPSC_Admin_Settings
 		}
 
 		if ( isset( $_GET['settings-updated'] ) ) {
-			add_settings_error( 'wps_testimonials_messages', 'wps_testimonials_message', __( 'Settings Saved', 'wpsc-ultimate-testimonials' ), 'updated' );
+			add_settings_error( 'wpscut_testimonials_messages', 'wpscut_testimonials_message', __( 'Settings Saved', 'wpsc-ultimate-testimonials' ), 'updated' );
 		}
 
-		settings_errors( 'wps_testimonials_messages' );
+		settings_errors( 'wpscut_testimonials_messages' );
 
 		?>
 		<style type="text/css">
-			.wpsc_settings select {
+			.wpscut_settings select {
 				min-width: 100px;
 			}
-			.wpsc_settings label {
+			.wpscut_settings label {
 				display: block;
 				margin-bottom: 8px;
 			}
 		</style>
 		<div class="wrap">
-			<div class="wpsc_settings">
+			<div class="wpscut_settings">
 				
 				<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
 				<form action="options.php" method="post">
 					<?php
 
-					settings_fields('wps_testimonials');
+					settings_fields('wpscut_settings');
 
-					do_settings_sections('wps_testimonials');
+					do_settings_sections('wpscut_settings');
 
 					submit_button( 'Save Changes' );
 
@@ -112,28 +111,28 @@ class WPSC_Admin_Settings
 	}
 
 	public function admin_settings(){
-		register_setting( 'wps_testimonials', 'wps_testimonials_setting' );
+		register_setting( 'wpscut_settings', 'wpscut_setting' );
 
 		add_settings_section(
 			'testimonials_shortcode',
 			'',
 			'__return_null',
-			'wps_testimonials'
+			'wpscut_settings'
 		);
 
 		add_settings_field(
-			'wps_testimonials_shortcode',
+			'wpscut_testimonials_shortcode',
 			__('Shortcode', 'wpsc-ultimate-testimonials'),
 			[$this, 'shortcode_output'],
-			'wps_testimonials',
+			'wpscut_settings',
 			'testimonials_shortcode'
 		);
 
 		add_settings_field(
-			'wps_carousel_autoplay',
+			'wpscut_carousel_autoplay',
 			__('Carousel Autoplay', 'wpsc-ultimate-testimonials'),
-			[$this, 'wpsc_settings_field'],
-			'wps_testimonials',
+			[$this, 'field_output'],
+			'wpscut_settings',
 			'testimonials_shortcode',
 			[
 				'type' => 'checkbox',
@@ -142,10 +141,10 @@ class WPSC_Admin_Settings
 		);
 
 		add_settings_field( 
-			'wps_carousel_arrows',
+			'wpscut_carousel_arrows',
 			__('Arrows', 'wpsc-ultimate-testimonials'),
-			[$this, 'wpsc_settings_field'],
-			'wps_testimonials',
+			[$this, 'field_output'],
+			'wpscut_settings',
 			'testimonials_shortcode',
 			[
 				'type' => 'checkbox',
@@ -155,10 +154,10 @@ class WPSC_Admin_Settings
 
 
 		add_settings_field(
-			'wps_carousel_loop',
+			'wpscut_carousel_loop',
 			__('Infinite Loop', 'wpsc-ultimate-testimonials'),
-			[$this, 'wpsc_settings_field'],
-			'wps_testimonials',
+			[$this, 'field_output'],
+			'wpscut_settings',
 			'testimonials_shortcode',
 			[
 				'type' => 'checkbox',
@@ -167,10 +166,10 @@ class WPSC_Admin_Settings
 		);
 
 		add_settings_field(
-			'wps_carousel_hover_pouse',
+			'wpscut_carousel_hover_pouse',
 			__('Pause on Hover', 'wpsc-ultimate-testimonials'),
-			[$this, 'wpsc_settings_field'],
-			'wps_testimonials',
+			[$this, 'field_output'],
+			'wpscut_settings',
 			'testimonials_shortcode',
 			[
 				'type' => 'checkbox',
@@ -180,10 +179,10 @@ class WPSC_Admin_Settings
 
 
 		add_settings_field(
-			'wps_carousel_interaction_pouse',
+			'wpscut_carousel_interaction_pouse',
 			__('Pause on Interaction', 'wpsc-ultimate-testimonials'),
-			[$this, 'wpsc_settings_field'],
-			'wps_testimonials',
+			[$this, 'field_output'],
+			'wpscut_settings',
 			'testimonials_shortcode',
 			[
 				'type' => 'checkbox',
@@ -193,10 +192,10 @@ class WPSC_Admin_Settings
 
 
 		add_settings_field(
-			'wps_carousel_pagination',
+			'wpscut_carousel_pagination',
 			__('Pagination', 'wpsc-ultimate-testimonials'),
-			[$this, 'wpsc_settings_field'],
-			'wps_testimonials',
+			[$this, 'field_output'],
+			'wpscut_settings',
 			'testimonials_shortcode',
 			[
 				'type' => 'select',
@@ -211,10 +210,10 @@ class WPSC_Admin_Settings
 		);
 
 		add_settings_field(
-			'wps_autoplay_speed',
+			'wpscut_autoplay_speed',
 			__('Autoplay Speed', 'wpsc-ultimate-testimonials'),
-			[$this, 'wpsc_settings_field'],
-			'wps_testimonials',
+			[$this, 'field_output'],
+			'wpscut_settings',
 			'testimonials_shortcode',
 			[
 				'type' => 'number',
@@ -223,10 +222,10 @@ class WPSC_Admin_Settings
 		);
 
 		add_settings_field(
-			'wps_transition_duration',
+			'wpscut_transition_duration',
 			__('Transition Duration', 'wpsc-ultimate-testimonials'),
-			[$this, 'wpsc_settings_field'],
-			'wps_testimonials',
+			[$this, 'field_output'],
+			'wpscut_settings',
 			'testimonials_shortcode',
 			[
 				'type' => 'number',
@@ -236,10 +235,10 @@ class WPSC_Admin_Settings
 
 
 		add_settings_field(
-			'wps_carousel_performance',
+			'wpscut_carousel_performance',
 			__('Performance Oplimization', 'wpsc-ultimate-testimonials'),
-			[$this, 'wpsc_settings_field'],
-			'wps_testimonials',
+			[$this, 'field_output'],
+			'wpscut_settings',
 			'testimonials_shortcode',
 			[
 				'type' => 'radio',
@@ -255,15 +254,15 @@ class WPSC_Admin_Settings
 			'testimonials_responsive',
 			'Carousel Column',
 			'__return_null',
-			'wps_testimonials'
+			'wpscut_settings'
 		);
 
 
 		add_settings_field(
-			'wps_carousel_column',
+			'wpscut_carousel_column',
 			__('Desktop Column', 'wpsc-ultimate-testimonials'),
-			[$this, 'wpsc_settings_field'],
-			'wps_testimonials',
+			[$this, 'field_output'],
+			'wpscut_settings',
 			'testimonials_responsive',
 			[
 				'type' => 'select',
@@ -274,10 +273,10 @@ class WPSC_Admin_Settings
 
 
 		add_settings_field(
-			'wps_carousel_tablet_column',
+			'wpscut_carousel_tablet_column',
 			__('Tablet Column', 'wpsc-ultimate-testimonials'),
-			[$this, 'wpsc_settings_field'],
-			'wps_testimonials',
+			[$this, 'field_output'],
+			'wpscut_settings',
 			'testimonials_responsive',
 			[
 				'type' => 'select',
@@ -288,10 +287,10 @@ class WPSC_Admin_Settings
 
 
 		add_settings_field(
-			'wps_carousel_mobile_column',
+			'wpscut_carousel_mobile_column',
 			__('Mobile Column', 'wpsc-ultimate-testimonials'),
-			[$this, 'wpsc_settings_field'],
-			'wps_testimonials',
+			[$this, 'field_output'],
+			'wpscut_settings',
 			'testimonials_responsive',
 			[
 				'type' => 'select',
@@ -305,22 +304,22 @@ class WPSC_Admin_Settings
 
 
 	public function shortcode_output(){
-		echo '<input type="text" value="[wps_ultimate_testimonials]" readonly class="regular-text">';
+		echo '<input type="text" value="[wpscut_ultimate_testimonials]" readonly class="regular-text">';
 	}
 
-	public function wpsc_settings_field( $args ) {
+	public function field_output( $args ) {
 		$options = $this->settings;
 
 		if ( $args['type'] == 'checkbox' ){ ?>
 
-			<label class="wps_switch">
-			  <input class="wps_input" type="checkbox" name="wps_testimonials_setting[<?php echo esc_attr($args['name']); ?>]" value="yes" <?php checked( 'yes', $options[$args['name']] ); ?>>
-			  <span class="wps_toggle"></span>
+			<label class="wpscut_switch">
+			  <input class="wpscut_input" type="checkbox" name="wpscut_setting[<?php echo esc_attr($args['name']); ?>]" value="yes" <?php checked( 'yes', $options[$args['name']] ); ?>>
+			  <span class="wpscut_toggle"></span>
 			</label>
 
 		<?php } elseif( $args['type'] == 'select' ){ ?>
 
-			<select name="wps_testimonials_setting[<?php echo esc_attr( $args['name'] ); ?>]">
+			<select name="wpscut_setting[<?php echo esc_attr( $args['name'] ); ?>]">
 				<?php foreach ($args['option'] as $item){ ?>
 					<option value="<?php echo esc_attr($item); ?>" <?php selected( $item, $options[$args['name']] ); ?>><?php printf( esc_html__( '%s', 'wpsc-ultimate-testimonials' ), esc_html($item) ); ?></option>
 				<?php } ?>
@@ -328,13 +327,13 @@ class WPSC_Admin_Settings
 
 		<?php } elseif( $args['type'] == 'number' ){ ?>
 			
-			<input class="auto-play" type="number" name="wps_testimonials_setting[<?php echo esc_attr($args['name']); ?>]" value="<?php echo esc_attr($options[$args['name']]); ?>">
+			<input class="auto-play" type="number" name="wpscut_setting[<?php echo esc_attr($args['name']); ?>]" value="<?php echo esc_attr($options[$args['name']]); ?>">
 
 		<?php } elseif( $args['type'] == 'radio' ){ ?>
 			
 			<?php foreach ($args['option'] as $key => $val){ ?>
 				<label>
-					<input type="radio" name="wps_testimonials_setting[<?php echo esc_attr($args['name']); ?>]" value="<?php echo esc_attr( $key ); ?>" <?php checked( $options[$args['name']], $key ); ?>><?php printf( esc_html__( '%s', 'wpsc-ultimate-testimonials' ), esc_html($val) ); ?>
+					<input type="radio" name="wpscut_setting[<?php echo esc_attr($args['name']); ?>]" value="<?php echo esc_attr( $key ); ?>" <?php checked( $options[$args['name']], $key ); ?>><?php printf( esc_html__( '%s', 'wpsc-ultimate-testimonials' ), esc_html($val) ); ?>
 				</label>
 			<?php } ?>
 

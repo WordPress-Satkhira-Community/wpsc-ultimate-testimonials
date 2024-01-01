@@ -2,7 +2,7 @@
 
 use \Elementor\Controls_Manager;
 
-class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
+class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 
 	public function get_name(){
 		return 'wpsc_ultimate_testimonials';
@@ -46,7 +46,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 	public function get_testimonials() {
 		$eTestimonials = [];
 		$testimonials = get_posts([
-			'post_type' => 'wps-testimonials'			
+			'post_type' => 'wpsc-testimonials'			
 		]);
 
 		foreach ($testimonials as $item) {
@@ -357,7 +357,7 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Infinite Loop', 'wpsc-ultimate-testimonials' ),
 				'type' => Controls_Manager::SWITCHER,
-				'default' => 'yes',
+				'default' => 'no',
 				'frontend_available' => true,
 			]
 		);
@@ -449,12 +449,12 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 ?>
 
 
-<div class="wps_testimonials">
+<div class="wpscut_testimonials">
 	<?php if ( empty($settings['testimonials_list']) ): ?>
 		<h3>No Reviews Available!</h3>
 	<?php else:
 	 ?>
-		 <div class="wps_testimonial-wrap" data-setting='<?php echo wp_json_encode($slider_settings); ?>'>
+		 <div class="wpscut_testimonial-wrap" data-setting='<?php echo wp_json_encode($slider_settings); ?>'>
 			<div class="swiper">
 				<div class="swiper-wrapper">
 					<?php foreach ($testimonials as $testimonial): 
@@ -465,9 +465,9 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 						$thumbnail_url = $testimonial['review-image']['url'] ?? '';
 
 					?>
-				    <div class="swiper-slide wps_testimonial">
-				    	<div class="wps_wrapper">
-				    		<div class="wps_reviews">
+				    <div class="swiper-slide wpscut_testimonial">
+				    	<div class="wpscut_wrapper">
+				    		<div class="wpscut_reviews">
 				    			<?php 
 				    			$floor = round($rating);
 
@@ -485,14 +485,14 @@ class WPSC_Ultimate_Testimonials_Widget extends \Elementor\Widget_Base {
 
 				    			?>
 				    		</div>
-				    		<div class="wps_content">
+				    		<div class="wpscut_content">
 				    			<?php echo wp_kses_post( $content ); ?>
 				    		</div>
-				    		<div class="wps_author">
-				    			<div class="wps_author_pic">
+				    		<div class="wpscut_author">
+				    			<div class="wpscut_author_pic">
 				    				<img src="<?php echo esc_url( $thumbnail_url ); ?>" alt="<?php printf( '%s\'s Thumbnail', esc_html($author) ); ?>">
 				    			</div>
-				    			<div class="wps_author_bio">
+				    			<div class="wpscut_author_bio">
 				    				<h3><?php echo esc_html( $author ); ?></h3>
 				    				<p><?php echo esc_html( $position ); ?></p>
 				    			</div>
