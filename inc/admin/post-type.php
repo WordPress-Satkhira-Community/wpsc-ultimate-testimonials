@@ -48,7 +48,7 @@ class WPSC_Testimonials_PostType
 
 		printf(
 			'<input class="widefat" type="text" name="designation" value="%s">',
-			get_post_meta( $post->ID, 'designation', true )
+			esc_attr( get_post_meta( $post->ID, 'designation', true ) )
 		);
 	}
 
@@ -58,7 +58,7 @@ class WPSC_Testimonials_PostType
 
 		printf(
 			'<input type="number" name="ratings" value="%s" min="1" max="5" step="0.5">',
-			get_post_meta( $post->ID, 'ratings', true )
+			esc_attr( get_post_meta( $post->ID, 'ratings', true ) )
 		);
 	}
 
