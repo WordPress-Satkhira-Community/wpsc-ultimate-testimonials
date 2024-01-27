@@ -77,14 +77,14 @@ class WPSCUT_Core
 		wp_register_style( 'swiper', WPSCUT_URL . 'assets/css/swiper.min.css', [], '10.2.0' );
 		wp_enqueue_style( 'swiper' );
 
-		wp_register_style( 'wpsc-ut', WPSCUT_URL . 'assets/css/style.css', ['dashicons'], '1.0' );
-		wp_enqueue_style( 'wpsc-ut' );
+		wp_register_style( 'wpscut', WPSCUT_URL . 'assets/css/style.css', ['dashicons'], '1.0' );
+		wp_enqueue_style( 'wpscut' );
 
 		wp_register_script( 'swiper', WPSCUT_URL . 'assets/js/swiper.min.js', ['jquery'], '10.2.0', true );
 		wp_enqueue_script( 'swiper' );
 
-		wp_register_script( 'wpsc-ut', WPSCUT_URL . 'assets/js/main.js', ['jquery', 'swiper'], '1.0', true );
-		wp_enqueue_script( 'wpsc-ut' );
+		wp_register_script( 'wpscut', WPSCUT_URL . 'assets/js/main.js', ['jquery', 'swiper'], '1.0', true );
+		wp_enqueue_script( 'wpscut' );
 	}
 
 
