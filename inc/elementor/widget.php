@@ -442,7 +442,7 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 		];
 
 		if ( $settings['source'] == 'post_type' ) {
-			$testimonials = WPSC_Ultimate_Testimonials::get_data();
+			$testimonials = WPSCUT_Core::get_data();
 		} elseif ( $settings['source'] == 'manual' ) {
 			$testimonials = $settings['testimonials_list'];
 		}
