@@ -19,15 +19,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 			  	<?php foreach ($testimonials as $testimonial): 
 			  		$author 		= $testimonial->post_title ?? '';
 			  		$content 		= $testimonial->post_content ?? '';
-			  		$position 		= get_post_meta( $testimonial->ID, 'designation', true ) ?? '';
-			  		$rating 		= get_post_meta( $testimonial->ID, 'ratings', true ) ?? 5;
-					$thumbnail_url 	= get_the_post_thumbnail_url( $testimonial->ID, 'thumbnail' ) ?? '';
+			  		$position 		= get_post_meta( $testimonial->ID, 'designation', true ) ?: '';
+			  		$rating 		= get_post_meta( $testimonial->ID, 'ratings', true ) ?: 5;
+					$thumbnail_url 	= get_the_post_thumbnail_url( $testimonial->ID, 'thumbnail' ) ?: '';
 			  	?>
 				    <div class="swiper-slide wpscut_testimonial">
 				    	<div class="wpscut_wrapper">
 				    		<div class="wpscut_reviews">
 				    			<?php
-				    			$floor = round($rating);
+								var_dump($rating);
+				    			$floor = 0;
 
 				    			for ($i = 1; $i <= 5; $i++) {
 				    				if ( $i == $floor && fmod($rating, 1) ) {

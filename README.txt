@@ -76,18 +76,19 @@ Yes, you will receive regular updates to keep your testimonial system running sm
 = Can I use WPSC Ultimate Testimonials on multiple websites? =
 WPSC Ultimate Testimonials offers different licensing options. Depending on the license you choose, you can use it on a single site or multiple sites. Please check the licensing terms for more details.
 
- == Screenshots ==
+== Screenshots ==
  
- 1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Screenshots are stored in the /assets directory.
-2. This is the second screen shot
-
- == Upgrade Notice ==
- 
- = 1.0 =
-Initial Release
+1. Overview of settings page.
+2. Elementor addons panel.
 
 == Changelog ==
 
-= Version 1.0 =
+= 1.0.1 - 10/02/2024 =
 
-Initial Release
+- Fixed: Shortcode rating output for empty value
+
+= 1.0 - 10/02/2024 =
+
+- Initial Release
+
+== Upgrade Notice ==
