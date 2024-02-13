@@ -25,6 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'WPSCUT_FILE', __FILE__ );
 define( 'WPSCUT_PATH', plugin_dir_path(__FILE__) );
 define( 'WPSCUT_URL', plugin_dir_url(__FILE__) );
+define( 'WPSCUT_BASE', plugin_basename( WPSCUT_FILE ) );
 
 
 include_once WPSCUT_PATH .'/inc/admin/post-type.php';
@@ -50,6 +51,7 @@ class WPSCUT_Core
 	public function __construct(){
 		add_action( 'plugins_loaded', [$this, 'load_textdomain'] );
 		add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), [$this, 'plugin_action_links'] );
+		add_filter( 'plugin_row_meta', [$this, 'plugin_meta_links'], 10, 2 );
 
 		add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
@@ -64,6 +66,19 @@ class WPSCUT_Core
 	public function plugin_action_links($actions){
 		$actions[] = '<a href="'. esc_url( get_admin_url(null, 'edit.php?post_type=wpsc-testimonials&page=wpsc-testimonials-settings') ) .'">Settings</a>';
 		return $actions;
+	}
+
+	public function plugin_meta_links( $plugin_meta, $plugin_file ){
+		if ( WPSCUT_BASE === $plugin_file ) {
+			$row_meta = [
+				'docs' => '<a href="https://go.wpsatkhira.com/?route=docs&product=wpsc-ultimate-testimonials" aria-label="' . esc_attr( esc_html__( 'View Documentation', 'wpsc-ultimate-testimonials' ) ) . '" target="_blank">' . esc_html__( 'Docs & FAQs', 'wpsc-ultimate-testimonials' ) . '</a>',
+				'source' => '<a href="https://github.com/WordPress-Satkhira-Community/wpsc-ultimate-testimonials" aria-label="' . esc_attr( esc_html__( 'View Source on Github', 'wpsc-ultimate-testimonials' ) ) . '" target="_blank">Github</a>',
+			];
+
+			$plugin_meta = array_merge( $plugin_meta, $row_meta );
+		}
+
+		return $plugin_meta;
 	}
 
 	public function admin_scripts($hook) {
