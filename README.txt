@@ -36,6 +36,9 @@ SEO-Friendly: The plugin is built with SEO best practices in mind, helping you i
 
 Support and Updates: Rest easy knowing that you'll receive regular updates and dedicated support to keep your testimonial system running smoothly.
 
+= Contributing & Bug Report =
+Bug reports and pull requests are welcome on [Github](https://github.com/WordPress-Satkhira-Community/wpsc-ultimate-testimonials).
+
 == Installation == 
 
 Go to Plugins > Add new > Search WPSC Ultimate Testimonial
