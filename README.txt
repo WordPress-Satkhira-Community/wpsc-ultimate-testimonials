@@ -1,6 +1,6 @@
 === WPSC Ultimate Testimonials === 
 
-Contributors: wpdelower, zakir021063008, kamrulislam0093, riadmahmud46, iqbal511138, nurulanam, jsrasheduzzaman, wpmahade
+Contributors: wpdelower, zakir021063008, kamrulislam0093, riadmahmud46, iqbal511138, nurulanam, jsrasheduzzaman, wpsatkhira
 Tags: testimonials, carousel, reviews, clients feedback, support 
 Donate link: https://www.wpsatkhira.com/donate 
 Requires at least: 5.0
