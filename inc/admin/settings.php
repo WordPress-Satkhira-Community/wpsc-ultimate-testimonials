@@ -47,6 +47,7 @@ class WPSCUT_Admin_Settings
 			'pause_on_hover' => 'yes',
 			'pause_on_interaction' => 'yes',
 			'carousel_performance' => "cdn",
+			'minify_js' => "no",
 			'slides_per_view' => "3",
 			'slides_per_view_tablet' => "2",
 			'slides_per_view_mobile' => "1"
@@ -245,7 +246,8 @@ class WPSCUT_Admin_Settings
 				'name' => 'carousel_performance',
 				'option' => [
 					'local' => __( 'Enqueue own JS locally', 'wpsc-ultimate-testimonials' ),
-					'cdn' => __( 'Enqueue from CDN', 'wpsc-ultimate-testimonials' )
+					'cdn' => __( 'Enqueue from CDN', 'wpsc-ultimate-testimonials' ),
+					'minify' => __( 'Use Minified Version', 'wpsc-ultimate-testimonials' )
 				]
 			]
 		);
