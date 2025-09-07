@@ -3,14 +3,14 @@
 Contributors: wpdelower, zakir021063008, kamrulislam0093, riadmahmud46, iqbal511138, nurulanam, jsrasheduzzaman, wpmahade
 Tags: testimonials, carousel, reviews, clients feedback, support 
 Donate link: https://www.wpsatkhira.com/donate 
-Requires at least: 5.7 
-Tested up to: 6.4.3
-Requires PHP: 7.2 
-Stable tag: 1.0
+Requires at least: 5.0
+Tested up to: 6.8.2
+Requires PHP: 7.2
+Stable tag: 1.1.2
 License: GPLv2 or later 
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-WPSC Ultimate Testimonials is the definitive testimonial management solution for WordPress users seeking to enhance their website's credibility and trustworthiness. This versatile plugin empowers you to effortlessly generate, manage, and showcase compelling testimonials from satisfied customers, clients, or users.
+WPSC Ultimate Testimonials lets WordPress users easily create, manage, and display powerful testimonials to boost website trust and credibility.
 
 == Description == 
 
@@ -35,6 +35,9 @@ Responsive Design: Ensure that your testimonials look great on all devices, as W
 SEO-Friendly: The plugin is built with SEO best practices in mind, helping you improve your website's search engine visibility.
 
 Support and Updates: Rest easy knowing that you'll receive regular updates and dedicated support to keep your testimonial system running smoothly.
+
+= Contributing & Bug Report =
+Bug reports and pull requests are welcome on [Github](https://github.com/WordPress-Satkhira-Community/wpsc-ultimate-testimonials).
 
 == Installation == 
 
@@ -76,18 +79,24 @@ Yes, you will receive regular updates to keep your testimonial system running sm
 = Can I use WPSC Ultimate Testimonials on multiple websites? =
 WPSC Ultimate Testimonials offers different licensing options. Depending on the license you choose, you can use it on a single site or multiple sites. Please check the licensing terms for more details.
 
- == Screenshots ==
+== Screenshots ==
  
- 1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Screenshots are stored in the /assets directory.
-2. This is the second screen shot
-
- == Upgrade Notice ==
- 
- = 1.0 =
-Initial Release
+1. Overview of settings page.
+2. Elementor addons panel.
 
 == Changelog ==
 
-= Version 1.0 =
+= 1.1.2 - 07/09/2025 =
 
-Initial Release
+- Bug fix
+- Update: WordPress 6.8.2 Compatibility
+
+= 1.0.1 - 10/02/2024 =
+
+- Fixed: Shortcode rating output for empty value
+
+= 1.0 - 10/02/2024 =
+
+- Initial Release
+
+== Upgrade Notice ==
