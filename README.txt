@@ -3,10 +3,10 @@
 Contributors: wpdelower, zakir021063008, kamrulislam0093, riadmahmud46, iqbal511138, nurulanam, jsrasheduzzaman, wpmahade
 Tags: testimonials, carousel, reviews, clients feedback, support 
 Donate link: https://www.wpsatkhira.com/donate 
-Requires at least: 5.7 
-Tested up to: 6.4.3
-Requires PHP: 7.2 
-Stable tag: 1.0.1
+Requires at least: 6.0
+Tested up to: 6.8.2
+Requires PHP: 8.0
+Stable tag: 1.1.2
 License: GPLv2 or later 
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -85,6 +85,11 @@ WPSC Ultimate Testimonials offers different licensing options. Depending on the 
 2. Elementor addons panel.
 
 == Changelog ==
+
+= 1.1.2 - 07/09/2025 =
+
+- Bug fix
+- Update: WordPress 6.8.2 Compatibility
 
 = 1.0.1 - 10/02/2024 =
 
