@@ -3,9 +3,9 @@
 Contributors: wpdelower, zakir021063008, kamrulislam0093, riadmahmud46, iqbal511138, nurulanam, jsrasheduzzaman, wpmahade
 Tags: testimonials, carousel, reviews, clients feedback, support 
 Donate link: https://www.wpsatkhira.com/donate 
-Requires at least: 6.0
+Requires at least: 5.0
 Tested up to: 6.8.2
-Requires PHP: 8.0
+Requires PHP: 7.2
 Stable tag: 1.1.2
 License: GPLv2 or later 
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
