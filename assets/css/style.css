@@ -49,11 +49,12 @@
 }
 .wpscut_testimonials .swiper-button-prev,
 .wpscut_testimonials .swiper-button-next {
-  background-color: rgba(0,0,0,0.3);
-  height: 45px;
-  width: 45px;
-  border-radius: 50px;
-  top: calc(50% - 45px);
+	background-color: rgba(0,0,0,0.3);
+	height: 45px;
+	width: 45px;
+	border-radius: 50px;
+	top: 50%;
+	transform: translateY(-50%);
 }
 .wpscut_testimonials .swiper-button-prev:hover,
 .wpscut_testimonials .swiper-button-next:hover {

@@ -1,48 +1,48 @@
 (function($) {
 
-if ( $('.wpscut_testimonials').length > 0 ) {
-	jQuery.map( $('.wpscut_testimonials'), function(item, index){
-		var settings = $(item).find('.wpscut_testimonial-wrap').data('setting');
-		// console.log(settings);
-		var element = $(item).find('.wpscut_testimonial-wrap .swiper')[0];
-		var nextEl = $(item).find('.wpscut_testimonial-wrap .swiper-button-next')[0];
-		var prevEl = $(item).find('.wpscut_testimonial-wrap .swiper-button-prev')[0];
-		var elPagination = $(item).find('.wpscut_testimonial-wrap .swiper-pagination')[0];
+    if ($('.wpscut_testimonials').length && typeof Swiper !== 'undefined') {
+        $('.wpscut_testimonials').each(function(_, item) {
+            var $wrap = $(item).find('.wpscut_testimonial-wrap');
+            var settings = $wrap.data('setting') || {};
 
-		var slider = new Swiper(element, {
-			slidesPerView: settings['slides_per_view_mobile'],
-			spaceBetween: 10,	
-			lazy: true,
-			loop: settings['loop'] == 'yes' ? true : false,
-			autoplay: {
-				enabled: settings['speed'] == 'yes' ? true : false,
-				delay: ( settings['speed'] == 'yes' && settings['autoplay_speed'] != '' ) ? settings['autoplay_speed'] : 500,
-				pauseOnMouseEnter: settings['pause_on_hover'] == 'yes' ? true : false,
-				disableOnInteraction: settings['pause_on_interaction'] == 'yes' ? true : false,
-			},
-			speed: settings['speed'],
-			navigation: {
-				nextEl: nextEl,
-				prevEl: prevEl,
-			},	
-			pagination: {
-				el: elPagination,
-				clickable: true,
-				type: settings['pagination'],
-			},
-			breakpoints: {
-				640: {
-				  slidesPerView: settings['slides_per_view_tablet'],
-				  spaceBetween: 30,
-				},
-				1024: {
-				  slidesPerView: settings['slides_per_view'],
-				  spaceBetween: 30,
-				},	
-			}
-		});
+            var element = $wrap.find('.swiper')[0];
+            if (!element) return;
 
-	});
-}
+            var nextEl = $wrap.find('.swiper-button-next')[0];
+            var prevEl = $wrap.find('.swiper-button-prev')[0];
+            var elPagination = $wrap.find('.swiper-pagination')[0];
 
+            new Swiper(element, {
+                slidesPerView: parseInt(settings.slides_per_view_mobile, 10) || 1,
+                spaceBetween: parseInt(settings.space_between_mobile, 10) || 10,
+                lazy: true,
+                loop: settings.loop === 'yes',
+                autoplay: settings.autoplay === 'yes' ? {
+                    delay: parseInt(settings.autoplay_speed, 10) || 500,
+                    pauseOnMouseEnter: settings.pause_on_hover === 'yes',
+                    disableOnInteraction: settings.pause_on_interaction === 'yes'
+                } : false,
+                speed: parseInt(settings.speed, 10) || 400,
+                navigation: {
+                    nextEl,
+                    prevEl,
+                },
+                pagination: {
+                    el: elPagination,
+                    clickable: true,
+                    type: settings.pagination || 'bullets',
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: parseInt(settings.slides_per_view_tablet, 10) || 1,
+                        spaceBetween: parseInt(settings.space_between_tablet, 10) || 30,
+                    },
+                    1024: {
+                        slidesPerView: parseInt(settings.slides_per_view, 10) || 1,
+                        spaceBetween: parseInt(settings.space_between_desktop, 10) || 30,
+                    },
+                }
+            }); 
+        });
+    }
 })(jQuery);
