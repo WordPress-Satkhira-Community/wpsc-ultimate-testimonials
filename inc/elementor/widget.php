@@ -613,6 +613,337 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 
 		$this->end_controls_section();
 
+		$this->start_controls_section(
+			'section_pagination_style',
+			[
+				'label' => esc_html__( 'Pagination', 'wpsc-ultimate-testimonials' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		/**
+		* -------------------------
+		* Bullets
+		* -------------------------
+		*/
+		$this->add_control(
+			'pagination_bullet_color',
+			[
+				'label' => esc_html__( 'Bullet Color', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-pagination-bullet' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'pagination_bullet_active_color',
+			[
+				'label' => esc_html__( 'Active Bullet Color', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-pagination-bullet-active' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'pagination_bullet_size',
+			[
+				'label' => esc_html__( 'Bullet Size', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => ['px' => ['min' => 4, 'max' => 30]],
+				'selectors' => [
+					'{{WRAPPER}} .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => ['pagination' => 'bullets'],
+			]
+		);
+
+		$this->add_responsive_control(
+			'pagination_bullet_spacing',
+			[
+				'label' => esc_html__( 'Bullet Spacing', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => ['px' => ['min' => 0, 'max' => 50]],
+				'selectors' => [
+					'{{WRAPPER}} .swiper-pagination-bullet' => 'margin-right: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => ['pagination' => 'bullets'],
+			]
+		);
+
+
+		/**
+		* -------------------------
+		* Fraction
+		* -------------------------
+		*/
+		$this->add_control(
+			'pagination_fraction_color',
+			[
+				'label' => esc_html__( 'Fraction Color', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-pagination-current, {{WRAPPER}} .swiper-pagination-total' => 'color: {{VALUE}};',
+				],
+				'condition' => ['pagination' => 'fraction'],
+			]
+		);
+
+		$this->add_control(
+			'pagination_fraction_active_color',
+			[
+				'label' => esc_html__( 'Fraction Active Number Color', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-pagination-current' => 'color: {{VALUE}};',
+				],
+				'condition' => ['pagination' => 'fraction'],
+			]
+		);
+
+		/**
+		* -------------------------
+		* Progressbar
+		* -------------------------
+		*/
+		$this->add_control(
+			'pagination_progress_color',
+			[
+				'label' => esc_html__( 'Progressbar Fill Color', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-pagination-progressbar-fill' => 'background-color: {{VALUE}};',
+				],
+				'condition' => ['pagination' => 'progressbar'],
+			]
+		);
+		$this->add_control(
+			'pagination_progress_bg_color',
+			[
+				'label' => esc_html__( 'Progressbar Background Color', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-pagination-progressbar' => 'background-color: {{VALUE}};',
+				],
+				'condition' => ['pagination' => 'progressbar'],
+			]
+		);
+
+
+		$this->add_responsive_control(
+			'pagination_spacing',
+			[
+				'label' => esc_html__( 'Pagination Spacing', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px','%','em','rem'],
+				'range' => [
+					'px' => ['min' => 0, 'max' => 100],
+					'%'  => ['min' => 0, 'max' => 50],
+					'em' => ['min' => 0, 'max' => 10],
+					'rem' => ['min' => 0, 'max' => 10],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .swiper-pagination' => 'margin-top: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+
+		$this->end_controls_section();
+
+		/**
+		* -------------------------
+		* Navigation Arrows
+		* -------------------------
+		*/
+
+		$this->start_controls_section(
+			'section_navigation_arrows_style',
+			[
+				'label' => esc_html__( 'Navigation Arrows', 'wpsc-ultimate-testimonials' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		/**
+		* -------------------------
+		* Arrow Button Size
+		* -------------------------
+		*/
+		$this->add_responsive_control(
+			'arrow_size',
+			[
+				'label' => esc_html__( 'Arrow Button Size', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', 'em', '%'],
+				'range' => ['px' => ['min' => 20, 'max' => 100]],
+				'default' => ['unit' => 'px', 'size' => 40],
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev, {{WRAPPER}} .swiper-button-next' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		/**
+		* -------------------------
+		* Arrow Icon Size
+		* -------------------------
+		*/
+		$this->add_responsive_control(
+			'arrow_icon_size',
+			[
+				'label' => esc_html__( 'Arrow Icon Size', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', 'em', '%'],
+				'range' => ['px' => ['min' => 10, 'max' => 50]],
+				'default' => ['unit' => 'px', 'size' => 16],
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev::after, {{WRAPPER}} .swiper-button-next::after' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		/**
+		* -------------------------
+		* Arrow Colors
+		* -------------------------
+		*/
+		$this->add_control(
+			'arrow_color',
+			[
+				'label' => esc_html__( 'Color', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev:not(.swiper-button-disabled)::after, {{WRAPPER}} .swiper-button-next:not(.swiper-button-disabled)::after' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'arrow_color_hover',
+			[
+				'label' => esc_html__( 'Color: Hover', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev:hover:not(.swiper-button-disabled)::after, {{WRAPPER}} .swiper-button-next:hover:not(.swiper-button-disabled)::after' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'arrow_color_disabled',
+			[
+				'label' => esc_html__( 'Color: Disabled', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev.swiper-button-disabled::after, {{WRAPPER}} .swiper-button-next.swiper-button-disabled::after' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		/**
+		* -------------------------
+		* Arrow Background
+		* -------------------------
+		*/
+		$this->add_control(
+			'arrow_bg',
+			[
+				'label' => esc_html__( 'Background Color', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev:not(.swiper-button-disabled), {{WRAPPER}} .swiper-button-next:not(.swiper-button-disabled)' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'arrow_bg_hover',
+			[
+				'label' => esc_html__( 'Background Color: Hover', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev:hover:not(.swiper-button-disabled), {{WRAPPER}} .swiper-button-next:hover:not(.swiper-button-disabled)' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'arrow_bg_disabled',
+			[
+				'label' => esc_html__( 'Background Color: Disabled', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev.swiper-button-disabled, {{WRAPPER}} .swiper-button-next.swiper-button-disabled' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		/**
+		* -------------------------
+		* Border
+		* -------------------------
+		*/
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'arrow_border',
+				'label' => esc_html__( 'Border', 'wpsc-ultimate-testimonials' ),
+				'selector' => '{{WRAPPER}} .swiper-button-prev:not(.swiper-button-disabled), {{WRAPPER}} .swiper-button-next:not(.swiper-button-disabled)',
+			]
+		);
+
+		$this->add_control(
+			'arrow_border_hover',
+			[
+				'label' => esc_html__( 'Border Color: Hover', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev:hover:not(.swiper-button-disabled), {{WRAPPER}} .swiper-button-next:hover:not(.swiper-button-disabled)' => 'border-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'arrow_border_disabled',
+			[
+				'label' => esc_html__( 'Border Color: Disabled', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev.swiper-button-disabled, {{WRAPPER}} .swiper-button-next.swiper-button-disabled' => 'border-color: {{VALUE}};',
+				],
+			]
+		);
+
+		/**
+		* -------------------------
+		* Box Shadow
+		* -------------------------
+		*/
+		$this->add_group_control(
+			\Elementor\Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'arrow_shadow',
+				'label' => esc_html__( 'Shadow', 'wpsc-ultimate-testimonials' ),
+				'selector' => '{{WRAPPER}} .swiper-button-prev:not(.swiper-button-disabled), {{WRAPPER}} .swiper-button-next:not(.swiper-button-disabled)',
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'arrow_shadow_hover',
+				'label' => esc_html__( 'Shadow: Hover', 'wpsc-ultimate-testimonials' ),
+				'selector' => '{{WRAPPER}} .swiper-button-prev:hover:not(.swiper-button-disabled), {{WRAPPER}} .swiper-button-next:hover:not(.swiper-button-disabled)',
+			]
+		);
+
+		$this->end_controls_section();
+
+
 		// END STYLE TAB
 	}
 
@@ -649,71 +980,77 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 ?>
 
 
-<div class="wpscut_testimonials">
-	<?php if ( empty($settings['testimonials_list']) ): ?>
-		<h3>No Reviews Available!</h3>
-	<?php else:
-	 ?>
-		 <div class="wpscut_testimonial-wrap" data-setting='<?php echo wp_json_encode($slider_settings); ?>'>
-			<div class="swiper">
-				<div class="swiper-wrapper">
-					<?php foreach ($testimonials as $testimonial): 
-						$author = $testimonial['name'] ?? '';
-						$content = $testimonial['review'] ?? '';
-						$position = $testimonial['designation'] ?? '';
-						$rating = empty($testimonial['rating']) ? 120 : 24 * $testimonial['rating'];
-						$thumbnail_url = $testimonial['review-image']['url'] ?? '';
+<div class="wpscut_testimonials" role="region" aria-label="Customer Testimonials">
+    <?php 
+    $testimonials = $settings['testimonials_list'] ?? [];
 
-					?>
-				    <div class="swiper-slide wpscut_testimonial">
-				    	<div class="wpscut_wrapper">
-				    		<div class="wpscut_reviews">
-				    			<?php 
-				    			$floor = round($rating);
+    if ( empty($testimonials) ): ?>
+        <h3><?php esc_html_e( 'No Reviews Available!', 'wpscut' ); ?></h3>
+    <?php else: 
+        $slider_data = esc_attr( wp_json_encode( $slider_settings ) );
+    ?>
+        <div class="wpscut_testimonial-wrap" data-setting="<?php echo $slider_data; ?>">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <?php foreach ( $testimonials as $testimonial ): 
+                        $author = $testimonial['name'] ?? 'Anonymous';
+                        $content = $testimonial['review'] ?? '';
+                        $position = $testimonial['designation'] ?? '';
+                        $rating = !empty($testimonial['rating']) ? (float) $testimonial['rating'] : 5;
+                        $thumbnail_url = $testimonial['review-image']['url'] ?? \Elementor\Utils::get_placeholder_image_src();
 
-				    			for ($i = 1; $i <= 5; $i++) {
-				    				if ( $i == $floor && fmod($rating, 1) ) {
-				    					echo '<span class="dashicons dashicons-star-half"></span>';
-				    				} else {
-					    				if ( $i <= $floor ) {
-					    					echo '<span class="dashicons dashicons-star-filled"></span>';
-					    				} else {
-					    					echo '<span class="dashicons dashicons-star-empty"></span>';
-					    				}
-				    				}
-				    			}
+                        // Generate stars
+                        $full_stars = floor( $rating );
+                        $half_star = ($rating - $full_stars) >= 0.5 ? true : false;
+                        $empty_stars = 5 - $full_stars - ($half_star ? 1 : 0);
+                    ?>
+                        <div class="swiper-slide wpscut_testimonial">
+                            <div class="wpscut_wrapper">
+                                <div class="wpscut_reviews">
+                                    <?php 
+                                        for ( $i = 0; $i < $full_stars; $i++ ) {
+                                            echo '<span class="dashicons dashicons-star-filled"></span>';
+                                        }
+                                        if ( $half_star ) {
+                                            echo '<span class="dashicons dashicons-star-half"></span>';
+                                        }
+                                        for ( $i = 0; $i < $empty_stars; $i++ ) {
+                                            echo '<span class="dashicons dashicons-star-empty"></span>';
+                                        }
+                                    ?>
+                                </div>
 
-				    			?>
-				    		</div>
-				    		<div class="wpscut_content">
-				    			<?php echo wp_kses_post( $content ); ?>
-				    		</div>
-				    		<div class="wpscut_author">
-				    			<div class="wpscut_author_pic">
-				    				<img src="<?php echo esc_url( $thumbnail_url ); ?>" alt="<?php printf( '%s\'s Thumbnail', esc_html($author) ); ?>">
-				    			</div>
-				    			<div class="wpscut_author_bio">
-				    				<h3><?php echo esc_html( $author ); ?></h3>
-				    				<p><?php echo esc_html( $position ); ?></p>
-				    			</div>
-				    		</div>
-				    	</div>
-				    </div>		  		
-					<?php endforeach; ?>	    
-				</div>
-				<?php if ( $slider_settings['pagination'] != '' ): ?>
-					<div class="swiper-pagination"></div>
-				<?php endif ?>				
-			</div>	
-			
-			<?php if ( $slider_settings['arrow'] == 'yes' ): ?>
-				<div class="swiper-button-prev"></div>
-				<div class="swiper-button-next"></div>				
-			<?php endif ?>			
-		</div>
-	<?php endif ?>
+                                <div class="wpscut_content"><?php echo wp_kses_post( $content ); ?></div>
 
+                                <div class="wpscut_author">
+                                    <div class="wpscut_author_pic">
+                                        <img src="<?php echo esc_url( $thumbnail_url ); ?>" 
+                                             alt="<?php echo esc_attr( $author . '\'s Thumbnail' ); ?>" 
+                                             loading="lazy">
+                                    </div>
+                                    <div class="wpscut_author_bio">
+                                        <h3><?php echo esc_html( $author ); ?></h3>
+                                        <p><?php echo esc_html( $position ); ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <?php if ( !empty($slider_settings['pagination']) ): ?>
+                    <div class="swiper-pagination"></div>
+                <?php endif; ?>
+            </div>
+
+            <?php if ( !empty($slider_settings['arrow']) && $slider_settings['arrow'] === 'yes' ): ?>
+                <div class="swiper-button-prev" aria-label="Previous Slide"></div>
+                <div class="swiper-button-next" aria-label="Next Slide"></div>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
 </div>
+
 
 <?php 
 	}
