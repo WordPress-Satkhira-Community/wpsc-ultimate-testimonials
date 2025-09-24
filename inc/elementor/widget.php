@@ -759,7 +759,7 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 		* Navigation Arrows
 		* -------------------------
 		*/
-
+		
 		$this->start_controls_section(
 			'section_navigation_arrows_style',
 			[
@@ -788,10 +788,10 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 		);
 
 		/**
-		* -------------------------
-		* Arrow Icon Size
-		* -------------------------
-		*/
+		 * -------------------------
+		 * Arrow Icon Size
+		 * -------------------------
+		 */
 		$this->add_responsive_control(
 			'arrow_icon_size',
 			[
@@ -807,10 +807,18 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 		);
 
 		/**
-		* -------------------------
-		* Arrow Colors
-		* -------------------------
-		*/
+		 * -------------------------
+		 * Arrow Colors / Background / Border / Shadow Tabs
+		 * -------------------------
+		 */
+		$this->start_controls_tabs( 'arrow_style_tabs' );
+
+		/* -------- Normal Tab -------- */
+		$this->start_controls_tab(
+			'arrow_normal_tab',
+			['label' => esc_html__( 'Normal', 'wpsc-ultimate-testimonials' )]
+		);
+
 		$this->add_control(
 			'arrow_color',
 			[
@@ -823,36 +831,9 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'arrow_color_hover',
-			[
-				'label' => esc_html__( 'Color: Hover', 'wpsc-ultimate-testimonials' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .swiper-button-prev:hover:not(.swiper-button-disabled)::after, {{WRAPPER}} .swiper-button-next:hover:not(.swiper-button-disabled)::after' => 'color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'arrow_color_disabled',
-			[
-				'label' => esc_html__( 'Color: Disabled', 'wpsc-ultimate-testimonials' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .swiper-button-prev.swiper-button-disabled::after, {{WRAPPER}} .swiper-button-next.swiper-button-disabled::after' => 'color: {{VALUE}};',
-				],
-			]
-		);
-
-		/**
-		* -------------------------
-		* Arrow Background
-		* -------------------------
-		*/
-		$this->add_control(
 			'arrow_bg',
 			[
-				'label' => esc_html__( 'Background Color', 'wpsc-ultimate-testimonials' ),
+				'label' => esc_html__( 'Background', 'wpsc-ultimate-testimonials' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .swiper-button-prev:not(.swiper-button-disabled), {{WRAPPER}} .swiper-button-next:not(.swiper-button-disabled)' => 'background-color: {{VALUE}};',
@@ -860,33 +841,6 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'arrow_bg_hover',
-			[
-				'label' => esc_html__( 'Background Color: Hover', 'wpsc-ultimate-testimonials' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .swiper-button-prev:hover:not(.swiper-button-disabled), {{WRAPPER}} .swiper-button-next:hover:not(.swiper-button-disabled)' => 'background-color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'arrow_bg_disabled',
-			[
-				'label' => esc_html__( 'Background Color: Disabled', 'wpsc-ultimate-testimonials' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .swiper-button-prev.swiper-button-disabled, {{WRAPPER}} .swiper-button-next.swiper-button-disabled' => 'background-color: {{VALUE}};',
-				],
-			]
-		);
-
-		/**
-		* -------------------------
-		* Border
-		* -------------------------
-		*/
 		$this->add_group_control(
 			\Elementor\Group_Control_Border::get_type(),
 			[
@@ -896,33 +850,6 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'arrow_border_hover',
-			[
-				'label' => esc_html__( 'Border Color: Hover', 'wpsc-ultimate-testimonials' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .swiper-button-prev:hover:not(.swiper-button-disabled), {{WRAPPER}} .swiper-button-next:hover:not(.swiper-button-disabled)' => 'border-color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'arrow_border_disabled',
-			[
-				'label' => esc_html__( 'Border Color: Disabled', 'wpsc-ultimate-testimonials' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .swiper-button-prev.swiper-button-disabled, {{WRAPPER}} .swiper-button-next.swiper-button-disabled' => 'border-color: {{VALUE}};',
-				],
-			]
-		);
-
-		/**
-		* -------------------------
-		* Box Shadow
-		* -------------------------
-		*/
 		$this->add_group_control(
 			\Elementor\Group_Control_Box_Shadow::get_type(),
 			[
@@ -932,16 +859,102 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this->end_controls_tab();
+
+		/* -------- Hover Tab -------- */
+		$this->start_controls_tab(
+			'arrow_hover_tab',
+			['label' => esc_html__( 'Hover', 'wpsc-ultimate-testimonials' )]
+		);
+
+		$this->add_control(
+			'arrow_color_hover',
+			[
+				'label' => esc_html__( 'Color', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev:hover:not(.swiper-button-disabled)::after, {{WRAPPER}} .swiper-button-next:hover:not(.swiper-button-disabled)::after' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'arrow_bg_hover',
+			[
+				'label' => esc_html__( 'Background', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev:hover:not(.swiper-button-disabled), {{WRAPPER}} .swiper-button-next:hover:not(.swiper-button-disabled)' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'arrow_border_hover',
+			[
+				'label' => esc_html__( 'Border Color', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev:hover:not(.swiper-button-disabled), {{WRAPPER}} .swiper-button-next:hover:not(.swiper-button-disabled)' => 'border-color: {{VALUE}};',
+				],
+			]
+		);
+
 		$this->add_group_control(
 			\Elementor\Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'arrow_shadow_hover',
-				'label' => esc_html__( 'Shadow: Hover', 'wpsc-ultimate-testimonials' ),
+				'label' => esc_html__( 'Shadow', 'wpsc-ultimate-testimonials' ),
 				'selector' => '{{WRAPPER}} .swiper-button-prev:hover:not(.swiper-button-disabled), {{WRAPPER}} .swiper-button-next:hover:not(.swiper-button-disabled)',
 			]
 		);
 
+		$this->end_controls_tab();
+
+		/* -------- Disabled Tab -------- */
+		$this->start_controls_tab(
+			'arrow_disabled_tab',
+			['label' => esc_html__( 'Disabled', 'wpsc-ultimate-testimonials' )]
+		);
+
+		$this->add_control(
+			'arrow_color_disabled',
+			[
+				'label' => esc_html__( 'Color', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev.swiper-button-disabled::after, {{WRAPPER}} .swiper-button-next.swiper-button-disabled::after' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'arrow_bg_disabled',
+			[
+				'label' => esc_html__( 'Background', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev.swiper-button-disabled, {{WRAPPER}} .swiper-button-next.swiper-button-disabled' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'arrow_border_disabled',
+			[
+				'label' => esc_html__( 'Border Color', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .swiper-button-prev.swiper-button-disabled, {{WRAPPER}} .swiper-button-next.swiper-button-disabled' => 'border-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
 		$this->end_controls_section();
+
 
 
 		// END STYLE TAB
