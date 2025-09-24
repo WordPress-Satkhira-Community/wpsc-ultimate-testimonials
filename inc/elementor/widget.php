@@ -1,6 +1,7 @@
 <?php
 
 use \Elementor\Controls_Manager;
+use \Elementor\Group_Control_Typography;
 
 class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 
@@ -35,12 +36,11 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 
 
 	public function get_script_depends() {
-		return [ 'swiper' ];
+		return [ 'swiper', 'wpscut' ]; 
 	}
 
-
 	public function get_style_depends() {
-		return [ 'swiper' ];
+		return [ 'swiper', 'wpscut' ];
 	}
 
 	public function get_testimonials() {
@@ -97,7 +97,7 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 					'image_right' => esc_html__( 'Image Right', 'wpsc-ultimate-testimonials' ),
 				],
 				'prefix_class' => 'elementor-testimonial--layout-',
-				'render_type' => 'template',
+				'render_type' => 'ui',
 			]
 		);
 
@@ -122,8 +122,10 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 					],
 				],
 				'prefix_class' => 'elementor-testimonial-%s-align-',
+				'render_type' => 'ui', 
 			]
 		);
+
 
 		$slides_per_view = range( 1, 10 );
 		$slides_per_view = array_combine( $slides_per_view, $slides_per_view );
@@ -135,7 +137,7 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Slides Per View', 'wpsc-ultimate-testimonials' ),
 				'options' => [ 3 => esc_html__( 'Default', 'wpsc-ultimate-testimonials' ) ] + $slides_per_view,
 				'inherit_placeholders' => false,
-				'frontend_available' => true,				
+				'frontend_available' => true,			
 			]
 		);
 
@@ -395,11 +397,17 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 
 
 		// STYLE TAB
+
+		/**
+		 * -------------------------
+		 * Slide Wrapper / Background
+		 * -------------------------
+		 */
 		$this->start_controls_section(
-			'section_skin_style',
+			'section_slide_wrapper',
 			[
-				'label' => esc_html__( 'Slides', 'wpsc-ultimate-testimonials' ),
-				'tab' => Controls_Manager::TAB_STYLE,
+				'label' => esc_html__( 'Slide Wrapper', 'wpsc-ultimate-testimonials' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
 
@@ -408,16 +416,204 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Background Color', 'wpsc-ultimate-testimonials' ),
 				'type' => Controls_Manager::COLOR,
-				'alpha' => false,
 				'selectors' => [
-					'{{WRAPPER}} .elementor-testimonial__content, {{WRAPPER}} .elementor-testimonial__content:after' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .wpscut_wrapper' => 'background-color: {{VALUE}} !important;',
 				],
 			]
 		);
 
 		$this->end_controls_section();
-		// END STYLE TAB
 
+		/**
+		 * -------------------------
+		 * Reviewer Image
+		 * -------------------------
+		 */
+		$this->start_controls_section(
+			'section_review_image',
+			[
+				'label' => esc_html__( 'Reviewer Image', 'wpsc-ultimate-testimonials' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'review_image_size',
+			[
+				'label' => esc_html__( 'Image Size', 'wpsc-ultimate-testimonials' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => ['px', '%'],
+				'range' => [
+					'px' => ['min' => 30, 'max' => 200],
+					'%'  => ['min' => 10, 'max' => 100],
+				],
+				'default' => ['unit' => 'px', 'size' => 60],
+				'selectors' => [
+					'{{WRAPPER}} .wpscut_author_pic img' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}; object-fit: cover;',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+
+		/**
+		 * -------------------------
+		 * Name
+		 * -------------------------
+		 */
+		$this->start_controls_section(
+			'section_name',
+			[
+				'label' => esc_html__( 'Name', 'wpsc-ultimate-testimonials' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'name_color',
+			[
+				'label' => esc_html__( 'Color', 'wpsc-ultimate-testimonials' ),
+				'type'  => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .wpscut_author_bio h3' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'name_typography',
+				'label'    => esc_html__( 'Typography', 'wpsc-ultimate-testimonials' ),
+				'selector' => '{{WRAPPER}} .wpscut_author_bio h3',
+			]
+		);
+
+		$this->end_controls_section();
+
+		/**
+		 * -------------------------
+		 * Designation
+		 * -------------------------
+		 */
+		$this->start_controls_section(
+			'section_designation',
+			[
+				'label' => esc_html__( 'Designation', 'wpsc-ultimate-testimonials' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'designation_color',
+			[
+				'label' => esc_html__( 'Color', 'wpsc-ultimate-testimonials' ),
+				'type'  => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .wpscut_author_bio p' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'designation_typography',
+				'label'    => esc_html__( 'Typography', 'wpsc-ultimate-testimonials' ),
+				'selector' => '{{WRAPPER}} .wpscut_author_bio p',
+			]
+		);
+
+		$this->end_controls_section();
+
+		/**
+		 * -------------------------
+		 * Review Text
+		 * -------------------------
+		 */
+		$this->start_controls_section(
+			'section_review_text',
+			[
+				'label' => esc_html__( 'Review Text', 'wpsc-ultimate-testimonials' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'review_color',
+			[
+				'label' => esc_html__( 'Color', 'wpsc-ultimate-testimonials' ),
+				'type'  => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .wpscut_content' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'review_typography',
+				'label'    => esc_html__( 'Typography', 'wpsc-ultimate-testimonials' ),
+				'selector' => '{{WRAPPER}} .wpscut_content',
+			]
+		);
+
+		$this->end_controls_section();
+
+		/**
+		 * -------------------------
+		 * Rating Stars
+		 * -------------------------
+		 */
+		$this->start_controls_section(
+			'section_rating_stars',
+			[
+				'label' => esc_html__( 'Rating Stars', 'wpsc-ultimate-testimonials' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'rating_color',
+			[
+				'label' => esc_html__( 'Color', 'wpsc-ultimate-testimonials' ),
+				'type'  => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .wpscut_reviews .dashicons' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'rating_size',
+			[
+				'label' => esc_html__( 'Size', 'wpsc-ultimate-testimonials' ),
+				'type'  => Controls_Manager::SLIDER,
+				'size_units' => ['px', 'em', 'rem'],
+				'range' => ['px' => ['min' => 12, 'max' => 40]],
+				'selectors' => [
+					'{{WRAPPER}} .wpscut_reviews .dashicons' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'rating_spacing',
+			[
+				'label' => esc_html__( 'Spacing', 'wpsc-ultimate-testimonials' ),
+				'type'  => Controls_Manager::SLIDER,
+				'size_units' => ['px', 'em', 'rem'],
+				'range' => ['px' => ['min' => 0, 'max' => 50]],
+				'selectors' => [
+					'{{WRAPPER}} .wpscut_reviews .dashicons' => 'margin-right: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+
+		// END STYLE TAB
 	}
 
 
@@ -439,7 +635,11 @@ class WPSCUT_Testimonials_Widget extends \Elementor\Widget_Base {
 			'slides_to_scroll' => $settings['slides_to_scroll'] ?? 3,
 			'slides_to_scroll_tablet' => $settings['slides_to_scroll_tablet'] ?? 2,
 			'slides_to_scroll_mobile' => $settings['slides_to_scroll_mobile'] ?? 1,
+			'space_between_desktop' => 30,
+			'space_between_tablet' => 20,
+			'space_between_mobile' => 10,
 		];
+
 
 		if ( $settings['source'] == 'post_type' ) {
 			$testimonials = WPSCUT_Core::get_data();

@@ -54,9 +54,11 @@ class WPSCUT_Core
 		add_filter( 'plugin_row_meta', [$this, 'plugin_meta_links'], 10, 2 );
 
 		add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ] );
+		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'scripts' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
 		add_shortcode( 'wpscut_ultimate_testimonials', [ $this, 'testimonails_output' ] );
 	}
+
 
 
 	function load_textdomain() {

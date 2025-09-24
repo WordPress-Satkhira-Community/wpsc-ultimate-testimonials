@@ -28,19 +28,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 				    		<div class="wpscut_reviews">
 				    			<?php
 								var_dump($rating);
-				    			$floor = 0;
 
-				    			for ($i = 1; $i <= 5; $i++) {
-				    				if ( $i == $floor && fmod($rating, 1) ) {
-				    					echo '<span class="dashicons dashicons-star-half"></span>';
-				    				} else {
-					    				if ( $i <= $floor ) {
-					    					echo '<span class="dashicons dashicons-star-filled"></span>';
-					    				} else {
-					    					echo '<span class="dashicons dashicons-star-empty"></span>';
-					    				}
-				    				}
-				    			}
+								$floor = floor($rating);
+								for ($i = 1; $i <= 5; $i++) {
+									if ( $i <= $floor ) {
+										echo '<span class="dashicons dashicons-star-filled"></span>';
+									} elseif ( $i == $floor + 1 && fmod($rating, 1) != 0 ) {
+										echo '<span class="dashicons dashicons-star-half"></span>';
+									} else {
+										echo '<span class="dashicons dashicons-star-empty"></span>';
+									}
+								}
 
 				    			?>
 				    		</div>
